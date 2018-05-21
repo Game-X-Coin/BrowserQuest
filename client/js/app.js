@@ -9,6 +9,7 @@ define(['jquery'], function($) {
             this.ready = false;
             this.watchNameInputInterval = setInterval(this.toggleButton.bind(this), 100);
             this.initFormFields(),
+            this.$play = $('.play');
             this.$playDiv = $('.play span');
 
             this.inventoryNumber = 0,
@@ -42,7 +43,6 @@ define(['jquery'], function($) {
             var self = this;
 
             // Play button
-            this.$play = $('.play');
             this.getPlayButton = function() { return this.getActiveForm().find('.play span') };
             this.setPlayButtonState(true);
 
