@@ -8,8 +8,8 @@ define(['jquery'], function($) {
             this.isParchmentReady = true;
             this.ready = false;
             this.watchNameInputInterval = setInterval(this.toggleButton.bind(this), 100);
-            this.initFormFields(),
             this.$play = $('.play');
+            this.initFormFields(),
             this.$playDiv = $('.play span');
 
             this.inventoryNumber = 0,
