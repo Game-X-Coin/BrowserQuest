@@ -115,6 +115,7 @@ WS.WebsocketServer = Server.extend({
             // Generate (on the fly) the pages needing special treatment
             app.use(function handleDynamicPageRequests(request, response) {
                 var path = url.parse(request.url).pathname;
+                console.log(path);
                 switch (path) {
                     case '/status':
                         // The server status page

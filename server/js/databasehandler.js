@@ -401,7 +401,6 @@ makeEmptyInventory: function(name, number){
 },
 foundAchievement: function(name, number){
     log.info("Found Achievement: " + name + " " + number);
-    console.log("achievement" + number + ":found");
     client.hset("u:" + name, "achievement" + number + ":found", "true");
 },
 progressAchievement: function(name, number, progress){

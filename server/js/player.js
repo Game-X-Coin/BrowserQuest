@@ -230,7 +230,7 @@ module.exports = Player = Character.extend({
                                 }
                             } else if(mob.kind === Types.Entities.SKELETON){
                                 const achievementId = 21;
-                                if(self.achievementFound && self.achievement[achievementId].progress !== 999){
+                                if(self.achievementFound[achievementId] && self.achievementProgress[achievementId] !== 999){
                                     
                                     if(isNaN(self.achievementProgress[achievementId])){
                                         self.achievementProgress[achievementId] = 0;
