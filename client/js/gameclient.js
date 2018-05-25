@@ -199,18 +199,15 @@ define(['player', 'entityfactory', 'lib/bison'], function(Player, EntityFactory,
                 weaponAvatar = data[9],
                 experience = data[10],
                 admin = data[11],
-                inventory0 = data[12],
-                inventory0Number = data[13],
-                inventory1 = data[14];
-                inventory1Number = data[15];
-            var achievementFound = data[16];
-            var achievementProgress = data[17];
+                inventory = data[12],
+                inventoryNumber = data[13];
+            var achievementFound = data[14];
+            var achievementProgress = data[15];
 
             if(this.game.ready){
                 this.welcome_callback(
                      id, name, x, y, hp, armor, weapon, avatar, weaponAvatar,
-                      experience, admin, inventory0, inventory0Number,
-                      inventory1, inventory1Number,
+                      experience, admin, inventory, inventoryNumber,
                       achievementFound, achievementProgress);
             }
         },

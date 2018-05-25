@@ -91,6 +91,12 @@ loadPlayer: function(player){
                     .hget(userKey, "achievement25:progress") // 67
                     .hget(userKey, "achievement26:found") // 68
                     .hget(userKey, "achievement26:progress") // 69
+                    .hget(userKey, "inventory2") // 70
+                    .hget(userKey, "inventory2:number") // 71
+                    .hget(userKey, "inventory3") // 72
+                    .hget(userKey, "inventory3:number") // 73
+                    .hget(userKey, "inventory4") // 74
+                    .hget(userKey, "inventory4:number") // 75
                     .exec(function(err, replies){
                         var pw = replies[0];
                         var armor = replies[1];
@@ -102,10 +108,13 @@ loadPlayer: function(player){
                         var avatar = replies[7];
                         var pubTopName = replies[8];
                         var nextNewArmor = replies[9];
-                        var inventory = [replies[10], replies[12]];
+                        var inventory = [replies[10], replies[12], replies[70], replies[72], replies[74]];
                         var inventoryNumber = [
                           Utils.NaN2Zero(replies[11]),
-                          Utils.NaN2Zero(replies[13])];
+                          Utils.NaN2Zero(replies[13]),
+                          Utils.NaN2Zero(replies[71]),
+                          Utils.NaN2Zero(replies[73]),
+                          Utils.NaN2Zero(replies[75])];
                         var achievementFound = [
                             null,
                             Utils.trueFalse(replies[14]),
@@ -184,14 +193,15 @@ loadPlayer: function(player){
                             if(lastLoginTimeDate.getDate() !== d.getDate()
                             && pubPoint > 0){
                               var targetInventoryNumber = -1;
-                              if(inventory[0] === "burger"){
-                                targetInventoryNumber = 0;
-                              } else if(inventory[1] === "burger"){
-                                targetInventoryNumber = 1;
-                              } else if(inventory[0] === null){
-                                targetInventoryNumber = 0;
-                              } else if(inventory[1] === null){
-                                targetInventoryNumber = 1;
+                              for(var i = 0; targetInventoryNumber !== -1 && i < inventory.length; i++) {
+                                if(inventory[i] === "burger") {
+                                  targetInventoryNumber = i;      
+                                }
+                              }
+                              for(var i = 0; targetInventoryNumber !== -1 && i < inventory.length; i++) {
+                                if(inventory[i] === null) {
+                                    targetInventoryNumber = i;
+                                }
                               }
     
                               if(targetInventoryNumber >= 0){
@@ -248,7 +258,7 @@ loadPlayer: function(player){
                                 chatBanEndTime);
                     }); 
                     return; 
-                        });
+                });
             }
         }
     })      

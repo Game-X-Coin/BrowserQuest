@@ -968,7 +968,7 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
             this.client.onWelcome(function(id, name, x, y, hp, armor, weapon,
                     avatar, weaponAvatar, experience,
                     admin,
-                    inventory0, inventory0Number, inventory1, inventory1Number,
+                    inventory, inventoryNumber,
                     achievementFound, achievementProgress) {
                 log.info("Received player ID from server : "+ id);
                 self.player.id = id;
@@ -982,8 +982,9 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
                 self.player.setArmorName(armor);
                 self.player.setSpriteName(avatar);
                 self.player.setWeaponName(weapon);
-                self.player.setInventory(Types.getKindFromString(inventory0), 0, inventory0Number);
-                self.player.setInventory(Types.getKindFromString(inventory1), 1, inventory1Number);
+                for(var i = 0; i < inventory.length; i++) {
+                    self.player.setInventory(Types.getKindFromString(inventory[i]), i, inventoryNumber[i]);    
+                }
                 self.initAchievements(achievementFound, achievementProgress);
                 self.initPlayer();
                 self.player.experience = experience;
@@ -1749,29 +1750,26 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
                         setTimeout(function() {
                             self.infoManager.addDamageInfo("+50 exp", self.player.x, self.player.y - 15, "exp", 3000);
                         }, 1000);
-                    } else if(key === 'KILL_CRAB'){
-                        if(self.player.inventory[0] === Types.Entities.CAKE){
-                            self.player.inventory[0] = null;
-                        } else if(self.player.inventory[1] === Types.Entities.CAKE){
-                            self.player.inventory[1] = null;
-                        }
+                    } else if(key === 'KILL_CRAeB'){
                         setTimeout(function() {
                             self.infoManager.addDamageInfo("+50 exp", self.player.x, self.player.y - 15, "exp", 3000);
                         }, 1000);
                     } else if(key === 'FIND_CAKE'){
-                        if(self.player.inventory[0] === Types.Entities.CAKE){
-                            self.player.inventory[0] = null;
-                        } else if(self.player.inventory[1] === Types.Entities.CAKE){
-                            self.player.inventory[1] = null;
+                        for(var i = 0; i < self.player.inventory.length; i++) {
+                            if(self.player.inventory[i] === Types.Entities.CAKE){
+                                self.player.inventory[i] = null;
+                                break;
+                            }
                         }
                         setTimeout(function() {
                             self.infoManager.addDamageInfo("+100 exp", self.player.x, self.player.y - 15, "exp", 3000);
                         }, 1000);
                     } else if(key === 'FIND_CD'){
-                        if(self.player.inventory[0] === Types.Entities.CD){
-                            self.player.inventory[0] = null;
-                        } else if(self.player.inventory[1] === Types.Entities.CD){
-                            self.player.inventory[1] = null;
+                        for(var i = 0; i < self.player.inventory.length; i++) {
+                            if(self.player.inventory[i] === Types.Entities.CD){
+                                self.player.inventory[i] = null;
+                                break;
+                            }
                         }
                         setTimeout(function() {
                             self.infoManager.addDamageInfo("+100 exp", self.player.x, self.player.y - 15, "exp", 3000);
@@ -2336,27 +2334,25 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
                 this.closeItemInfo();
             }
 
-            if(pos.x === this.camera.gridX+this.camera.gridW-2
-            && pos.y === this.camera.gridY+this.camera.gridH-1){
-                if(this.player.inventory[0]){
-                    this.menu.clickInventory0();
-                }
-                return;
-            } else if(pos.x === this.camera.gridX+this.camera.gridW-1
+            for(var i = 0; i < this.player.inventory.length; i++) {
+                if(pos.x === this.camera.gridX+this.camera.gridW-this.player.inventory.length+i
                     && pos.y === this.camera.gridY+this.camera.gridH-1){
-                if(this.player.inventory[1]){
-                    this.menu.clickInventory1();
-                }
-                return;
-            } else if(this.menu.inventoryOn){
-                var inventoryNumber;
+                    if(this.player.inventory[i]){
+                        this.menu.clickInventory(i);
+                    }
+                    return;
+                }    
+            }
+            if(this.menu.inventoryOn){
+                var inventoryNumber = -1;
                 var clickedMenu;
-
-                if(this.menu.inventoryOn === "inventory0"){
-                    inventoryNumber = 0;
-                } else if(this.menu.inventoryOn === "inventory1"){
-                    inventoryNumber = 1;
-                } else{
+                for(var i = 0; i < this.player.inventory.length; i++) {
+                    if(this.menu.inventoryOn === "inventory"+i){
+                        inventoryNumber = i;
+                        break;
+                    }
+                }
+                if(inventoryNumber === -1) {
                     return;
                 }
                 clickedMenu = this.menu.isClickedInventoryMenu(pos, this.camera);
@@ -2380,9 +2376,7 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
                         this.eat(inventoryNumber);
                         return;
                     }
-                } else if(clickedMenu === 1
-                    && this.player.inventory[inventoryNumber] !== Types.Entities.CAKE
-                    && this.player.inventory[inventoryNumber] !== Types.Entities.CD) {
+                } else if(clickedMenu === 1) {
                     if(Types.isHealingItem(this.player.inventory[inventoryNumber]) && (this.player.inventoryCount[inventoryNumber] > 1)) {
                         $('#dropCount').val(this.player.inventoryCount[inventoryNumber]);
                         this.app.showDropDialog(inventoryNumber);
@@ -2454,24 +2448,19 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
         rightClick: function() {
             var pos = this.getMouseGridPosition();
 
-            if(pos.x === this.camera.gridX+this.camera.gridW-2
-            && pos.y === this.camera.gridY+this.camera.gridH-1){
-                if(this.player.inventory[0]){
-                    if(Types.isHealingItem(this.player.inventory[0]))
-                        this.eat(0);
+            for(var i = 0; i < this.player.inventory.length; i++) {
+                if(pos.x === this.camera.gridX+this.camera.gridW-this.player.inventory.length+i
+                    && pos.y === this.camera.gridY+this.camera.gridH-1){
+                    if(this.player.inventory[i]){
+                        if(Types.isHealingItem(this.player.inventory[i]))
+                            this.eat(i);
+                    }
+                    return;
                 }
-                return;
-            } else if(pos.x === this.camera.gridX+this.camera.gridW-1
-                   && pos.y === this.camera.gridY+this.camera.gridH-1){
-                if(this.player.inventory[1]){
-                    if(Types.isHealingItem(this.player.inventory[1]))
-                        this.eat(1);
-                }
-            } else {
-                if((this.healShortCut >= 0) && this.player.inventory[this.healShortCut]) {
-                    if(Types.isHealingItem(this.player.inventory[this.healShortCut]))
-                        this.eat(this.healShortCut);
-                }
+            }
+            if((this.healShortCut >= 0) && this.player.inventory[this.healShortCut]) {
+                if(Types.isHealingItem(this.player.inventory[this.healShortCut]))
+                    this.eat(this.healShortCut);
             }
         },
 

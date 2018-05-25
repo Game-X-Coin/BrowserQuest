@@ -449,51 +449,43 @@ module.exports = Player = Character.extend({
             } else if(action === Types.Messages.TALKTONPC){
                 log.info("TALKTONPC: " + self.name + " " + message[1]);
                 if(message[1] === Types.Entities.VILLAGER){
+                    const achievementId = 17;
                     if(self.armor === Types.Entities.LEATHERARMOR
-                    && self.achievementFound[17] === true
-                    && self.achievementProgress[17] !== 999){
+                    && self.achievementFound[achievementId] === true
+                    && self.achievementProgress[achievementId] !== 999){
                         self.equipItem(Types.Entities.CLOTHARMOR);
-                        self.send([Types.Messages.ACHIEVEMENT, 17, "complete"]);
-                        self.achievementProgress[17] = 999;
+                        self.send([Types.Messages.ACHIEVEMENT, achievementId, "complete"]);
+                        self.achievementProgress[achievementId] = 999;
                         self.incExp(50);
-                        databaseHandler.progressAchievement(self.name, 17, self.achievementProgress[17]);
+                        databaseHandler.progressAchievement(self.name, achievementId, self.achievementProgress[achievementId]);
                     }
                 } else if(message[1] === Types.Entities.AGENT){
-                    if((self.inventory[0] === Types.Entities.CAKE
-                    || self.inventory[1] === Types.Entities.CAKE)
-                    && self.achievementFound[19] === true
-                    && self.achievementProgress[19] !== 999) {
-                        if(self.inventory[0] === Types.Entities.CAKE){
-                            self.inventory[0] = null;
-                            databaseHandler.makeEmptyInventory(self.name, 0);
-                        } else {
-                            self.inventory[1] = null;
-                            databaseHandler.makeEmptyInventory(self.name, 1);
-                        }
+                    const achievementId = 20;
+                    const inventoryIndex = self.inventory.indexOf(Types.Entities.CAKE);
+                    if(inventoryIndex !== -1
+                    && self.achievementFound[achievementId] === true
+                    && self.achievementProgress[achievementId] !== 999) {
+                        self.inventory.indexOf[inventoryIndex] = null;
+                        databaseHandler.makeEmptyInventory(self.name, inventoryIndex);
 
-                        self.send([Types.Messages.ACHIEVEMENT, 19, "complete"]);
-                        self.achievementProgress[19] = 999;
+                        self.send([Types.Messages.ACHIEVEMENT, achievementId, "complete"]);
+                        self.achievementProgress[achievementId] = 999;
                         self.incExp(50);
-                        databaseHandler.progressAchievement(self.name, 19, self.achievementProgress[19]);
+                        databaseHandler.progressAchievement(self.name, achievementId, self.achievementProgress[achievementId]);
                     }
                 } else if(message[1] === Types.Entities.NYAN){
                     const achievementId = 20;
-                    if((self.inventory[0] === Types.Entities.CD
-                     || self.inventory[1] === Types.Entities.CD)
+                    const inventoryIndex = self.inventory.indexOf(Types.Entities.CD);
+                    if(inventoryIndex !== -1
                     && self.achievementFound[achievementId] === true
                     && self.achievementProgress[achievementId] !== 999){
-                        if(self.inventory[0] === Types.Entities.CD){
-                            self.inventory[0] = null;
-                            databaseHandler.makeEmptyInventory(self.name, 0);
-                        } else {
-                            self.inventory[1] = null;
-                            databaseHandler.makeEmptyInventory(self.name, 1);
-                        }
+                        self.inventory[inventoryIndex] = null;
+                        databaseHandler.makeEmptyInventory(self.name, inventoryIndex);
 
-                        self.send([Types.Messages.ACHIEVEMENT, 20, "complete"]);
+                        self.send([Types.Messages.ACHIEVEMENT, achievementId, "complete"]);
                         self.achievementProgress[achievementId] = 999;
                         self.incExp(100);
-                        databaseHandler.progressAchievement(self.name, 20, self.achievementProgress[achievementId]);
+                        databaseHandler.progressAchievement(self.name, achievementId, self.achievementProgress[achievementId]);
                     }
                 } else if(message[1] === Types.Entities.DESERTNPC){
                     const achievementId = 22;
@@ -501,10 +493,10 @@ module.exports = Player = Character.extend({
                     && self.achievementFound[achievementId] === true
                     && self.achievementProgress[achievementId] !== 999){
                         self.equipItem(Types.Entities.SWORD2);
-                        self.send([Types.Messages.ACHIEVEMENT, 22, "complete"]);
+                        self.send([Types.Messages.ACHIEVEMENT, achievementId, "complete"]);
                         self.achievementProgress[achievementId] = 999;
                         self.incExp(200);
-                        databaseHandler.progressAchievement(self.name, 22, self.achievementProgress[achievementId]);
+                        databaseHandler.progressAchievement(self.name, achievementId, self.achievementProgress[achievementId]);
                     }
                 }
             } else if(action === Types.Messages.MAGIC){
@@ -855,10 +847,10 @@ module.exports = Player = Character.extend({
         self.equipArmor(Types.getKindFromString(armor));
         self.equipAvatar(Types.getKindFromString(avatar));
         self.equipWeapon(Types.getKindFromString(weapon));
-        self.inventory[0] = Types.getKindFromString(inventory[0]);
-        self.inventory[1] = Types.getKindFromString(inventory[1]);
-        self.inventoryCount[0] = inventoryNumber[0];
-        self.inventoryCount[1] = inventoryNumber[1];
+        for(var i=0; i < inventory.length; i++) {
+            self.inventory[i] = Types.getKindFromString(inventory[i]);
+        }
+        self.inventoryCount = inventoryNumber;
         self.achievementFound = achievementFound;
         self.achievementProgress = achievementProgress;
         
@@ -882,7 +874,7 @@ module.exports = Player = Character.extend({
             Types.Messages.WELCOME, self.id, self.name, self.x, self.y,
             self.hitPoints, armor, weapon, avatar, weaponAvatar,
             self.experience, self.admin,
-            inventory[0], inventoryNumber[0], inventory[1], inventoryNumber[1],
+            inventory, inventoryNumber,
             achievementFound, achievementProgress,
         ]);
 
@@ -894,28 +886,24 @@ module.exports = Player = Character.extend({
     },
     putInventory: function(item){
         if(Types.isHealingItem(item.kind)){
-            if(this.inventory[0] === item.kind){
-                this.inventoryCount[0] += item.count;
-                this.databaseHandler.setInventory(this.name, item.kind, 0, this.inventoryCount[0]);
-            } else if(this.inventory[1] === item.kind){
-                this.inventoryCount[1] += item.count;
-                this.databaseHandler.setInventory(this.name, item.kind, 1, this.inventoryCount[1]);
-            } else{
-                this._putInventory(item);
+            for(var i=0; i < this.inventory.length; i++) {
+                if(this.inventory[i] === item.kind){
+                    this.inventoryCount[i] += item.count;
+                    this.databaseHandler.setInventory(this.name, item.kind, i, this.inventoryCount[i]);
+                    return ;
+                }
             }
-        } else{
-            this._putInventory(item);
         }
+        this._putInventory(item);
     },
     _putInventory: function(item){
-        if(!this.inventory[0]){
-            this.inventory[0] = item.kind;
-            this.inventoryCount[0] = item.count;
-            this.databaseHandler.setInventory(this.name, item.kind, 0, item.count);
-        } else if(!this.inventory[1]){
-            this.inventory[1] = item.kind;
-            this.inventoryCount[1] = item.count;
-            this.databaseHandler.setInventory(this.name, item.kind, 1, item.count);
+        for(var i=0; i < this.inventory.length; i++) {
+            if(!this.inventory[i]) {
+                this.inventory[i] = item.kind;
+                this.inventoryCount[i] = item.count;
+                this.databaseHandler.setInventory(this.name, item.kind, i, item.count);
+                break;
+            }
         }
     },
 });

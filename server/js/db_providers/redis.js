@@ -6,8 +6,6 @@ var cls = require("../lib/class"),
     redis = require("redis"),
     bcrypt = require("bcrypt");
 
-const Achievement = require("../achievement");
-
 module.exports = DatabaseHandler = cls.Class.extend({
     init: function(config){
         client = redis.createClient(config.redis_port, config.redis_host, {socket_nodelay: true});
@@ -57,9 +55,7 @@ module.exports = DatabaseHandler = cls.Class.extend({
                         .hget(userKey, "achievement8:found") // 33
                         .hget(userKey, "achievement8:progress") // 34
                         .hget("cb:" + player.connection._connection.remoteAddress, "etime") // 35
-                        .hget(userKey, "achievements") // 36
                         .exec(function(err, replies){
-                            console.log(replies);
                             var pw = replies[0];
                             var armor = replies[1];
                             var weapon = replies[2];
@@ -84,7 +80,6 @@ module.exports = DatabaseHandler = cls.Class.extend({
                               Utils.trueFalse(replies[31]),
                               Utils.trueFalse(replies[33]),
                             ];
-                            console.log(achievementFound);
                             var achievementProgress = [
                               Utils.NaN2Zero(replies[15]),
                               Utils.NaN2Zero(replies[17]),
@@ -95,17 +90,15 @@ module.exports = DatabaseHandler = cls.Class.extend({
                               Utils.NaN2Zero(replies[32]),
                               Utils.NaN2Zero(replies[34]),
                             ];
-                            console.log(achievementProgress);
                             var adminnames = replies[26];
                             var pubPoint =  Utils.NaN2Zero(replies[27]);
                             var weaponAvatar = replies[28] ? replies[28] : weapon;
                             var x = Utils.NaN2Zero(replies[29]);
                             var y = Utils.NaN2Zero(replies[30]);
                             var chatBanEndTime = Utils.NaN2Zero(replies[35]);
-                            console.log(replies[36]);
-                            let achievements = JSON.parse(replies[36] || '{}');
 
                             // Check Password
+
                             bcrypt.compare(player.pw, pw, function(err, res) {
                                 if(!res) {
                                     player.connection.sendUTF8("invalidlogin");
@@ -118,14 +111,15 @@ module.exports = DatabaseHandler = cls.Class.extend({
                                 if(lastLoginTimeDate.getDate() !== d.getDate()
                                 && pubPoint > 0){
                                   var targetInventoryNumber = -1;
-                                  if(inventory[0] === "burger"){
-                                    targetInventoryNumber = 0;
-                                  } else if(inventory[1] === "burger"){
-                                    targetInventoryNumber = 1;
-                                  } else if(inventory[0] === null){
-                                    targetInventoryNumber = 0;
-                                  } else if(inventory[1] === null){
-                                    targetInventoryNumber = 1;
+                                  for(var i = 0; targetInventoryNumber !== -1 && i < inventory.length; i++) {
+                                      if(inventory[i] === "burger") {
+                                        targetInventoryNumber = i;      
+                                      }
+                                  }
+                                  for(var i = 0; targetInventoryNumber !== -1 && i < inventory.length; i++) {
+                                    if(inventory[i] === null) {
+                                        targetInventoryNumber = i;
+                                    }
                                   }
 
                                   if(targetInventoryNumber >= 0){
@@ -214,7 +208,6 @@ module.exports = DatabaseHandler = cls.Class.extend({
                     .hset(userKey, "weapon", "sword1")
                     .hset(userKey, "exp", 0)
                     .hset("b:" + player.connection._connection.remoteAddress, "loginTime", curTime)
-                    .hset(userKey, "achievements", JSON.stringify({"unlocked":[],"ratCount":0,"skeletonCount":0,"totalKills":0,"totalDmg":0,"totalRevives":0}))
                     .exec(function(err, replies){
                         log.info("New User: " + player.name);
                         player.sendWelcome(
@@ -319,6 +312,11 @@ module.exports = DatabaseHandler = cls.Class.extend({
     equipWeapon: function(name, weapon){
         log.info("Set Weapon: " + name + " " + weapon);
         client.hset("u:" + name, "weapon", weapon);
+    },
+    pickUpItem: function(name, itemNumber){
+        log.info("Pick Up Item: " + name + " " + itemKind);
+        client.hget("u:" + name, "inventories:count");
+        client.hset("u:" + name, "inventories", inventoryNumber + ":item", itemNumber);
     },
     setExp: function(name, exp){
         log.info("Set Exp: " + name + " " + exp);
