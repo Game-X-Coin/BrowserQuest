@@ -133,7 +133,7 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
                 "item-redsword", "item-bluesword", "item-goldensword", "item-leatherarmor",
                 "item-mailarmor", "item-platearmor", "item-redarmor", "item-goldenarmor",
                 "item-flask", "item-cake", "item-burger", "morningstar", "item-morningstar",
-                "item-firepotion", "orc", "oldogre", "golem", "mimic", "hobgoblin",
+                "item-firepotion", "item-tokena", "item-tokenb", "orc", "oldogre", "golem", "mimic", "hobgoblin",
                 "greenarmor", "greenwingarmor", "item-greenarmor", "item-greenwingarmor",
                 "redmouse", "redguard", "scimitar", "item-scimitar", "redguardarmor",
                 "item-redguardarmor", "whitearmor", "item-whitearmor", "infectedguard",

@@ -19,7 +19,8 @@ var Properties = {
     },
     rat: {
         drops: {
-            flask: 50,
+            tokena: 55,
+            flask: 20,
             sword2: 20,
             firepotion: 5
         },
@@ -27,6 +28,7 @@ var Properties = {
     },
     bat: {
         drops: {
+            tokenb: 25,
             flask: 50,
             sword2: 20,
             firepotion: 5

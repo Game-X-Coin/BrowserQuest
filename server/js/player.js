@@ -330,7 +330,10 @@ module.exports = Player = Character.extend({
                             } else {
                                 self.putInventory(item);
                             }
-                        } else if(kind == Types.Entities.CAKE || kind === Types.Entities.CD){
+                        } else if(kind == Types.Entities.CAKE
+                            || kind === Types.Entities.CD
+                            || kind === Types.Entities.TOKEN_A
+                            || kind === Types.Entities.TOKEN_B){
                             self.putInventory(item);
                         }
                     }

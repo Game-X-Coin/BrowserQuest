@@ -119,13 +119,14 @@ define(['character', 'exceptions'], function(Character, Exceptions) {
                             throw new Exceptions.LootException(msg);
                         }
                     }
-                } else if(item.kind === Types.Entities.CAKE){
+                } else if(item.kind === Types.Entities.CAKE
+                    || item.kind === Types.Entities.CD
+                    || item.kind === Types.Entities.TOKEN_A
+                    || item.kind === Types.Entities.TOKEN_B){
                     this.putInventory(item.kind, 1);
                 } else if(Types.isHealingItem(item.kind)){
                     this.putInventory(item.kind, item.count);
-                } else if(item.kind === Types.Entities.CD){
-                    this.putInventory(item.kind, 1);
-                }
+                } 
 
                 log.info('Player '+this.id+' has looted '+item.id);
                 if(Types.isArmor(item.kind) && this.invincible) {
@@ -145,12 +146,12 @@ define(['character', 'exceptions'], function(Character, Exceptions) {
             this._putInventory(itemKind, count);
         },
         _putInventory: function(itemKind, count){
-            var isFull = false;
+            var isFull = true;
             for(var i = 0; i < this.inventory.length; i++) {
                 if(!this.inventory[i]) {
                     this.inventory[i] = itemKind;
                     this.inventoryCount[i] = count;
-                    isFull = true;
+                    isFull = false;
                     break;
                 }
             }

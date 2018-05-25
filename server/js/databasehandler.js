@@ -289,7 +289,7 @@ createPlayer: function(player) {
                     player.sendWelcome(
                         "clotharmor", "sword1", "clotharmor", "sword1", 0,
                          null, 0, 0,
-                         [null, null], [0, 0],
+                         [null, null, null, null, null], [0, 0, 0, 0, 0],
                          Array.apply(null, Array(20)).map(Boolean.prototype.valueOf,false),
                          Array.apply(null, Array(20)).map(Number.prototype.valueOf,0),
                          player.x, player.y, 0);

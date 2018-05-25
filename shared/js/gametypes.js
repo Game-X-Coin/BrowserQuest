@@ -175,6 +175,8 @@ Types = {
         CAKE: 39,
         BOOK: 172,
         CD: 173,
+        TOKEN_A: 192,
+        TOKEN_B: 193,
         
         // NPCs
         GUARD: 40,
@@ -421,6 +423,8 @@ var kinds = {
     firepotion: [Types.Entities.FIREPOTION, "object", 0],
     book: [Types.Entities.BOOK, "object", 0],
     cd: [Types.Entities.CD, "object", 0],
+    tokena: [Types.Entities.TOKEN_A, "object", 0],
+    tokenb: [Types.Entities.TOKEN_B, "object", 0],
 
     guard: [Types.Entities.GUARD, "npc", 0, 0],
     villagegirl: [Types.Entities.VILLAGEGIRL, "npc", 0, 0],
@@ -654,7 +658,9 @@ Types.isHealingItem = function(kind) {
 Types.isExpendableItem = function(kind) {
     return Types.isHealingItem(kind)
         || kind === Types.Entities.FIREPOTION
-        || kind === Types.Entities.CAKE;
+        || kind === Types.Entities.CAKE
+        || kind === Types.Entities.TOKEN_A
+        || kind === Types.Entities.TOKEN_B;
 };
 
 Types.getKindFromString = function(kind) {
