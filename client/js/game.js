@@ -2377,7 +2377,7 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
                         return;
                     }
                 } else if(clickedMenu === 1) {
-                    if(Types.isHealingItem(this.player.inventory[inventoryNumber]) && (this.player.inventoryCount[inventoryNumber] > 1)) {
+                    if((Types.isHealingItem(this.player.inventory[inventoryNumber]) || Types.isToken(this.player.inventory[inventoryNumber])) && (this.player.inventoryCount[inventoryNumber] > 1)) {
                         $('#dropCount').val(this.player.inventoryCount[inventoryNumber]);
                         this.app.showDropDialog(inventoryNumber);
                     } else {

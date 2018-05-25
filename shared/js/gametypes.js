@@ -663,6 +663,11 @@ Types.isExpendableItem = function(kind) {
         || kind === Types.Entities.TOKEN_B;
 };
 
+Types.isToken = function(kind) {
+    return kind === Types.Entities.TOKEN_A
+        || kind === Types.Entities.TOKEN_B;
+}
+
 Types.getKindFromString = function(kind) {
     if(kind in kinds) {
         return kinds[kind][0];

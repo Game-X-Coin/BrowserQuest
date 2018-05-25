@@ -124,7 +124,7 @@ define(['character', 'exceptions'], function(Character, Exceptions) {
                     || item.kind === Types.Entities.TOKEN_A
                     || item.kind === Types.Entities.TOKEN_B){
                     this.putInventory(item.kind, 1);
-                } else if(Types.isHealingItem(item.kind)){
+                } else if(Types.isHealingItem(item.kind) || Types.isToken(item.kind)){
                     this.putInventory(item.kind, item.count);
                 } 
 
@@ -137,7 +137,7 @@ define(['character', 'exceptions'], function(Character, Exceptions) {
         },
         putInventory: function(itemKind, count){
             const inventoryIndex = this.inventory.indexOf(itemKind);
-            if(Types.isHealingItem(itemKind)){
+            if(Types.isHealingItem(itemKind) || Types.isToken(itemKind)){
                 if(this.inventory.indexOf(itemKind) !== -1) {
                     this.inventoryCount[inventoryIndex] += count;
                     return ;

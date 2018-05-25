@@ -819,7 +819,7 @@ function(Camera, Item, Character, Player, Timer) {
                                                item.offsetX * s + (this.camera.gridW-inventory.length+i)*self.tilesize*s,
                                                item.offsetY * s + (this.camera.gridH-1)*self.tilesize*s,
                                                iw * ds, ih * ds);
-                        if(Types.isHealingItem(itemKind)){
+                        if(Types.isHealingItem(itemKind) || Types.isToken(itemKind)){
                             var color = "white";
                             if(i === this.game.healShortCut)
                                 color = "lime";
@@ -846,6 +846,14 @@ function(Camera, Item, Character, Player, Timer) {
                 
                 if(this.game.player.inventory[inventoryNumber] === Types.Entities.CAKE
                 || this.game.player.inventory[inventoryNumber] === Types.Entities.CD){
+                    this.drawRect((this.camera.gridW-2)*this.tilesize*s,
+                                  (this.camera.gridH-2)*this.tilesize*s,
+                                  2, 1, "rgba(0, 0, 0, 0.8)");
+                    this.drawText("drop",
+                                  (this.camera.gridW-1)*this.tilesize*s,
+                                  (this.camera.gridH-1.4)*this.tilesize*s,
+                                  true, "white", "black");
+                } if(Types.isToken(this.game.player.inventory[inventoryNumber])) {
                     this.drawRect((this.camera.gridW-2)*this.tilesize*s,
                                   (this.camera.gridH-2)*this.tilesize*s,
                                   2, 1, "rgba(0, 0, 0, 0.8)");

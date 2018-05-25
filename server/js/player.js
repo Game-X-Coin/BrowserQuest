@@ -315,7 +315,7 @@ module.exports = Player = Character.extend({
                                 self.firepotionTimeout = null;
                             }, 15000);
                             self.send(new Messages.HitPoints(self.maxHitPoints).serialize());
-                        } else if(Types.isHealingItem(kind)) {
+                        } else if(Types.isHealingItem(kind) || Types.isToken(kind)) {
                             self.putInventory(item);
                         } else if(Types.isWeapon(kind)) {
                             self.equipItem(item.kind);
@@ -395,7 +395,7 @@ module.exports = Player = Character.extend({
                     } else if(message[1] === "empty"){
                         //var item = self.server.addItem(self.server.createItem(itemKind, self.x, self.y));
                         var item = self.server.addItemFromChest(itemKind, self.x, self.y);
-                        if(Types.isHealingItem(item.kind)){
+                        if(Types.isHealingItem(item.kind) || Types.isToken(item.kind)){
                             if(count < 0)
                                 count = 0;
                             else if(count > self.inventoryCount[inventoryNumber])
@@ -406,7 +406,7 @@ module.exports = Player = Character.extend({
                         if(item.count > 0) {
                             self.server.handleItemDespawn(item);
 
-                            if(Types.isHealingItem(item.kind)) {
+                            if(Types.isHealingItem(item.kind) || Types.isToken(item.kind)) {
                                 if(item.count === self.inventoryCount[inventoryNumber]) {
                                     self.inventory[inventoryNumber] = null;
                                     databaseHandler.makeEmptyInventory(self.name, inventoryNumber);
@@ -888,7 +888,7 @@ module.exports = Player = Character.extend({
 
     },
     putInventory: function(item){
-        if(Types.isHealingItem(item.kind)){
+        if(Types.isHealingItem(item.kind) || Types.isToken(item.kind)){
             for(var i=0; i < this.inventory.length; i++) {
                 if(this.inventory[i] === item.kind){
                     this.inventoryCount[i] += item.count;
