@@ -2,8 +2,6 @@
 Types = {
     Messages: {
         HELLO: 0,
-        CREATE: 0,
-        LOGIN: 0,
         WELCOME: 1,
         SPAWN: 2,
         DESPAWN: 3,
@@ -42,10 +40,10 @@ Types = {
         CREATE: 36,
         LOGIN: 37
     },
-    
+
     Entities: {
         WARRIOR: 1,
-        
+
         // Mobs
         RAT: 2,
         SKELETON: 3,
@@ -92,16 +90,16 @@ Types = {
         PINKELF: 115,
         SKYELF: 117,
         REDELF: 119,
-        HERMITCRAB: 141, 
+        HERMITCRAB: 141,
         ZOMBIE: 121,
         PIRATECAPTAIN: 122,
         IRONOGRE: 123,
         OGRELORD: 124,
         ADHERER: 125,
         ICEGOLEM: 126,
-        DESERTSCOLPION: 142, 
+        DESERTSCOLPION: 142,
         DARKSCOLPION: 143,
-        VULTURE: 144, 
+        VULTURE: 144,
         FORESTDRAGON: 145,
         CRYSTALSCOLPION: 146,
         ELIMINATOR: 147,
@@ -125,7 +123,7 @@ Types = {
         FLAREDEATHKNIGHT: 183,
         SNOWLADY: 185,
         SEADRAGON: 189,
-        
+
         // Armors
         CLOTHARMOR: 21,
         LEATHERARMOR: 22,
@@ -166,7 +164,7 @@ Types = {
         PORTALARMOR: 179,
         PIRATEKING: 187,
         SEADRAGONARMOR: 190,
-        
+
         // Objects
         FLASK: 35,
         BURGER: 36,
@@ -175,7 +173,7 @@ Types = {
         CAKE: 39,
         BOOK: 172,
         CD: 173,
-        
+
         // NPCs
         GUARD: 40,
         KING: 41,
@@ -193,7 +191,7 @@ Types = {
         DESERTNPC: 53,
         LAVANPC: 54,
         CODER: 55,
-        
+
         // Weapons
         SWORD1: 60,
         SWORD2: 61,
@@ -261,7 +259,7 @@ Types = {
 
 var kinds = {
     warrior: [Types.Entities.WARRIOR, "player", 0],
-    
+
     wizard:             [Types.Entities.WIZARD,              "mob", 7, 1],
     crab:               [Types.Entities.CRAB,                "mob", 1, 1],
     rat:                [Types.Entities.RAT,                 "mob", 5, 2],
@@ -373,7 +371,7 @@ var kinds = {
     daywalker: [Types.Entities.DAYWALKER, "weapon", 0],
     purplecloudkallege: [Types.Entities.PURPLECLOUDKALLEGE, "weapon", 0],
     searage: [Types.Entities.SEARAGE, "weapon", 0],
-    
+
     clotharmor: [Types.Entities.CLOTHARMOR, "armor", 0],
     leatherarmor: [Types.Entities.LEATHERARMOR, "armor", 0],
     mailarmor: [Types.Entities.MAILARMOR, "armor", 0],
@@ -441,7 +439,7 @@ var kinds = {
 
     debenef: [Types.Entities.DEBENEF, "benef", 0],
     firebenef: [Types.Entities.FIREBENEF, "benef", 0],
-    
+
     getType: function(kind) {
         return kinds[Types.getKindAsString(kind)][1];
     },
@@ -641,13 +639,13 @@ Types.isChest = function(kind) {
 };
 
 Types.isItem = function(kind) {
-    return Types.isWeapon(kind) 
-        || Types.isArmor(kind) 
+    return Types.isWeapon(kind)
+        || Types.isArmor(kind)
         || (Types.isObject(kind) && !Types.isChest(kind));
 };
 
 Types.isHealingItem = function(kind) {
-    return kind === Types.Entities.FLASK 
+    return kind === Types.Entities.FLASK
         || kind === Types.Entities.BURGER;
 };
 
@@ -723,7 +721,7 @@ Types.getRandomItemKind = function(item) {
         forbidden = [Types.Entities.SWORD1, Types.Entities.CLOTHARMOR],
         itemKinds = _.difference(all, forbidden),
         i = Math.floor(Math.random() * _.size(itemKinds));
-    
+
     return itemKinds[i];
 };
 

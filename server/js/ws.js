@@ -5,7 +5,9 @@ var cls = require('./lib/class');
 var http = require('http');
 var socketio = require('socket.io');
 var url = require('url');
+const querystring = require('querystring');
 var Utils = require('./utils');
+var axios = require('axios');
 var WS = {};
 
 module.exports = WS;
@@ -90,11 +92,12 @@ WS.WebsocketServer = Server.extend({
     _connections: {},
     _counter: 0,
 
-    init: function (port, useOnePort, ip) {
+    init: function (port, useOnePort, ip, databaseHandler) {
         var self = this;
 
         this._super(port);
         this.ip = ip;
+        this.databaseHandler = databaseHandler;
 
         // Are we doing both client and server on one port?
         if (useOnePort === true) {
@@ -102,7 +105,9 @@ WS.WebsocketServer = Server.extend({
 
             // Use 'connect' for its static module
             var connect = require('connect');
+            var bodyParser = require('body-parser');
             var app = connect();
+            app.use(bodyParser.urlencoded({extended: false}));
 
             // Serve everything in the client subdirectory statically
             var serveStatic = require('serve-static');
@@ -185,6 +190,49 @@ WS.WebsocketServer = Server.extend({
                         // Sends the real shared/js/gametypes.js to the client
                         sendFile('js/gametypes.js', response, log);
                         break;
+                    case '/oauth_callback':
+                        const params = querystring.parse(request._parsedOriginalUrl.query);
+                        const code = params.code;
+                        let gxcData = null;
+                        return axios.post('http://localhost:3000/v1/oauth/token', {client_id: '5b064ed6e63f19908cd45dc0', client_secret: 'testtest', code: code, grant_type: 'authorization_code'})
+                        .then(function (res) {
+                          const token = res.data.access_token.token;
+                          return axios.get('http://localhost:3000/v1/oauth/me',
+                            {headers: {Authorization: 'Bearer ' + token}});
+                        })
+                        .then(function(res) {
+                            //res.data {id, account, email }
+                            gxcData = res.data;
+                            console.log(gxcData);
+                            return self.databaseHandler.existsPlayer(gxcData.id);
+                        })
+                        .then(function(res){
+                            console.log('res : ' + res);
+                            if(!res) {
+                                const player = {gxcKey: gxcData.id, name: gxcData.account, gxcAccount: gxcData.account, email: gxcData.email };
+                                return self.databaseHandler._createPlayer(player)
+                                    .then(function (res) {
+                                        console.log('create player');
+                                        console.log(res);
+                                        response.writeHead(200);
+                                        response.end("<html><script>window.opener.gxcLoginHander('" + gxcData.id + "','" + tempKey + "');</script></html>");
+                                        response.end(res);
+                                });
+                            } else {
+                                return self.databaseHandler.setTempKey(gxcData.id)
+                                    .then(function (tempKey) {
+                                        console.log(res);
+                                        response.writeHead(200);
+                                        response.end("<html><script>window.opener.gxcLoginHander('" + gxcData.id + "','" + tempKey + "');</script></html>");
+                                })
+                            }
+
+                        })
+                        .catch(function(error) {
+                            console.error(error);
+                        });
+                        break;
+
                     default:
                         response.writeHead(404);
                 }

@@ -62,44 +62,49 @@ module.exports = Player = Character.extend({
 
             self.resetTimeout();
 
-            if(action === Types.Messages.CREATE || action === Types.Messages.LOGIN) {
-                var name = Utils.sanitize(message[1]);
-                var pw = Utils.sanitize(message[2]);
-                var email = Utils.sanitize(message[3]);
-
-                log.info("HELLO: " + name);
+            // if(action === Types.Messages.CREATE || action === Types.Messages.LOGIN) {
+            if(action === Types.Messages.LOGIN) {
+                // var name = Utils.sanitize(message[1]);
+                // var pw = Utils.sanitize(message[2]);
+                // var email = Utils.sanitize(message[3]);
+                var gxcId = Utils.sanitize(message[1]);
+                var tempKey = Utils.sanitize(message[2]);
+                console.log(message);
+                log.info("HELLO: " + gxcId);
                 // Always ensure that the name is not longer than a maximum length.
                 // (also enforced by the maxlength attribute of the name input element).
-                self.name = name.substr(0, 12).trim()
+                // self.name = name.substr(0, 12).trim()
+                //
+                // // Validate the username
+                // if(!self.checkName(self.name)){
+                //     self.connection.sendUTF8("invalidusername");
+                //     self.connection.close("Invalid name " + self.name);
+                //     return;
+                // }
+                // self.pw = pw.substr(0, 15);
+                // self.email = email;
 
-                // Validate the username
-                if(!self.checkName(self.name)){
-                    self.connection.sendUTF8("invalidusername");
-                    self.connection.close("Invalid name " + self.name);
+                // if(action === Types.Messages.CREATE) {
+                //     bcrypt.genSalt(10, function(err, salt) {
+                //         bcrypt.hash(self.pw, salt, function(err, hash) {
+                //             log.info("CREATE: " + self.name);
+                //             self.email = Utils.sanitize(message[3]);
+                //             self.pw = hash;
+                //             databaseHandler.createPlayer(self);
+                //         })
+                //     });
+                // } else {
+                log.info("LOGIN: " + gxcId);
+                log.info(self);
+                self.gxcId = gxcId;
+                self.tempKey = tempKey;
+                if(self.server.loggedInPlayer(gxcId)) {
+                    self.connection.sendUTF8("loggedin");
+                    self.connection.close("Already logged in " + gxcId);
                     return;
                 }
-                self.pw = pw.substr(0, 15);
-                self.email = email;
-
-                if(action === Types.Messages.CREATE) {
-                    bcrypt.genSalt(10, function(err, salt) {
-                        bcrypt.hash(self.pw, salt, function(err, hash) {
-                            log.info("CREATE: " + self.name);
-                            self.email = Utils.sanitize(message[3]);
-                            self.pw = hash;
-                            databaseHandler.createPlayer(self);
-                        })
-                    });
-                } else {
-                    log.info("LOGIN: " + self.name);
-                    if(self.server.loggedInPlayer(self.name)) {
-                        self.connection.sendUTF8("loggedin");
-                        self.connection.close("Already logged in " + self.name);
-                        return;
-                    }
-                    databaseHandler.checkBan(self);
-                    databaseHandler.loadPlayer(self);
-                }
+                databaseHandler.checkBan(self);
+                databaseHandler.loadPlayer(self);
             }
             else if(action === Types.Messages.WHO) {
                 log.info("WHO: " + self.name);
@@ -231,7 +236,7 @@ module.exports = Player = Character.extend({
                             } else if(mob.kind === Types.Entities.SKELETON){
                                 const achievementId = 21;
                                 if(self.achievementFound[achievementId] && self.achievementProgress[achievementId] !== 999){
-                                    
+
                                     if(isNaN(self.achievementProgress[achievementId])){
                                         self.achievementProgress[achievementId] = 0;
                                     } else{
@@ -321,8 +326,8 @@ module.exports = Player = Character.extend({
                             self.equipItem(item.kind);
                             self.broadcast(self.equip(kind));
 
-                            
-                            
+
+
                         } else if(Types.isArmor(kind)) {
                             if(self.level < 100){
                                 self.equipItem(item.kind);
@@ -511,7 +516,7 @@ module.exports = Player = Character.extend({
                 log.info("MAGIC: " + self.name + " " + message[1] + " " + message[2]);
                 var magicName = message[1];
                 var magicTargetName = message[2];
-  
+
                 if(magicName === "setheal"){
                   self.magicTarget = self.server.getPlayerByName(magicTargetName);
                   if(self.magicTarget === self){
@@ -861,7 +866,7 @@ module.exports = Player = Character.extend({
         self.inventoryCount[1] = inventoryNumber[1];
         self.achievementFound = achievementFound;
         self.achievementProgress = achievementProgress;
-        
+
         self.bannedTime = bannedTime;
         self.banUseTime = banUseTime;
         self.experience = exp;
@@ -877,7 +882,7 @@ module.exports = Player = Character.extend({
 
         self.server.addPlayer(self);
         self.server.enter_callback(self);
-        
+
         self.send([
             Types.Messages.WELCOME, self.id, self.name, self.x, self.y,
             self.hitPoints, armor, weapon, avatar, weaponAvatar,

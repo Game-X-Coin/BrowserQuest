@@ -22,11 +22,13 @@ function main(config) {
 
     var ws = require("./ws");
     var WorldServer = require("./worldserver");
-    var server = new ws.WebsocketServer(config.port, config.use_one_port, config.ip);
+    var DatabaseHandler = require("./databasehandler");
+    var databaseHandler = new DatabaseHandler();
+    var server = new ws.WebsocketServer(config.port, config.use_one_port, config.ip, databaseHandler);
     var metrics = config.metrics_enabled ? new Metrics(config) : null;
     var worlds = [];
     var lastTotalPlayers = 0;
-    var DatabaseHandler = require("./databasehandler");
+
     // var DatabaseSelector = require("./databaseselector");
     var checkPopulationInterval = setInterval(function() {
         if(metrics && metrics.isReady) {
@@ -43,7 +45,7 @@ function main(config) {
     }, 1000);
 
     log.info("Starting BrowserQuest game server...");
-    var databaseHandler = new DatabaseHandler();
+
     // var selector = DatabaseSelector(config);
     // databaseHandler = new selector(config);
 

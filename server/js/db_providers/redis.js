@@ -195,37 +195,45 @@ module.exports = DatabaseHandler = cls.Class.extend({
 
     createPlayer: function(player) {
         var userKey = "u:" + player.name;
+        player.remoteAddress = player.connection._connection.remoteAddress;
+        this._createPlayer(player, function (err, reply) {
+          if (err && err === 'userexists') {
+            player.connection.sendUTF8("userexists");
+            player.connection.close("Username not available: " + player.name);
+          } else {
+            player.sendWelcome(
+              "clotharmor", "sword1", "clotharmor", "sword1", 0,
+              null, 0, 0,
+              [null, null], [0, 0],
+              [false, false, false, false, false, false],
+              [0, 0, 0, 0, 0, 0],
+              player.x, player.y, 0);
+          }
+        });
+    },
+    _createPlayer: function (player, callback) {
+      client.sismember('usr', player.gxcKey, function (err, reply) {
+        if(reply >= 1) return callback("userexists");
         var curTime = new Date().getTime();
-
-        // Check if username is taken
-        client.sismember('usr', player.name, function(err, reply) {
-            if(reply === 1) {
-                player.connection.sendUTF8("userexists");
-                player.connection.close("Username not available: " + player.name);
-                return;
-            } else {
-                // Add the player
-                client.multi()
-                    .sadd("usr", player.name)
-                    .hset(userKey, "pw", player.pw)
-                    .hset(userKey, "email", player.email)
-                    .hset(userKey, "armor", "clotharmor")
-                    .hset(userKey, "avatar", "clotharmor")
-                    .hset(userKey, "weapon", "sword1")
-                    .hset(userKey, "exp", 0)
-                    .hset("b:" + player.connection._connection.remoteAddress, "loginTime", curTime)
-                    .hset(userKey, "achievements", JSON.stringify({"unlocked":[],"ratCount":0,"skeletonCount":0,"totalKills":0,"totalDmg":0,"totalRevives":0}))
-                    .exec(function(err, replies){
-                        log.info("New User: " + player.name);
-                        player.sendWelcome(
-                            "clotharmor", "sword1", "clotharmor", "sword1", 0,
-                             null, 0, 0,
-                             [null, null], [0, 0],
-                             [false, false, false, false, false, false],
-                             [0, 0, 0, 0, 0, 0],
-                             player.x, player.y, 0);
-                    });
-            }
+        client.multi()
+            .sadd("usr", player.name)
+            .hset(userKey, "email", player.email)
+            .hset(userKey, "armor", "clotharmor")
+            .hset(userKey, "avatar", "clotharmor")
+            .hset(userKey, "weapon", "sword1")
+            .hset(userKey, "exp", 0)
+            .hset("b:" + player.remoteAddress, "loginTime", curTime)
+            .exec(function(err, replies){
+                log.info("New User: " + player.gxcKey + ", " + player.name);
+                callback(replies[0]);
+                player.sendWelcome(
+                    "clotharmor", "sword1", "clotharmor", "sword1", 0,
+                     null, 0, 0,
+                     [null, null], [0, 0],
+                     [false, false, false, false, false, false],
+                     [0, 0, 0, 0, 0, 0],
+                     player.x, player.y, 0);
+            });
         });
     },
 
