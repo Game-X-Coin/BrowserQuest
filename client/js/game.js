@@ -1722,6 +1722,10 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
                     }
                 });
 
+                self.client.onWallet(function(type, amount) {
+                    self.player.setWallet(type, amount);
+                });
+
                 self.client.onAchievement(function(id, type) {
                     var key = null;
                     _.each(self.achievements, function(value, _key) {
