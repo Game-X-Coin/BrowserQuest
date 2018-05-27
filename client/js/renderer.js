@@ -388,7 +388,7 @@ function(Camera, Item, Character, Player, Timer) {
                                                entity.shadowOffsetY * ds,
                                                shadow.width * os * ds, shadow.height * os * ds);
                     }
-                    
+
                     if(entity.invincible){
                         var benef = this.game.sprites["firebenef"];
                         if(benef){
@@ -595,6 +595,7 @@ function(Camera, Item, Character, Player, Timer) {
 
         drawEntityName: function(entity) {
             this.context.save();
+
             if(entity.name && entity instanceof Player) {
                 var color = (entity.id === this.game.playerId) ? "#fcda5c" : "white";
                 var name = (entity.level) ? "lv." + entity.level + " " + entity.name : entity.name;
@@ -778,7 +779,7 @@ function(Camera, Item, Character, Player, Timer) {
                           (this.camera.gridH-1)*this.tilesize*s,
                           inventory.length, 1, "rgba(255, 0, 0, 0.8)");
             }
-            
+
             for(var i = 0; i < inventory.length; i++) {
                 if(this.game.menu && this.game.menu.inventoryOn === "inventory"+i){
                     this.drawRect((this.camera.gridW-inventory.length+i)*this.tilesize*s,
@@ -843,7 +844,7 @@ function(Camera, Item, Character, Player, Timer) {
                         break;
                     }
                 }
-                
+
                 if(this.game.player.inventory[inventoryNumber] === Types.Entities.CAKE
                 || this.game.player.inventory[inventoryNumber] === Types.Entities.CD){
                     this.drawRect((this.camera.gridW-2)*this.tilesize*s,

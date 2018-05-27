@@ -201,7 +201,6 @@ module.exports = DatabaseHandler = cls.Class.extend({
                             var y = Utils.NaN2Zero(replies[30]);
                             var chatBanEndTime = Utils.NaN2Zero(replies[35]);
                             // Check Password
-                            console.log(pw !== player.tempKey);
                             if (pw !== player.tempKey) {
                                 player.connection.sendUTF8('invalidlogin');
                                 player.connection.close('Wrong Password: ' +
@@ -211,8 +210,6 @@ module.exports = DatabaseHandler = cls.Class.extend({
 
                             var d = new Date();
                             var lastLoginTimeDate = new Date(lastLoginTime);
-                            console.log(lastLoginTimeDate.getDate() !== d.getDate());
-                            console.log(pubPoint);
 
                             if (true) {
                                 var targetInventoryNumber = -1;
@@ -306,7 +303,16 @@ module.exports = DatabaseHandler = cls.Class.extend({
             return key;
         });
     },
-
+    setAccessToken: function(gxcKey, accessToken) {
+        const userKey = 'u:' + gxcKey;
+        return client.hsetAsync(userKey, 'accessToken', accessToken).then(function(res) {
+            return accessToken;
+        });
+    },
+    getAccessToken: function(gxcKey) {
+        const userKey = 'u:' + gxcKey;
+        return client.hgetAsync(userKey, 'accessToken', accessToken);
+    },
     // createPlayer: function(player) {
     //     player.remoteAddress = player.connection._connection.remoteAddress;
     //
@@ -331,6 +337,7 @@ module.exports = DatabaseHandler = cls.Class.extend({
     // },
     _createPlayer: function(player) {
         const userKey = 'u:' + player.gxcKey;
+        console.log('createPlayer: ' + userKey);
         return client.sismemberAsync('usr', userKey).then(function(reply) {
             console.log('userKey : ' + userKey);
             if (reply >= 1) throw Error('alreadyExistPlayer');
@@ -488,6 +495,9 @@ module.exports = DatabaseHandler = cls.Class.extend({
         client.hset('u:' + name, 'exp', exp);
     },
     setInventory: function(name, itemKind, inventoryNumber, itemNumber) {
+
+        // return axios.post(process.env.GXC_SERVER + '/v1/oauth/transfer_token', {},
+        //     {headers: {Authorization: 'Bearer ' + 'RqkwPQZCWLpok8g2Fv8se6z0ZHqH5YTCcLiGQS8b5LprNijmP5vHAnMoNEh3i1W4gnnMCKSXDlxYQI5fBDZgcgKCzse5S4xAVtHVyYPxYY47vQc6PJSQ0mjiMVRdmvhjXJ5XOkjTKP4BqwDFuiHZ3kgtySQGbBQfA1IPWIogomqaMHM1RTrPccyRU7az12J4DLD1fedgKTjJ7CFNMPnMQV4TGWcN01Xu2gui4F2v3QygMCzyc7rty8MpGjejmIP0'}});
         if (itemKind) {
             client.hset('u:' + name, 'inventory' + inventoryNumber,
                 Types.getKindAsString(itemKind));

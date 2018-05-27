@@ -95,7 +95,6 @@ module.exports = Player = Character.extend({
                 //     });
                 // } else {
                 log.info("LOGIN: " + gxcId);
-                log.info(self);
                 self.gxcId = gxcId;
                 self.name = gxcId;
                 self.tempKey = tempKey;

@@ -9,7 +9,6 @@ const querystring = require('querystring');
 var Utils = require('./utils');
 var axios = require('axios');
 var WS = {};
-
 module.exports = WS;
 
 /**
@@ -198,16 +197,22 @@ WS.WebsocketServer = Server.extend({
                         const params = querystring.parse(request._parsedOriginalUrl.query);
                         const code = params.code;
                         let gxcData = null;
-                        return axios.post('https://mewapi.gamexcoin.io/v1/oauth/token', {client_id: '5b064ed6e63f19908cd45dc0', client_secret: 'testtest', code: code, grant_type: 'authorization_code'})
+                        let accessToken = null;
+                        console.log(process.env)
+                        return axios.post(process.env.GXC_SERVER + '/v1/oauth/token', {client_id: process.env.GXC_CLIENT_ID, client_secret: process.env.GXC_CLIENT_SECRET, code: code, grant_type: 'authorization_code'})
                         .then(function (res) {
-                          const token = res.data.access_token.token;
-                          return axios.get('https://mewapi.gamexcoin.io/v1/oauth/me',
-                            {headers: {Authorization: 'Bearer ' + token}});
+                          accessToken = res.data.access_token.token;
+                          return axios.get(process.env.GXC_SERVER + '/v1/oauth/me',
+                            {headers: {Authorization: 'Bearer ' + accessToken}});
+                        })
+                        .then(function(res) {
+                            gxcData = res.data;
+                            console.log(gxcData);
+                            return self.databaseHandler.setAccessToken(gxcData.id, accessToken);
                         })
                         .then(function(res) {
                             //res.data {id, account, email }
-                            gxcData = res.data;
-                            console.log(gxcData);
+
                             return self.databaseHandler.existsPlayer(gxcData.id);
                         })
                         .then(function(res){
