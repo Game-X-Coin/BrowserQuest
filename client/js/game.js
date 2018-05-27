@@ -505,12 +505,15 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
             if(this.renderer.upscaledRendering) {
                 this.sprites = this.spritesets[0];
             } else {
-                this.sprites = this.spritesets[scale - 1];
-
-                _.each(this.entities, function(entity) {
-                    entity.sprite = null;
-                    entity.setSprite(self.sprites[entity.getSpriteName()]);
-                });
+                if(this.spritesets && this.spritesets.length >= scale) {
+                    this.sprites = this.spritesets[scale - 1];
+                    
+                    _.each(this.entities, function(entity) {
+                        entity.sprite = null;
+                        entity.setSprite(self.sprites[entity.getSpriteName()]);
+                    });
+                }
+                
                 this.initHurtSprites();
                 this.initShadows();
                 this.initCursors();
@@ -1998,6 +2001,10 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
                     this.unhiddenAchievement(this.achievements['BRING_AXE']);
                 } else if(npc.kind === Types.Entities.DESERTNPC && !this.achievements['BRING_AXE'].hidden){
                     this.client.sendTalkToNPC(npc.kind);
+                } else if(npc.kind === Types.Entities.SORCERER){
+                    $("#shop-modal").addClass("fade show");
+                    $("#shop-modal").css("display", "block");
+                    return ;
                 }
                 msg = npc.talk(this);
                 this.previousClickPosition = {};
