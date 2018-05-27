@@ -80,7 +80,6 @@ loadPlayer: function(player){
                     .hget(userKey, "achievement20:progress") // 59
                     .hget(userKey, "achievement21:found") // 58
                     .hget(userKey, "achievement21:progress") // 59
-                    
                     .hget(userKey, "achievement22:found") // 60
                     .hget(userKey, "achievement22:progress") // 61
                     .hget(userKey, "achievement23:found") // 62
@@ -91,12 +90,14 @@ loadPlayer: function(player){
                     .hget(userKey, "achievement25:progress") // 67
                     .hget(userKey, "achievement26:found") // 68
                     .hget(userKey, "achievement26:progress") // 69
-                    .hget(userKey, "inventory2") // 70
-                    .hget(userKey, "inventory2:number") // 71
-                    .hget(userKey, "inventory3") // 72
-                    .hget(userKey, "inventory3:number") // 73
-                    .hget(userKey, "inventory4") // 74
-                    .hget(userKey, "inventory4:number") // 75
+                    .hget(userKey, "inventory2") // 72
+                    .hget(userKey, "inventory2:number") // 73
+                    .hget(userKey, "inventory3") // 74
+                    .hget(userKey, "inventory3:number") // 75
+                    .hget(userKey, "inventory4") // 76
+                    .hget(userKey, "inventory4:number") // 77
+                    .hget(userKey, "wallet"+Types.Entities.TOKEN_A) // 78
+                    .hget(userKey, "wallet"+Types.Entities.TOKEN_B) // 79
                     .exec(function(err, replies){
                         var pw = replies[0];
                         var armor = replies[1];
@@ -108,13 +109,13 @@ loadPlayer: function(player){
                         var avatar = replies[7];
                         var pubTopName = replies[8];
                         var nextNewArmor = replies[9];
-                        var inventory = [replies[10], replies[12], replies[70], replies[72], replies[74]];
+                        var inventory = [replies[10], replies[12], replies[72], replies[74], replies[76]];
                         var inventoryNumber = [
                           Utils.NaN2Zero(replies[11]),
                           Utils.NaN2Zero(replies[13]),
-                          Utils.NaN2Zero(replies[71]),
                           Utils.NaN2Zero(replies[73]),
-                          Utils.NaN2Zero(replies[75])];
+                          Utils.NaN2Zero(replies[75]),
+                          Utils.NaN2Zero(replies[77])];
                         var achievementFound = [
                             null,
                             Utils.trueFalse(replies[14]),
@@ -175,6 +176,10 @@ loadPlayer: function(player){
                             Utils.NaN2Zero(replies[67]),
                             Utils.NaN2Zero(replies[69])
                         ];
+                        var wallet = {
+                            [Types.Entities.TOKEN_A]: Utils.NaN2Zero(replies[78]),
+                            [Types.Entities.TOKEN_B]: Utils.NaN2Zero(replies[79]),
+                        };
                         var adminnames = replies[26];
                         var pubPoint =  Utils.NaN2Zero(replies[27]);
                         var weaponAvatar = replies[28] ? replies[28] : weapon;
@@ -254,6 +259,7 @@ loadPlayer: function(player){
                                 bannedTime, banUseTime,
                                 inventory, inventoryNumber,
                                 achievementFound, achievementProgress,
+                                wallet,
                                 x, y,
                                 chatBanEndTime);
                     }); 
@@ -292,6 +298,7 @@ createPlayer: function(player) {
                          [null, null, null, null, null], [0, 0, 0, 0, 0],
                          Array.apply(null, Array(20)).map(Boolean.prototype.valueOf,false),
                          Array.apply(null, Array(20)).map(Number.prototype.valueOf,0),
+                         { [Types.Entities.TOKEN_A]: 0, [Types.Entities.TOKEN_A]: 0 },
                          player.x, player.y, 0);
                 });
         }
@@ -403,6 +410,14 @@ setInventory: function(name, itemKind, inventoryNumber, itemNumber){
     } else{
         this.makeEmptyInventory(name, inventoryNumber);
     }
+},
+setWallet: function(name, type, amount) {
+    client.hset("u:" + name, "wallet" + type, amount);
+    log.info("Set Wallet: " + name + " " + type + " " + amount);
+    console.log("wallet" + type);
+    client.multi().hget("u:" + name, "wallet" + type).exec(function(err, replies){
+        console.log(replies[0]);
+    });
 },
 makeEmptyInventory: function(name, number){
     log.info("Empty Inventory: " + name + " " + number);

@@ -40,7 +40,8 @@ Types = {
         NOTIFY: 34,
         KUNG: 35,
         CREATE: 36,
-        LOGIN: 37
+        LOGIN: 37,
+        WALLET: 38,
     },
     
     Entities: {

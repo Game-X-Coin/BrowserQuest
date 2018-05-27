@@ -39,6 +39,10 @@ module.exports = Player = Character.extend({
         this.inventory = [];
         this.inventoryCount = [];
         this.achievement = [];
+        this.wallet = {
+            [Types.Entities.TOKEN_A]: 0,
+            [Types.Entities.TOKEN_B]: 0,
+        };
 
         this.chatBanEndTime = 0;
 
@@ -315,14 +319,11 @@ module.exports = Player = Character.extend({
                                 self.firepotionTimeout = null;
                             }, 15000);
                             self.send(new Messages.HitPoints(self.maxHitPoints).serialize());
-                        } else if(Types.isHealingItem(kind) || Types.isToken(kind)) {
+                        } else if(Types.isHealingItem(kind)) {
                             self.putInventory(item);
                         } else if(Types.isWeapon(kind)) {
                             self.equipItem(item.kind);
                             self.broadcast(self.equip(kind));
-
-                            
-                            
                         } else if(Types.isArmor(kind)) {
                             if(self.level < 100){
                                 self.equipItem(item.kind);
@@ -331,10 +332,10 @@ module.exports = Player = Character.extend({
                                 self.putInventory(item);
                             }
                         } else if(kind == Types.Entities.CAKE
-                            || kind === Types.Entities.CD
-                            || kind === Types.Entities.TOKEN_A
-                            || kind === Types.Entities.TOKEN_B){
+                            || kind === Types.Entities.CD){
                             self.putInventory(item);
+                        } else if(Types.isToken(kind)) {
+                            self.incWallet(kind, 1);
                         }
                     }
                 }
@@ -369,6 +370,13 @@ module.exports = Player = Character.extend({
                     self.lastCheckpoint = checkpoint;
                     databaseHandler.setCheckpoint(self.name, self.x, self.y);
                 }
+            }
+            else if(action === Types.Messages.WALLET) {
+                log.info("WALLET: " + self.name + " " + message[1] + " " + message[2]);
+                var type = message[1],
+                    amount = message[2];
+                
+                databaseHandler.setWallet(self.name, type, amount);
             }
             else if(action === Types.Messages.INVENTORY){
                 log.info("INVENTORY: " + self.name + " " + message[1] + " " + message[2] + " " + message[3]);
@@ -842,6 +850,7 @@ module.exports = Player = Character.extend({
     sendWelcome: function(armor, weapon, avatar, weaponAvatar, exp, admin,
                           bannedTime, banUseTime,
                           inventory, inventoryNumber, achievementFound, achievementProgress,
+                          wallet,
                           x, y,
                           chatBanEndTime) {
         var self = this;
@@ -856,6 +865,7 @@ module.exports = Player = Character.extend({
         self.inventoryCount = inventoryNumber;
         self.achievementFound = achievementFound;
         self.achievementProgress = achievementProgress;
+        self.wallet = wallet;
         
         self.bannedTime = bannedTime;
         self.banUseTime = banUseTime;
@@ -879,6 +889,7 @@ module.exports = Player = Character.extend({
             self.experience, self.admin,
             inventory, inventoryNumber,
             achievementFound, achievementProgress,
+            wallet
         ]);
 
         self.hasEnteredGame = true;
@@ -886,6 +897,17 @@ module.exports = Player = Character.extend({
 
         // self.server.addPlayer(self, aGuildId);
 
+    },
+    setWallet: function(kind, amount) {
+        this.databaseHandler.setWallet(this.name, kind, amount);
+    },
+    incWallet: function(kind, amount) {
+        this.wallet[kind] += amount;
+        this.databaseHandler.setWallet(this.name, kind, this.wallet[kind]);
+    },
+    decWallet: function(kind, amount) {
+        this.wallet[kind] -= amount;
+        this.databaseHandler.setWallet(this.name, kind, this.wallet[kind]);
     },
     putInventory: function(item){
         if(Types.isHealingItem(item.kind) || Types.isToken(item.kind)){

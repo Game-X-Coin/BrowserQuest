@@ -216,6 +216,7 @@ module.exports = DatabaseHandler = cls.Class.extend({
                              [null, null], [0, 0],
                              [false, false, false, false, false, false],
                              [0, 0, 0, 0, 0, 0],
+                             { [Types.Entities.TOKEN_A]: 0, [Types.Entities.TOKEN_A]: 0 },
                              player.x, player.y, 0);
                     });
             }

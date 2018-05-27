@@ -28,8 +28,8 @@ var Properties = {
     },
     bat: {
         drops: {
-            tokenb: 25,
-            flask: 50,
+            tokenb: 55,
+            flask: 20,
             sword2: 20,
             firepotion: 5
         },
