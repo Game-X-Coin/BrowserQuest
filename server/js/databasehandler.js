@@ -110,8 +110,6 @@ module.exports = DatabaseHandler = cls.Class.extend({
                         .hget(userKey, 'inventory4') // 74
                         .hget(userKey, 'inventory4:number') // 75
                         .exec(function(err, replies) {
-                            console.log(replies);
-                            console.log(err);
                             var pw = replies[0];
                             var armor = replies[1];
                             var weapon = replies[2];
@@ -331,7 +329,7 @@ module.exports = DatabaseHandler = cls.Class.extend({
     //         }
     //     });
     // },
-    _createPlayer: function(player, callback) {
+    _createPlayer: function(player) {
         const userKey = 'u:' + player.gxcKey;
         return client.sismemberAsync('usr', userKey).then(function(reply) {
             console.log('userKey : ' + userKey);

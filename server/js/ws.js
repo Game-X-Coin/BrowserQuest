@@ -198,10 +198,10 @@ WS.WebsocketServer = Server.extend({
                         const params = querystring.parse(request._parsedOriginalUrl.query);
                         const code = params.code;
                         let gxcData = null;
-                        return axios.post('http://localhost:3000/v1/oauth/token', {client_id: '5b064ed6e63f19908cd45dc0', client_secret: 'testtest', code: code, grant_type: 'authorization_code'})
+                        return axios.post('https://mewapi.gamexcoin.io/v1/oauth/token', {client_id: '5b064ed6e63f19908cd45dc0', client_secret: 'testtest', code: code, grant_type: 'authorization_code'})
                         .then(function (res) {
                           const token = res.data.access_token.token;
-                          return axios.get('http://localhost:3000/v1/oauth/me',
+                          return axios.get('https://mewapi.gamexcoin.io/v1/oauth/me',
                             {headers: {Authorization: 'Bearer ' + token}});
                         })
                         .then(function(res) {
@@ -215,8 +215,11 @@ WS.WebsocketServer = Server.extend({
                             if(!res) {
                                 const player = {gxcKey: gxcData.id, name: gxcData.account, gxcAccount: gxcData.account, email: gxcData.email };
                                 return self.databaseHandler._createPlayer(player)
-                                    .then(function (tempKey) {
+                                    .then(function () {
                                         console.log('create player');
+                                        return self.databaseHandler.setTempKey(gxcData.id);
+                                    })
+                                    .then(function (tempKey) {
                                         console.log(tempKey);
                                         response.writeHead(200);
                                         response.end("<html><script>window.opener.gxcLoginHander('" + gxcData.id + "','" + tempKey + "');</script></html>");
@@ -224,7 +227,7 @@ WS.WebsocketServer = Server.extend({
                             } else {
                                 return self.databaseHandler.setTempKey(gxcData.id)
                                     .then(function (tempKey) {
-                                        console.log(res);
+                                        console.log(tempKey);
                                         response.writeHead(200);
                                         response.end("<html><script>window.opener.gxcLoginHander('" + gxcData.id + "','" + tempKey + "');</script></html>");
                                 })
