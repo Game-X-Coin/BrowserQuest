@@ -25,6 +25,10 @@ define(['character', 'exceptions'], function(Character, Exceptions) {
             // Inventory
             this.inventory = [];
             this.inventoryCount = [];
+            this.wallet = {
+                [Types.Entities.TOKEN_A]: 0,
+                [Types.Entities.TOKEN_B]: 0,
+            };
             this.healingCoolTimeCallback = null;
 
             this.magicCoolTimeCallback = null;
@@ -120,13 +124,13 @@ define(['character', 'exceptions'], function(Character, Exceptions) {
                         }
                     }
                 } else if(item.kind === Types.Entities.CAKE
-                    || item.kind === Types.Entities.CD
-                    || item.kind === Types.Entities.TOKEN_A
-                    || item.kind === Types.Entities.TOKEN_B){
+                    || item.kind === Types.Entities.CD){
                     this.putInventory(item.kind, 1);
                 } else if(Types.isHealingItem(item.kind)){
                     this.putInventory(item.kind, item.count);
-                } 
+                } else if(Types.isToken(item.kind)) {
+                    this.incWallet(item.kind, 1);
+                }
 
                 log.info('Player '+this.id+' has looted '+item.id);
                 if(Types.isArmor(item.kind) && this.invincible) {
@@ -137,7 +141,7 @@ define(['character', 'exceptions'], function(Character, Exceptions) {
         },
         putInventory: function(itemKind, count){
             const inventoryIndex = this.inventory.indexOf(itemKind);
-            if(Types.isHealingItem(itemKind)){
+            if(Types.isHealingItem(itemKind) || Types.isToken(itemKind)){
                 if(this.inventory.indexOf(itemKind) !== -1) {
                     this.inventoryCount[inventoryIndex] += count;
                     return ;
@@ -163,6 +167,19 @@ define(['character', 'exceptions'], function(Character, Exceptions) {
         setInventory: function(itemKind, inventoryNumber, number){
             this.inventory[inventoryNumber] = itemKind;
             this.inventoryCount[inventoryNumber] = number;
+        },
+        setWallet: function(tokenKind, amount) {
+            this.wallet[tokenKind] = amount;
+        },
+        decWallet: function(tokenKind, amount) {
+            var tokenAmount = this.wallet[tokenKind] || 0;
+            if (tokenAmount > amount) {
+                this.wallet[tokenKind] = tokenAmount - amount;
+            }
+        },
+        incWallet: function(tokenKind, amount) {
+            var tokenAmount = this.wallet[tokenKind] || 0;
+            this.wallet[tokenKind] = tokenAmount + amount;
         },
         makeEmptyInventory: function(inventoryNumber){
             this.inventory[inventoryNumber] = null;

@@ -182,6 +182,7 @@ define(['jquery', 'app', 'entrypoint'], function($, App, EntryPoint) {
                             game.player.inventory[app.inventoryNumber] = null;
                     }
                 } catch(e) {
+                    console.log(e);
                 }
 
                 setTimeout(function () {

@@ -972,7 +972,8 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
                     avatar, weaponAvatar, experience,
                     admin,
                     inventory, inventoryNumber,
-                    achievementFound, achievementProgress) {
+                    achievementFound, achievementProgress,
+                    wallet) {
                 log.info("Received player ID from server : "+ id);
                 self.player.id = id;
                 self.playerId = id;
@@ -989,6 +990,9 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
                     self.player.setInventory(Types.getKindFromString(inventory[i]), i, inventoryNumber[i]);
                 }
                 self.initAchievements(achievementFound, achievementProgress);
+                Object.keys(wallet).map(function(key) {
+                    self.player.setWallet(key, wallet[key]);
+                });
                 self.initPlayer();
                 self.player.experience = experience;
                 self.player.level = Types.getLevel(experience);
@@ -1719,9 +1723,6 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
                 });
 
                 self.client.onAchievement(function(id, type) {
-                    console.log('onAchievement!!')
-                    console.log(id === self.achievements['KILL_CRAB'])
-                    console.log(type)
                     var key = null;
                     _.each(self.achievements, function(value, _key) {
                         if(value.id === id) {
@@ -2380,7 +2381,7 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
                         return;
                     }
                 } else if(clickedMenu === 1) {
-                    if(Types.isHealingItem(this.player.inventory[inventoryNumber]) && (this.player.inventoryCount[inventoryNumber] > 1)) {
+                    if((Types.isHealingItem(this.player.inventory[inventoryNumber]) || Types.isToken(this.player.inventory[inventoryNumber])) && (this.player.inventoryCount[inventoryNumber] > 1)) {
                         $('#dropCount').val(this.player.inventoryCount[inventoryNumber]);
                         this.app.showDropDialog(inventoryNumber);
                     } else {
@@ -3143,10 +3144,10 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
                 if(this.player.decInventory(inventoryNumber)){
                     this.client.sendInventory("eat", inventoryNumber, 1);
                 } else{
-                    this.showNotification("힐링 아이템 쿨타임이 안 끝났습니다.");
+                    this.showNotification("Healing Item Cool Time is not over");
                 }
             } else {
-                this.showNotification("최대 체력입니다.");
+                this.showNotification("Health is Full");
             }
             this.menu.close();
         }

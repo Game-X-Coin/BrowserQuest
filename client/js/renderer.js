@@ -760,6 +760,61 @@ function(Camera, Item, Character, Player, Timer) {
             });
             this.context.restore();
         },
+        drawWallet: function(){
+            var s = this.scale;
+            var wallet = null;
+
+            this.context.save();
+            this.context.translate(this.camera.x*s, this.camera.y*s);
+
+            if(this.game.player) {
+                wallet = this.game.player.wallet;
+                this.drawRect((this.camera.gridW-2)*this.tilesize*s,
+                          0*this.tilesize*s,
+                          2, 1, "rgba(0, 0, 0, 0.8)");
+            }
+
+            this._drawWallet(Types.Entities.TOKEN_A, 0);
+            this._drawWallet(Types.Entities.TOKEN_B, 1);
+
+            this.context.restore();
+        },
+        _drawWallet: function(key, index){
+            var self = this;
+            var s = this.scale;
+            var ds = this.upscaledRendering ? this.scale : 1;
+            var os = this.upscaledRendering ? 1 : this.scale;
+            var wallet = null;
+
+            if(this.game.player){
+                wallet = this.game.player.wallet;
+            }
+
+            var itemKind = parseInt(key);
+            var item = this.game.sprites["item-" + Types.getKindAsString(itemKind)];
+            if(item){
+                var itemAnimData = item.animationData["idle"];
+                if(itemAnimData){
+                    var ix = item.width * 0 * os,
+                        iy = item.height * itemAnimData.row * os,
+                        iw = item.width * os,
+                        ih = item.height * os;
+                    self.context.drawImage(item.image, ix, iy, iw, ih,
+                                            item.offsetX * s + (this.camera.gridW-2+index)*self.tilesize*s,
+                                            item.offsetY * s + 0*self.tilesize*s,
+                                            iw * ds, ih * ds);
+                    var color = "white";
+
+                    var amount = 0;
+                    if(wallet) {
+                        amount = wallet[key];
+                    }
+                    self.drawText(amount.toString(),
+                        (this.camera.gridW-2+index)*self.tilesize*s,
+                        1*self.tilesize*s, false, color);
+                }
+            }
+        },
         drawInventory: function(){
             var s = this.scale;
             var inventory = null;
@@ -820,7 +875,7 @@ function(Camera, Item, Character, Player, Timer) {
                                                item.offsetX * s + (this.camera.gridW-inventory.length+i)*self.tilesize*s,
                                                item.offsetY * s + (this.camera.gridH-1)*self.tilesize*s,
                                                iw * ds, ih * ds);
-                        if(Types.isHealingItem(itemKind)){
+                        if(Types.isHealingItem(itemKind) || Types.isToken(itemKind)){
                             var color = "white";
                             if(i === this.game.healShortCut)
                                 color = "lime";
@@ -847,6 +902,14 @@ function(Camera, Item, Character, Player, Timer) {
 
                 if(this.game.player.inventory[inventoryNumber] === Types.Entities.CAKE
                 || this.game.player.inventory[inventoryNumber] === Types.Entities.CD){
+                    this.drawRect((this.camera.gridW-2)*this.tilesize*s,
+                                  (this.camera.gridH-2)*this.tilesize*s,
+                                  2, 1, "rgba(0, 0, 0, 0.8)");
+                    this.drawText("drop",
+                                  (this.camera.gridW-1)*this.tilesize*s,
+                                  (this.camera.gridH-1.4)*this.tilesize*s,
+                                  true, "white", "black");
+                } if(Types.isToken(this.game.player.inventory[inventoryNumber])) {
                     this.drawRect((this.camera.gridW-2)*this.tilesize*s,
                                   (this.camera.gridH-2)*this.tilesize*s,
                                   2, 1, "rgba(0, 0, 0, 0.8)");
@@ -980,6 +1043,7 @@ function(Camera, Item, Character, Player, Timer) {
                 this.drawItemInfo();
             }
             this.drawInventory();
+            this.drawWallet();
             this.context.restore();
 
             // Overlay UI elements

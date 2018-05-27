@@ -11,105 +11,101 @@ bluebird.promisifyAll(redis.RedisClient.prototype);
 bluebird.promisifyAll(redis.Multi.prototype);
 var client = redis.createClient(6379, '127.0.0.1', {socket_nodelay: true});
 module.exports = DatabaseHandler = cls.Class.extend({
-    init: function() {
+    init: function(){
     },
-    loadPlayer: function(player) {
+    loadPlayer: function(player){
         var self = this;
-        var userKey = 'u:' + player.gxcId;
-        console.log('loadplayer');
-        console.log(userKey);
+        var userKey = "u:" + player.name;
         var curTime = new Date().getTime();
-        client.smembers('usr', function(err, replies) {
-            for (var index = 0; index < replies.length; index++) {
-                console.log(replies[index].toString());
-                if (replies[index].toString() === userKey) {
-                    client.multi().hget(userKey, 'pw') // 0
-                        .hget(userKey, 'armor') // 1
-                        .hget(userKey, 'weapon') // 2
-                        .hget(userKey, 'exp') // 3
-                        .hget('b:' +
-                            player.connection._connection.remoteAddress, 'time') // 4
-                        .hget('b:' +
-                            player.connection._connection.remoteAddress,
-                            'banUseTime') // 5
-                        .hget('b:' +
-                            player.connection._connection.remoteAddress,
-                            'loginTime') // 6
-                        .hget(userKey, 'avatar') // 7
-                        .zrange('adrank', '-1', '-1') // 8
-                        .get('nextNewArmor') // 9
-                        .hget(userKey, 'inventory0') // 10
-                        .hget(userKey, 'inventory0:number') // 11
-                        .hget(userKey, 'inventory1') // 12
-                        .hget(userKey, 'inventory1:number') // 13
-                        .hget(userKey, 'achievement1:found') // 14
-                        .hget(userKey, 'achievement1:progress') // 15
-                        .hget(userKey, 'achievement2:found') // 16
-                        .hget(userKey, 'achievement2:progress') // 17
-                        .hget(userKey, 'achievement3:found') // 18
-                        .hget(userKey, 'achievement3:progress') // 19
-                        .hget(userKey, 'achievement4:found') // 20
-                        .hget(userKey, 'achievement4:progress') // 21
-                        .hget(userKey, 'achievement5:found') // 22
-                        .hget(userKey, 'achievement5:progress') // 23
-                        .hget(userKey, 'achievement6:found') // 24
-                        .hget(userKey, 'achievement6:progress') // 25
-                        .smembers('adminname') // 26
-                        .zscore('adrank', userKey) // 27
-                        .hget(userKey, 'weaponAvatar') // 28
-                        .hget(userKey, 'x') // 29
-                        .hget(userKey, 'y') // 30
-                        .hget(userKey, 'achievement7:found') // 31
-                        .hget(userKey, 'achievement7:progress') // 32
-                        .hget(userKey, 'achievement8:found') // 33
-                        .hget(userKey, 'achievement8:progress') // 34
-                        .hget('cb:' +
-                            player.connection._connection.remoteAddress,
-                            'etime') // 35
-                        .hget(userKey, 'achievement9:found') // 36
-                        .hget(userKey, 'achievement9:progress') // 37
-                        .hget(userKey, 'achievement10:found') // 38
-                        .hget(userKey, 'achievement10:progress') // 39
-                        .hget(userKey, 'achievement11:found') // 40
-                        .hget(userKey, 'achievement11:progress') // 41
-                        .hget(userKey, 'achievement12:found') // 42
-                        .hget(userKey, 'achievement12:progress') // 43
-                        .hget(userKey, 'achievement13:found') // 44
-                        .hget(userKey, 'achievement13:progress') // 45
-                        .hget(userKey, 'achievement14:found') // 46
-                        .hget(userKey, 'achievement14:progress') // 47
-                        .hget(userKey, 'achievement15:found') // 48
-                        .hget(userKey, 'achievement15:progress') // 49
-                        .hget(userKey, 'achievement16:found') // 50
-                        .hget(userKey, 'achievement16:progress') // 51
-                        .hget(userKey, 'achievement17:found') // 52
-                        .hget(userKey, 'achievement17:progress') // 53
-                        .hget(userKey, 'achievement18:found') // 54
-                        .hget(userKey, 'achievement18:progress') // 55
-                        .hget(userKey, 'achievement19:found') // 56
-                        .hget(userKey, 'achievement19:progress') // 57
-                        .hget(userKey, 'achievement20:found') // 58
-                        .hget(userKey, 'achievement20:progress') // 59
-                        .hget(userKey, 'achievement21:found') // 58
-                        .hget(userKey, 'achievement21:progress') // 59
-
-                        .hget(userKey, 'achievement22:found') // 60
-                        .hget(userKey, 'achievement22:progress') // 61
-                        .hget(userKey, 'achievement23:found') // 62
-                        .hget(userKey, 'achievement23:progress') // 63
-                        .hget(userKey, 'achievement24:found') // 64
-                        .hget(userKey, 'achievement24:progress') // 65
-                        .hget(userKey, 'achievement25:found') // 66
-                        .hget(userKey, 'achievement25:progress') // 67
-                        .hget(userKey, 'achievement26:found') // 68
-                        .hget(userKey, 'achievement26:progress') // 69
-                        .hget(userKey, 'inventory2') // 70
-                        .hget(userKey, 'inventory2:number') // 71
-                        .hget(userKey, 'inventory3') // 72
-                        .hget(userKey, 'inventory3:number') // 73
-                        .hget(userKey, 'inventory4') // 74
-                        .hget(userKey, 'inventory4:number') // 75
-                        .exec(function(err, replies) {
+        client.smembers("usr", function(err, replies){
+            for(var index = 0; index < replies.length; index++){
+                if(replies[index].toString() === userKey){
+                    client.multi()
+                        .hget(userKey, "pw") // 0
+                        .hget(userKey, "armor") // 1
+                        .hget(userKey, "weapon") // 2
+                        .hget(userKey, "exp") // 3
+                        .hget("b:" + player.connection._connection.remoteAddress, "time") // 4
+                        .hget("b:" + player.connection._connection.remoteAddress, "banUseTime") // 5
+                        .hget("b:" + player.connection._connection.remoteAddress, "loginTime") // 6
+                        .hget(userKey, "avatar") // 7
+                        .zrange("adrank", "-1", "-1") // 8
+                        .get("nextNewArmor") // 9
+                        .hget(userKey, "inventory0") // 10
+                        .hget(userKey, "inventory0:number") // 11
+                        .hget(userKey, "inventory1") // 12
+                        .hget(userKey, "inventory1:number") // 13
+                        .hget(userKey, "achievement1:found") // 14
+                        .hget(userKey, "achievement1:progress") // 15
+                        .hget(userKey, "achievement2:found") // 16
+                        .hget(userKey, "achievement2:progress") // 17
+                        .hget(userKey, "achievement3:found") // 18
+                        .hget(userKey, "achievement3:progress") // 19
+                        .hget(userKey, "achievement4:found") // 20
+                        .hget(userKey, "achievement4:progress") // 21
+                        .hget(userKey, "achievement5:found") // 22
+                        .hget(userKey, "achievement5:progress") // 23
+                        .hget(userKey, "achievement6:found") // 24
+                        .hget(userKey, "achievement6:progress") // 25
+                        .smembers("adminname") // 26
+                        .zscore("adrank", player.name) // 27
+                        .hget(userKey, "weaponAvatar") // 28
+                        .hget(userKey, "x") // 29
+                        .hget(userKey, "y") // 30
+                        .hget(userKey, "achievement7:found") // 31
+                        .hget(userKey, "achievement7:progress") // 32
+                        .hget(userKey, "achievement8:found") // 33
+                        .hget(userKey, "achievement8:progress") // 34
+                        .hget("cb:" + player.connection._connection.remoteAddress, "etime") // 35
+                        .hget(userKey, "achievement9:found") // 36
+                        .hget(userKey, "achievement9:progress") // 37
+                        .hget(userKey, "achievement10:found") // 38
+                        .hget(userKey, "achievement10:progress") // 39
+                        .hget(userKey, "achievement11:found") // 40
+                        .hget(userKey, "achievement11:progress") // 41
+                        .hget(userKey, "achievement12:found") // 42
+                        .hget(userKey, "achievement12:progress") // 43
+                        .hget(userKey, "achievement13:found") // 44
+                        .hget(userKey, "achievement13:progress") // 45
+                        .hget(userKey, "achievement14:found") // 46
+                        .hget(userKey, "achievement14:progress") // 47
+                        .hget(userKey, "achievement15:found") // 48
+                        .hget(userKey, "achievement15:progress") // 49
+                        .hget(userKey, "achievement16:found") // 50
+                        .hget(userKey, "achievement16:progress") // 51
+                        .hget(userKey, "achievement17:found") // 52
+                        .hget(userKey, "achievement17:progress") // 53
+                        .hget(userKey, "achievement18:found") // 54
+                        .hget(userKey, "achievement18:progress") // 55
+                        .hget(userKey, "achievement19:found") // 56
+                        .hget(userKey, "achievement19:progress") // 57
+                        .hget(userKey, "achievement20:found") // 58
+                        .hget(userKey, "achievement20:progress") // 59
+                        .hget(userKey, "achievement21:found") // 58
+                        .hget(userKey, "achievement21:progress") // 59
+                        .hget(userKey, "achievement22:found") // 60
+                        .hget(userKey, "achievement22:progress") // 61
+                        .hget(userKey, "achievement23:found") // 62
+                        .hget(userKey, "achievement23:progress") // 63
+                        .hget(userKey, "achievement24:found") // 64
+                        .hget(userKey, "achievement24:progress") // 65
+                        .hget(userKey, "achievement25:found") // 66
+                        .hget(userKey, "achievement25:progress") // 67
+                        .hget(userKey, "achievement26:found") // 68
+                        .hget(userKey, "achievement26:progress") // 69
+                        .hget(userKey, "inventory2") // 72
+                        .hget(userKey, "inventory2:number") // 73
+                        .hget(userKey, "inventory3") // 74
+                        .hget(userKey, "inventory3:number") // 75
+                        .hget(userKey, "inventory4") // 76
+                        .hget(userKey, "inventory4:number") // 77
+                        .hget(userKey, "wallet"+Types.Entities.TOKEN_A) // 78
+                        .hget(userKey, "wallet"+Types.Entities.TOKEN_B) // 79
+                        .exec(function(err, replies){
+                            console.log("////////");
+                            console.log(replies[78]);
+                            console.log(replies[79]);
+                            console.log("////////");
                             var pw = replies[0];
                             var armor = replies[1];
                             var weapon = replies[2];
@@ -120,18 +116,14 @@ module.exports = DatabaseHandler = cls.Class.extend({
                             var avatar = replies[7];
                             var pubTopName = replies[8];
                             var nextNewArmor = replies[9];
-                            var inventory = [
-                                replies[10],
-                                replies[12],
-                                replies[70],
-                                replies[72],
-                                replies[74]];
+                            var inventory = [replies[10], replies[12], replies[72], replies[74], replies[76]];
                             var inventoryNumber = [
                                 Utils.NaN2Zero(replies[11]),
                                 Utils.NaN2Zero(replies[13]),
-                                Utils.NaN2Zero(replies[71]),
                                 Utils.NaN2Zero(replies[73]),
-                                Utils.NaN2Zero(replies[75])];
+                                Utils.NaN2Zero(replies[75]),
+                                Utils.NaN2Zero(replies[77])
+                            ];
                             var achievementFound = [
                                 null,
                                 Utils.trueFalse(replies[14]),
@@ -142,7 +134,7 @@ module.exports = DatabaseHandler = cls.Class.extend({
                                 Utils.trueFalse(replies[24]),
                                 Utils.trueFalse(replies[31]),
                                 Utils.trueFalse(replies[33]),
-
+                                
                                 Utils.trueFalse(replies[36]),
                                 Utils.trueFalse(replies[38]),
                                 Utils.trueFalse(replies[40]),
@@ -155,7 +147,6 @@ module.exports = DatabaseHandler = cls.Class.extend({
                                 Utils.trueFalse(replies[54]),
                                 Utils.trueFalse(replies[56]),
                                 Utils.trueFalse(replies[58]),
-
                                 Utils.trueFalse(replies[60]),
                                 Utils.trueFalse(replies[62]),
                                 Utils.trueFalse(replies[64]),
@@ -172,7 +163,6 @@ module.exports = DatabaseHandler = cls.Class.extend({
                                 Utils.NaN2Zero(replies[25]),
                                 Utils.NaN2Zero(replies[32]),
                                 Utils.NaN2Zero(replies[34]),
-
                                 Utils.NaN2Zero(replies[37]),
                                 Utils.NaN2Zero(replies[39]),
                                 Utils.NaN2Zero(replies[41]),
@@ -185,26 +175,27 @@ module.exports = DatabaseHandler = cls.Class.extend({
                                 Utils.NaN2Zero(replies[55]),
                                 Utils.NaN2Zero(replies[57]),
                                 Utils.NaN2Zero(replies[59]),
-
                                 Utils.NaN2Zero(replies[61]),
                                 Utils.NaN2Zero(replies[63]),
                                 Utils.NaN2Zero(replies[65]),
                                 Utils.NaN2Zero(replies[67]),
-                                Utils.NaN2Zero(replies[69]),
-                            ];
-                            var adminnames = replies[26];
-                            var pubPoint = Utils.NaN2Zero(replies[27]);
-                            var weaponAvatar = replies[28] ?
-                                replies[28] :
-                                weapon;
-                            var x = Utils.NaN2Zero(replies[29]);
-                            var y = Utils.NaN2Zero(replies[30]);
-                            var chatBanEndTime = Utils.NaN2Zero(replies[35]);
-                            // Check Password
+                                Utils.NaN2Zero(replies[69])
+                        ];
+                        var wallet = {
+                            [Types.Entities.TOKEN_A]: Utils.NaN2Zero(replies[78]),
+                            [Types.Entities.TOKEN_B]: Utils.NaN2Zero(replies[79]),
+                        };
+                        var adminnames = replies[26];
+                        var pubPoint =  Utils.NaN2Zero(replies[27]);
+                        var weaponAvatar = replies[28] ? replies[28] : weapon;
+                        var x = Utils.NaN2Zero(replies[29]);
+                        var y = Utils.NaN2Zero(replies[30]);
+                        var chatBanEndTime = Utils.NaN2Zero(replies[35]);
+                            
+                        // Check Password
                             if (pw !== player.tempKey) {
                                 player.connection.sendUTF8('invalidlogin');
-                                player.connection.close('Wrong Password: ' +
-                                    player.name);
+                                player.connection.close('Wrong Password: ' + player.name);
                                 return;
                             }
 
@@ -264,20 +255,17 @@ module.exports = DatabaseHandler = cls.Class.extend({
                                 log.info('Armor: ' + armor);
                                 log.info('Weapon: ' + weapon);
                                 log.info('Experience: ' + exp);
-                                log.info('Banned Time: ' +
-                                    (new Date(bannedTime)).toString());
-                                log.info('Ban Use Time: ' +
-                                    (new Date(banUseTime)).toString());
-                                log.info('Last Login Time: ' +
-                                    lastLoginTimeDate.toString());
-                                log.info('Chatting Ban End Time: ' +
-                                    (new Date(chatBanEndTime)).toString());
+                                log.info('Banned Time: ' + (new Date(bannedTime)).toString());
+                                log.info('Ban Use Time: ' + (new Date(banUseTime)).toString());
+                                log.info('Last Login Time: ' + lastLoginTimeDate.toString());
+                                log.info('Chatting Ban End Time: ' + (new Date(chatBanEndTime)).toString());
 
                                 player.sendWelcome(armor, weapon,
                                     avatar, weaponAvatar, exp, admin,
                                     bannedTime, banUseTime,
                                     inventory, inventoryNumber,
                                     achievementFound, achievementProgress,
+                                    wallet,
                                     x, y,
                                     chatBanEndTime);
                             }
@@ -352,6 +340,8 @@ module.exports = DatabaseHandler = cls.Class.extend({
                 hset(userKey, 'avatar', 'clotharmor').
                 hset(userKey, 'weapon', 'sword1').
                 hset(userKey, 'exp', 0).
+                hset(userKey, 'wallet'+Types.Entities.TOKEN_A, 0).
+                hset(userKey, 'wallet'+Types.Entities.TOKEN_B, 0).
                 hset('b:' + player.remoteAddress,
                     'loginTime', curTime).
                 execAsync();
@@ -510,6 +500,10 @@ module.exports = DatabaseHandler = cls.Class.extend({
         } else {
             this.makeEmptyInventory(name, inventoryNumber);
         }
+    },
+    setWallet: function(name, type, amount) {
+        client.hset("u:" + name, "wallet" + type, amount);
+        log.info("Set Wallet: " + name + " " + type + " " + amount);
     },
     makeEmptyInventory: function(name, number) {
         log.info('Empty Inventory: ' + name + ' ' + number);
