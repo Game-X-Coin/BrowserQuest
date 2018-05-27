@@ -507,7 +507,7 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
             } else {
                 if(this.spritesets && this.spritesets.length >= scale) {
                     this.sprites = this.spritesets[scale - 1];
-                    
+
                     _.each(this.entities, function(entity) {
                         entity.sprite = null;
                         entity.setSprite(self.sprites[entity.getSpriteName()]);
@@ -2001,7 +2001,7 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
                     this.unhiddenAchievement(this.achievements['BRING_AXE']);
                 } else if(npc.kind === Types.Entities.DESERTNPC && !this.achievements['BRING_AXE'].hidden){
                     this.client.sendTalkToNPC(npc.kind);
-                } else if(npc.kind === Types.Entities.SORCERER){
+                } else if(npc.shop){
                     $("#shop-modal").addClass("fade show");
                     $("#shop-modal").css("display", "block");
                     return ;
