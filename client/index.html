@@ -372,6 +372,44 @@ Mozilla presents an HTML5 mini-MMORPG by Little Workshop http://www.littleworksh
         <img src="img/common/thingy.png" alt="" class="preload">
 
         <div id="resize-check"></div>
+        <div id="shop-modal" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Shop</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row align-items-center" style="height: 45px;">
+                        <div class="col-1">
+                            <input type="checkbox">
+                        </div>
+                        <div class="col-2">
+                            <div style="width:100%; height: 45px; background-image: url('img/3/item-greenlightsaber.png'); background-repeat: no-repeat; background-size: auto 45px; background-position: 5px 0;"></div>
+                        </div>
+                        <div class="col-6">Green Light Saber</div>
+                        <div class="col-3"><span style="width:20px; height: 20px; background-image: url('img/3/item-tokena.png'); background-repeat: no-repeat; background-size: 15px; background-position: center; float: left;"></span>300</div>
+                    </div>
+                    <div class="row align-items-center" style="height: 45px;">
+                        <div class="col-1">
+                            <input type="checkbox">
+                        </div>
+                        <div class="col-2">
+                            <div style="width:100%; height: 45px; background-image: url('img/3/item-weaponrare.png'); background-repeat: no-repeat; background-size: auto 45px; background-position: 5px 0;"></div>
+                        </div>
+                        <div class="col-6">Green Light Saber</div>
+                        <div class="col-3"><span style="width:20px; height: 20px; background-image: url('img/3/item-tokena.png'); background-repeat: no-repeat; background-size: 15px; background-position: center; float: left;"></span>300</div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="buyItem();">Buy</button>
+                    <button type="button" name="close" class="btn btn-secondary">Close</button>
+                </div>
+                </div>
+            </div>
+        </div>
 
         <script type="text/javascript" src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
 
@@ -396,5 +434,20 @@ Mozilla presents an HTML5 mini-MMORPG by Little Workshop http://www.littleworksh
         </script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
         <script data-main="js/home" src="js/lib/require-jquery.js"></script>
+        <script>
+            function closeShopmodal() {
+                $("#shop-modal").removeClass("fade show");
+                $("#shop-modal").css("display", "none");
+            }
+            function buyItem() {
+                alert("Buy Item!");
+            }
+            $("#shop-modal button.close").click(function() {
+                closeShopmodal();
+            });
+            $("#shop-modal .modal-footer button[name='close']").click(function() {
+                closeShopmodal();
+            });
+        </script>
 	</body>
 </html>

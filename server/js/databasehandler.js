@@ -102,10 +102,6 @@ module.exports = DatabaseHandler = cls.Class.extend({
                         .hget(userKey, "wallet"+Types.Entities.TOKEN_A) // 78
                         .hget(userKey, "wallet"+Types.Entities.TOKEN_B) // 79
                         .exec(function(err, replies){
-                            console.log("////////");
-                            console.log(replies[78]);
-                            console.log(replies[79]);
-                            console.log("////////");
                             var pw = replies[0];
                             var armor = replies[1];
                             var weapon = replies[2];

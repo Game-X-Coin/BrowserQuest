@@ -48,6 +48,7 @@ define(['player', 'entityfactory', 'lib/bison'], function(Player, EntityFactory,
             this.handlers[Types.Messages.BOARD] = this.receiveBoard;
             this.handlers[Types.Messages.NOTIFY] = this.receiveNotify;
             this.handlers[Types.Messages.KUNG] = this.receiveKung;
+            this.handlers[Types.Messages.WALLET] = this.receiveWallet;
 
             this.useBison = false;
             this.enable();
@@ -433,11 +434,13 @@ define(['player', 'entityfactory', 'lib/bison'], function(Player, EntityFactory,
         receiveAchievement: function(data){
             var id = data[1],
                 type = data[2];
+                console.log("receive!!Achi")
             if(this.achievement_callback) {
+                console.log("call back!");
                 this.achievement_callback(id, type);
             }
         },
-
+       
         receiveGuildError: function(data) {
 			var errorType = data[1];
 			var guildName = data[2];
@@ -445,7 +448,7 @@ define(['player', 'entityfactory', 'lib/bison'], function(Player, EntityFactory,
 				this.guilderror_callback(errorType, guildName);
 			}
         },
-
+        
         receiveBoard: function(data){
             if(this.board_callback){
                 this.board_callback(data);
@@ -465,6 +468,17 @@ define(['player', 'entityfactory', 'lib/bison'], function(Player, EntityFactory,
             }
         },
 
+        receiveWallet: function(data) {
+            var type = data[1],
+                amount = data[2];
+                console.log('receive wallet');
+            if(this.wallet_callback) {
+                console.log('receive wallet:'+type);
+                console.log('receive wallet:'+amount);
+                this.wallet_callback(type, amount);
+            }
+        },
+		
 		receiveGuild: function(data) {
 			if( (data[1] === Types.Messages.GUILDACTION.CONNECT) &&
 				this.guildmemberconnect_callback ){
@@ -492,7 +506,7 @@ define(['player', 'entityfactory', 'lib/bison'], function(Player, EntityFactory,
 				this.guildpopulation_callback(data[2], data[3]);//name, count
 			}
 			else if( (data[1] === Types.Messages.GUILDACTION.JOIN) &&
-				this.guildjoin_callback){
+				this.guildjoin_callback){				
 					this.guildjoin_callback(data[2], data[3], data[4], data[5]);//name, (id, (guildId, guildName))
 			}
 			else if( (data[1] === Types.Messages.GUILDACTION.LEAVE) &&
@@ -611,42 +625,45 @@ define(['player', 'entityfactory', 'lib/bison'], function(Player, EntityFactory,
         onKung: function(callback){
             this.kung_callback = callback;
         },
+        onWallet: function(callback) {
+            this.wallet_callback = callback;
+        },
         onGuildError: function(callback) {
 			this.guilderror_callback = callback;
 		},
-
+		
 		onGuildCreate: function(callback) {
 			this.guildcreate_callback = callback;
 		},
-
+		
 		onGuildInvite: function(callback) {
 			this.guildinvite_callback = callback;
 		},
-
+		
 		onGuildJoin: function(callback) {
 			this.guildjoin_callback = callback;
 		},
-
+		
 		onGuildLeave: function(callback) {
 			this.guildleave_callback = callback;
 		},
-
+		
 		onGuildTalk: function(callback) {
 			this.guildtalk_callback = callback;
 		},
-
+		
 		onMemberConnect: function(callback) {
 			this.guildmemberconnect_callback = callback;
 		},
-
+		
 		onMemberDisconnect: function(callback) {
 			this.guildmemberdisconnect_callback = callback;
 		},
-
+		
 		onReceiveGuildMembers: function(callback) {
 			this.guildonlinemembers_callback = callback;
 		},
-
+		
 		onGuildPopulation: function(callback) {
 			this.guildpopulation_callback = callback;
 		},
@@ -736,6 +753,9 @@ define(['player', 'entityfactory', 'lib/bison'], function(Player, EntityFactory,
         sendInventory: function(type, inventoryNumber, count) {
             this.sendMessage([Types.Messages.INVENTORY, type, inventoryNumber, count]);
         },
+        sendWallet: function(type, amount) {
+            this.sendMessage([Types.Messages.WALLET, type, amount]);
+        },
         sendAchievement: function(id, type) {
             this.sendMessage([Types.Messages.ACHIEVEMENT, id, type]);
         },
@@ -762,28 +782,28 @@ define(['player', 'entityfactory', 'lib/bison'], function(Player, EntityFactory,
             this.sendMessage([Types.Messages.KUNG,
                               word]);
         },
-
+        
         sendWho: function(ids) {
             ids.unshift(Types.Messages.WHO);
             this.sendMessage(ids);
         },
-
+        
         sendNewGuild: function(name) {
 			this.sendMessage([Types.Messages.GUILD, Types.Messages.GUILDACTION.CREATE, name]);
 		},
-
+		
 		sendGuildInvite: function(invitee) {
 			this.sendMessage([Types.Messages.GUILD, Types.Messages.GUILDACTION.INVITE, invitee]);
 		},
-
+		
 		sendGuildInviteReply: function(guild, answer) {
 			this.sendMessage([Types.Messages.GUILD, Types.Messages.GUILDACTION.JOIN, guild, answer]);
 		},
-
+		
 		talkToGuild: function(message){
 			this.sendMessage([Types.Messages.GUILD, Types.Messages.GUILDACTION.TALK, message]);
 		},
-
+		
 		sendLeaveGuild: function(){
 			this.sendMessage([Types.Messages.GUILD, Types.Messages.GUILDACTION.LEAVE]);
 		}

@@ -135,6 +135,7 @@ define(['npc'], function(Npc) {
             init: function(id) {
                 this._super(id, Types.Entities.SORCERER, 1);
                 this.idleSpeed = 150;
+                this.shop = true;
                 this.beforeQuestCompleteTalk = [
                     "Ah... I had foreseen you would come to see me.",
                     "Well? How do you like my new staff?",

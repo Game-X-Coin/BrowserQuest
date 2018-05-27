@@ -209,18 +209,22 @@ module.exports = Player = Character.extend({
                         mob.receiveDamage(dmg, self.id);
                         if(mob.hitPoints <= 0) {
                             if(mob.kind === Types.Entities.RAT) {
-                                if(self.achievementFound[2].found && self.achievementProgress[2] !== 999){
-                                    if(isNaN(self.achievementProgress[2])) {
-                                        self.achievementProgress[2] = 0;
+                                const achievementId = 2;
+                                if(self.achievementFound[achievementId] && self.achievementProgress[achievementId] !== 999){
+                                    console.log(isNaN(self.achievementProgress[achievementId]));
+                                    if(isNaN(self.achievementProgress[achievementId])) {
+                                        self.achievementProgress[achievementId] = 0;
                                     } else {
-                                        self.achievementProgress[2]++;
+                                        self.achievementProgress[achievementId]++;
                                     }
-                                    if(self.achievementProgress[2] >= 10){
-                                        self.send([Types.Messages.ACHIEVEMENT, 2, "complete"]);
-                                        self.achievementProgress[2] = 999;
+                                    if(self.achievementProgress[achievementId] >= 10){
+                                        self.send([Types.Messages.ACHIEVEMENT, achievementId, "complete"]);
+                                        self.achievementProgress[achievementId] = 999;
                                         self.incExp(50);
+                                        self.incWallet(Types.Entities.TOKEN_A, 100);
+                                        self.send([Types.Messages.WALLET, Types.Entities.TOKEN_A, self.wallet[Types.Entities.TOKEN_A]]);
                                     }
-                                    databaseHandler.progressAchievement(self.gxcId, 2, self.achievementProgress[2]);
+                                    databaseHandler.progressAchievement(self.gxcId, achievementId, self.achievementProgress[achievementId]);
                                 }
                             } else if(mob.kind === Types.Entities.CRAB){
                                 const achievementId = 18;
@@ -234,6 +238,8 @@ module.exports = Player = Character.extend({
                                         self.send([Types.Messages.ACHIEVEMENT, achievementId, "complete"]);
                                         self.achievementProgress[achievementId] = 999;
                                         self.incExp(50);
+                                        self.incWallet(Types.Entities.TOKEN_B, 100);
+                                        self.send([Types.Messages.WALLET, Types.Entities.TOKEN_A, this.wallet[Types.Entities.TOKEN_B]]);
                                     }
                                     databaseHandler.progressAchievement(self.gxcId, achievementId, self.achievementProgress[achievementId]);
                                 }
