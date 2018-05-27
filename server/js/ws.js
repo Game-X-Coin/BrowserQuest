@@ -5,9 +5,10 @@ var cls = require('./lib/class');
 var http = require('http');
 var socketio = require('socket.io');
 var url = require('url');
+const querystring = require('querystring');
 var Utils = require('./utils');
+var axios = require('axios');
 var WS = {};
-
 module.exports = WS;
 
 /**
@@ -90,11 +91,12 @@ WS.WebsocketServer = Server.extend({
     _connections: {},
     _counter: 0,
 
-    init: function (port, useOnePort, ip) {
+    init: function (port, useOnePort, ip, databaseHandler) {
         var self = this;
 
         this._super(port);
         this.ip = ip;
+        this.databaseHandler = databaseHandler;
 
         // Are we doing both client and server on one port?
         if (useOnePort === true) {
@@ -102,7 +104,9 @@ WS.WebsocketServer = Server.extend({
 
             // Use 'connect' for its static module
             var connect = require('connect');
+            var bodyParser = require('body-parser');
             var app = connect();
+            app.use(bodyParser.urlencoded({extended: false}));
 
             // Serve everything in the client subdirectory statically
             var serveStatic = require('serve-static');
@@ -115,6 +119,7 @@ WS.WebsocketServer = Server.extend({
             // Generate (on the fly) the pages needing special treatment
             app.use(function handleDynamicPageRequests(request, response) {
                 var path = url.parse(request.url).pathname;
+                console.log(path);
                 switch (path) {
                     case '/status':
                         // The server status page
@@ -184,6 +189,61 @@ WS.WebsocketServer = Server.extend({
                         // Sends the real shared/js/gametypes.js to the client
                         sendFile('js/gametypes.js', response, log);
                         break;
+                    case '/shared/js/external.js':
+                        // Sends the real shared/js/gametypes.js to the client
+                        sendFile('js/external.js', response, log);
+                        break;
+                    case '/oauth_callback':
+                        const params = querystring.parse(request._parsedOriginalUrl.query);
+                        const code = params.code;
+                        let gxcData = null;
+                        let accessToken = null;
+                        console.log(process.env)
+                        return axios.post(process.env.GXC_SERVER + '/v1/oauth/token', {client_id: process.env.GXC_CLIENT_ID, client_secret: process.env.GXC_CLIENT_SECRET, code: code, grant_type: 'authorization_code'})
+                        .then(function (res) {
+                          accessToken = res.data.access_token.token;
+                          return axios.get(process.env.GXC_SERVER + '/v1/oauth/me',
+                            {headers: {Authorization: 'Bearer ' + accessToken}});
+                        })
+                        .then(function(res) {
+                            gxcData = res.data;
+                            console.log(gxcData);
+                            return self.databaseHandler.setAccessToken(gxcData.id, accessToken);
+                        })
+                        .then(function(res) {
+                            //res.data {id, account, email }
+
+                            return self.databaseHandler.existsPlayer(gxcData.id);
+                        })
+                        .then(function(res){
+                            console.log('res : ' + res);
+                            if(!res) {
+                                const player = {gxcKey: gxcData.id, name: gxcData.account, gxcAccount: gxcData.account, email: gxcData.email };
+                                return self.databaseHandler._createPlayer(player)
+                                    .then(function () {
+                                        console.log('create player');
+                                        return self.databaseHandler.setTempKey(gxcData.id);
+                                    })
+                                    .then(function (tempKey) {
+                                        console.log(tempKey);
+                                        response.writeHead(200);
+                                        response.end("<html><script>window.opener.gxcLoginHander('" + gxcData.id + "','" + tempKey + "');</script></html>");
+                                });
+                            } else {
+                                return self.databaseHandler.setTempKey(gxcData.id)
+                                    .then(function (tempKey) {
+                                        console.log(tempKey);
+                                        response.writeHead(200);
+                                        response.end("<html><script>window.opener.gxcLoginHander('" + gxcData.id + "','" + tempKey + "');</script></html>");
+                                })
+                            }
+
+                        })
+                        .catch(function(error) {
+                            console.error(error);
+                        });
+                        break;
+
                     default:
                         response.writeHead(404);
                 }

@@ -27,6 +27,7 @@ Mozilla presents an HTML5 mini-MMORPG by Little Workshop http://www.littleworksh
         <meta property="og:image" content="http://browserquest.mozilla.org/img/common/promo-title.jpg">
         <meta property="og:site_name" content="BrowserQuest">
         <meta property="og:description" content="Play Mozilla's BrowserQuest, an HTML5 massively multiplayer game demo powered by WebSockets!">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" href="css/main.css" type="text/css">
         <link rel="stylesheet" href="css/achievements.css" type="text/css">
 
@@ -97,23 +98,12 @@ Mozilla presents an HTML5 mini-MMORPG by Little Workshop http://www.littleworksh
                          <div class="validation-summary"></div>
                     </article>
                     <article id="loadcharacter">
-          	           <h1>
+                        <h1>
           	               <span class="left-ornament"></span>
-          	               BrowserQuest
+          	               GXC Quest
           	               <span class="right-ornament"></span>
-                         </h1>
-                         <form action="none" method="get" accept-charset="utf-8">
-                             <input type="text" id="loginnameinput" class="stroke" name="player-name" placeholder="Character Name" maxlength="12" autofocus>
-                             <input type="password" id="loginpwinput" class="stroke" name="player-loginpw" placeholder="Password" maxlength="15">
-                         </form>
-                         <div class="play button">
-                           <span class="link">Login</span>
-                           <img src="img/common/spinner2.gif">
-                         </div>
-                         <div class="validation-summary"></div>
-                         <div id="create-new">
-                            <span class="link">New Character</span>
-                         </div>
+                        </h1>
+                        <button class="btn btn-dark mt-3 gxc-login-btn" id="gxc-login">GXC로 로그인</button>
                     </article>
                     <article id="confirmation">
           	           <h1>
@@ -283,7 +273,7 @@ Mozilla presents an HTML5 mini-MMORPG by Little Workshop http://www.littleworksh
                         <div class="name"></div>
                         <div class="health"></div>
                     </div>
-                </div> 
+                </div>
     			<div id="inspector">
                     <div class="headshot"><div> </div></div>
                     <div class="details">

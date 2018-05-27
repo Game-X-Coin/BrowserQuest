@@ -66,44 +66,49 @@ module.exports = Player = Character.extend({
 
             self.resetTimeout();
 
-            if(action === Types.Messages.CREATE || action === Types.Messages.LOGIN) {
-                var name = Utils.sanitize(message[1]);
-                var pw = Utils.sanitize(message[2]);
-                var email = Utils.sanitize(message[3]);
-
-                log.info("HELLO: " + name);
+            // if(action === Types.Messages.CREATE || action === Types.Messages.LOGIN) {
+            if(action === Types.Messages.LOGIN) {
+                // var name = Utils.sanitize(message[1]);
+                // var pw = Utils.sanitize(message[2]);
+                // var email = Utils.sanitize(message[3]);
+                var gxcId = Utils.sanitize(message[1]);
+                var tempKey = Utils.sanitize(message[2]);
+                console.log(message);
+                log.info("HELLO: " + gxcId);
                 // Always ensure that the name is not longer than a maximum length.
                 // (also enforced by the maxlength attribute of the name input element).
-                self.name = name.substr(0, 12).trim()
+                // self.name = name.substr(0, 12).trim()
+                //
+                // // Validate the username
+                // if(!self.checkName(self.name)){
+                //     self.connection.sendUTF8("invalidusername");
+                //     self.connection.close("Invalid name " + self.name);
+                //     return;
+                // }
+                // self.pw = pw.substr(0, 15);
+                // self.email = email;
 
-                // Validate the username
-                if(!self.checkName(self.name)){
-                    self.connection.sendUTF8("invalidusername");
-                    self.connection.close("Invalid name " + self.name);
+                // if(action === Types.Messages.CREATE) {
+                //     bcrypt.genSalt(10, function(err, salt) {
+                //         bcrypt.hash(self.pw, salt, function(err, hash) {
+                //             log.info("CREATE: " + self.name);
+                //             self.email = Utils.sanitize(message[3]);
+                //             self.pw = hash;
+                //             databaseHandler.createPlayer(self);
+                //         })
+                //     });
+                // } else {
+                log.info("LOGIN: " + gxcId);
+                self.gxcId = gxcId;
+                self.name = gxcId;
+                self.tempKey = tempKey;
+                if(self.server.loggedInPlayer(gxcId)) {
+                    self.connection.sendUTF8("loggedin");
+                    self.connection.close("Already logged in " + gxcId);
                     return;
                 }
-                self.pw = pw.substr(0, 15);
-                self.email = email;
-
-                if(action === Types.Messages.CREATE) {
-                    bcrypt.genSalt(10, function(err, salt) {
-                        bcrypt.hash(self.pw, salt, function(err, hash) {
-                            log.info("CREATE: " + self.name);
-                            self.email = Utils.sanitize(message[3]);
-                            self.pw = hash;
-                            databaseHandler.createPlayer(self);
-                        })
-                    });
-                } else {
-                    log.info("LOGIN: " + self.name);
-                    if(self.server.loggedInPlayer(self.name)) {
-                        self.connection.sendUTF8("loggedin");
-                        self.connection.close("Already logged in " + self.name);
-                        return;
-                    }
-                    databaseHandler.checkBan(self);
-                    databaseHandler.loadPlayer(self);
-                }
+                databaseHandler.checkBan(self);
+                databaseHandler.loadPlayer(self);
             }
             else if(action === Types.Messages.WHO) {
                 log.info("WHO: " + self.name);
@@ -215,7 +220,7 @@ module.exports = Player = Character.extend({
                                         self.achievementProgress[2] = 999;
                                         self.incExp(50);
                                     }
-                                    databaseHandler.progressAchievement(self.name, 2, self.achievementProgress[2]);
+                                    databaseHandler.progressAchievement(self.gxcId, 2, self.achievementProgress[2]);
                                 }
                             } else if(mob.kind === Types.Entities.CRAB){
                                 const achievementId = 18;
@@ -230,12 +235,12 @@ module.exports = Player = Character.extend({
                                         self.achievementProgress[achievementId] = 999;
                                         self.incExp(50);
                                     }
-                                    databaseHandler.progressAchievement(self.name, achievementId, self.achievementProgress[achievementId]);
+                                    databaseHandler.progressAchievement(self.gxcId, achievementId, self.achievementProgress[achievementId]);
                                 }
                             } else if(mob.kind === Types.Entities.SKELETON){
                                 const achievementId = 21;
-                                if(self.achievementFound && self.achievement[achievementId].progress !== 999){
-                                    
+                                if(self.achievementFound[achievementId] && self.achievementProgress[achievementId] !== 999){
+
                                     if(isNaN(self.achievementProgress[achievementId])){
                                         self.achievementProgress[achievementId] = 0;
                                     } else{
@@ -246,7 +251,7 @@ module.exports = Player = Character.extend({
                                         self.achievementProgress[achievementId] = 999;
                                         self.incExp(200);
                                     }
-                                    databaseHandler.progressAchievement(self.name, achievementId, self.achievementProgress[achievementId]);
+                                    databaseHandler.progressAchievement(self.gxcId, achievementId, self.achievementProgress[achievementId]);
                                 }
                             }
                         }
@@ -268,7 +273,7 @@ module.exports = Player = Character.extend({
                 }
             }
             else if(action === Types.Messages.HURT) {
-                log.info("HURT: " + self.name + " " + message[1]);
+                log.info("HURT: " + self.gxcId + " " + message[1]);
                 var mob = self.server.getEntityById(message[1]);
                 if(mob &&
                     (mob.kind === Types.Entities.FORESTDRAGON
@@ -301,7 +306,7 @@ module.exports = Player = Character.extend({
                 }
             }
             else if(action === Types.Messages.LOOT) {
-                log.info("LOOT: " + self.name + " " + message[1]);
+                log.info("LOOT: " + self.gxcId + " " + message[1]);
                 var item = self.server.getEntityById(message[1]);
 
                 if(item) {
@@ -455,7 +460,7 @@ module.exports = Player = Character.extend({
                 log.info("ACHIEVEMENT: " + self.name + " " + message[1] + " " + message[2]);
                 if(message[2] === "found") {
                     self.achievementFound[message[1]] = true;
-                    databaseHandler.foundAchievement(self.name, message[1]);
+                    databaseHandler.foundAchievement(self.gxcId, message[1]);
                 }
             } else if(action === Types.Messages.TALKTONPC){
                 log.info("TALKTONPC: " + self.name + " " + message[1]);
@@ -468,7 +473,7 @@ module.exports = Player = Character.extend({
                         self.send([Types.Messages.ACHIEVEMENT, achievementId, "complete"]);
                         self.achievementProgress[achievementId] = 999;
                         self.incExp(50);
-                        databaseHandler.progressAchievement(self.name, achievementId, self.achievementProgress[achievementId]);
+                        databaseHandler.progressAchievement(self.gxcId, achievementId, self.achievementProgress[achievementId]);
                     }
                 } else if(message[1] === Types.Entities.AGENT){
                     const achievementId = 20;
@@ -482,7 +487,7 @@ module.exports = Player = Character.extend({
                         self.send([Types.Messages.ACHIEVEMENT, achievementId, "complete"]);
                         self.achievementProgress[achievementId] = 999;
                         self.incExp(50);
-                        databaseHandler.progressAchievement(self.name, achievementId, self.achievementProgress[achievementId]);
+                        databaseHandler.progressAchievement(self.gxcId, achievementId, self.achievementProgress[achievementId]);
                     }
                 } else if(message[1] === Types.Entities.NYAN){
                     const achievementId = 20;
@@ -496,7 +501,7 @@ module.exports = Player = Character.extend({
                         self.send([Types.Messages.ACHIEVEMENT, achievementId, "complete"]);
                         self.achievementProgress[achievementId] = 999;
                         self.incExp(100);
-                        databaseHandler.progressAchievement(self.name, achievementId, self.achievementProgress[achievementId]);
+                        databaseHandler.progressAchievement(self.gxcId, achievementId, self.achievementProgress[achievementId]);
                     }
                 } else if(message[1] === Types.Entities.DESERTNPC){
                     const achievementId = 22;
@@ -507,14 +512,14 @@ module.exports = Player = Character.extend({
                         self.send([Types.Messages.ACHIEVEMENT, achievementId, "complete"]);
                         self.achievementProgress[achievementId] = 999;
                         self.incExp(200);
-                        databaseHandler.progressAchievement(self.name, achievementId, self.achievementProgress[achievementId]);
+                        databaseHandler.progressAchievement(self.gxcId, achievementId, self.achievementProgress[achievementId]);
                     }
                 }
             } else if(action === Types.Messages.MAGIC){
                 log.info("MAGIC: " + self.name + " " + message[1] + " " + message[2]);
                 var magicName = message[1];
                 var magicTargetName = message[2];
-  
+
                 if(magicName === "setheal"){
                   self.magicTarget = self.server.getPlayerByName(magicTargetName);
                   if(self.magicTarget === self){
@@ -623,7 +628,7 @@ module.exports = Player = Character.extend({
 
     getState: function() {
         var basestate = this._getBaseState(),
-            state = [this.name, this.orientation, this.avatar, this.weapon, this.level];
+            state = [this.gxcId, this.orientation, this.avatar, this.weapon, this.level];
 
         if(this.target) {
             state.push(this.target);
@@ -732,30 +737,30 @@ module.exports = Player = Character.extend({
     equipItem: function(itemKind, isAvatar) {
         var self = this;
         if(itemKind) {
-            log.debug(this.name + " equips " + Types.getKindAsString(itemKind));
+            log.debug(this.gxcId + " equips " + Types.getKindAsString(itemKind));
 
             if(Types.isArmor(itemKind)) {
                 if(isAvatar) {
-                    this.databaseHandler.equipAvatar(this.name, Types.getKindAsString(itemKind));
+                    this.databaseHandler.equipAvatar(this.gxcId, Types.getKindAsString(itemKind));
                     this.equipAvatar(itemKind);
                 } else {
-                    this.databaseHandler.equipAvatar(this.name, Types.getKindAsString(itemKind));
+                    this.databaseHandler.equipAvatar(this.gxcId, Types.getKindAsString(itemKind));
                     this.equipAvatar(itemKind);
 
-                    this.databaseHandler.equipArmor(this.name, Types.getKindAsString(itemKind));
+                    this.databaseHandler.equipArmor(this.gxcId, Types.getKindAsString(itemKind));
                     this.equipArmor(itemKind);
                 }
                 this.updateHitPoints();
                 this.send(new Messages.HitPoints(this.maxHitPoints).serialize());
             } else if(Types.isWeapon(itemKind)) {
-                this.databaseHandler.equipWeapon(this.name, Types.getKindAsString(itemKind));
+                this.databaseHandler.equipWeapon(this.gxcId, Types.getKindAsString(itemKind));
                 this.equipWeapon(itemKind);
 
                 const achievementId = 1;
                 if(self.achievementProgress[achievementId] < 999) {
                     self.achievementProgress[achievementId] = 999;
                     self.send([Types.Messages.ACHIEVEMENT, achievementId, "complete"]);
-                    self.databaseHandler.progressAchievement(self.name, achievementId, self.achievementProgress[achievementId]);
+                    self.databaseHandler.progressAchievement(self.gxcId, achievementId, self.achievementProgress[achievementId]);
                 }
             }
         }
@@ -788,7 +793,7 @@ module.exports = Player = Character.extend({
 
     incExp: function(gotexp){
         this.experience = parseInt(this.experience) + (parseInt(gotexp));
-        this.databaseHandler.setExp(this.name, this.experience);
+        this.databaseHandler.setExp(this.gxcId, this.experience);
         var origLevel = this.level;
         this.level = Types.getLevel(this.experience);
         if(origLevel !== this.level) {
@@ -882,7 +887,7 @@ module.exports = Player = Character.extend({
 
         self.server.addPlayer(self);
         self.server.enter_callback(self);
-        
+
         self.send([
             Types.Messages.WELCOME, self.id, self.name, self.x, self.y,
             self.hitPoints, armor, weapon, avatar, weaponAvatar,
@@ -914,7 +919,7 @@ module.exports = Player = Character.extend({
             for(var i=0; i < this.inventory.length; i++) {
                 if(this.inventory[i] === item.kind){
                     this.inventoryCount[i] += item.count;
-                    this.databaseHandler.setInventory(this.name, item.kind, i, this.inventoryCount[i]);
+                    this.databaseHandler.setInventory(this.gxcId, item.kind, i, this.inventoryCount[i]);
                     return ;
                 }
             }
@@ -926,7 +931,7 @@ module.exports = Player = Character.extend({
             if(!this.inventory[i]) {
                 this.inventory[i] = item.kind;
                 this.inventoryCount[i] = item.count;
-                this.databaseHandler.setInventory(this.name, item.kind, i, item.count);
+                this.databaseHandler.setInventory(this.gxcId, item.kind, i, item.count);
                 break;
             }
         }

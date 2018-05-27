@@ -32,6 +32,7 @@ Messages.Move = Message.extend({
         this.entity = entity;
     },
     serialize: function () {
+
         return [Types.Messages.MOVE,
                 this.entity.id,
                 this.entity.x,
@@ -123,6 +124,8 @@ Messages.Chat = Message.extend({
         this.message = message;
     },
     serialize: function () {
+        console.log(this.playerId);
+        console.log('chat');
         return [Types.Messages.CHAT,
                 this.playerId,
                 this.message];

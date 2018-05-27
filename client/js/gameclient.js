@@ -141,6 +141,8 @@ define(['player', 'entityfactory', 'lib/bison'], function(Player, EntityFactory,
                 } else {
                     data = JSON.stringify(json);
                 }
+                console.log('data1')
+                console.log(data)
                 this.connection.send(data);
             }
         },
@@ -435,7 +437,7 @@ define(['player', 'entityfactory', 'lib/bison'], function(Player, EntityFactory,
                 this.achievement_callback(id, type);
             }
         },
-       
+
         receiveGuildError: function(data) {
 			var errorType = data[1];
 			var guildName = data[2];
@@ -443,7 +445,7 @@ define(['player', 'entityfactory', 'lib/bison'], function(Player, EntityFactory,
 				this.guilderror_callback(errorType, guildName);
 			}
         },
-        
+
         receiveBoard: function(data){
             if(this.board_callback){
                 this.board_callback(data);
@@ -462,7 +464,7 @@ define(['player', 'entityfactory', 'lib/bison'], function(Player, EntityFactory,
                 this.kung_callback(msg);
             }
         },
-		
+
 		receiveGuild: function(data) {
 			if( (data[1] === Types.Messages.GUILDACTION.CONNECT) &&
 				this.guildmemberconnect_callback ){
@@ -490,7 +492,7 @@ define(['player', 'entityfactory', 'lib/bison'], function(Player, EntityFactory,
 				this.guildpopulation_callback(data[2], data[3]);//name, count
 			}
 			else if( (data[1] === Types.Messages.GUILDACTION.JOIN) &&
-				this.guildjoin_callback){				
+				this.guildjoin_callback){
 					this.guildjoin_callback(data[2], data[3], data[4], data[5]);//name, (id, (guildId, guildName))
 			}
 			else if( (data[1] === Types.Messages.GUILDACTION.LEAVE) &&
@@ -612,61 +614,60 @@ define(['player', 'entityfactory', 'lib/bison'], function(Player, EntityFactory,
         onGuildError: function(callback) {
 			this.guilderror_callback = callback;
 		},
-		
+
 		onGuildCreate: function(callback) {
 			this.guildcreate_callback = callback;
 		},
-		
+
 		onGuildInvite: function(callback) {
 			this.guildinvite_callback = callback;
 		},
-		
+
 		onGuildJoin: function(callback) {
 			this.guildjoin_callback = callback;
 		},
-		
+
 		onGuildLeave: function(callback) {
 			this.guildleave_callback = callback;
 		},
-		
+
 		onGuildTalk: function(callback) {
 			this.guildtalk_callback = callback;
 		},
-		
+
 		onMemberConnect: function(callback) {
 			this.guildmemberconnect_callback = callback;
 		},
-		
+
 		onMemberDisconnect: function(callback) {
 			this.guildmemberdisconnect_callback = callback;
 		},
-		
+
 		onReceiveGuildMembers: function(callback) {
 			this.guildonlinemembers_callback = callback;
 		},
-		
+
 		onGuildPopulation: function(callback) {
 			this.guildpopulation_callback = callback;
 		},
 
         sendCreate: function(player) {
             this.sendMessage([Types.Messages.CREATE,
-                              player.name,
+                              player.gxcId,
                               player.pw,
                               player.email]);
         },
 
         sendLogin: function(player) {
-            this.sendMessage([Types.Messages.LOGIN,
-                              player.name,
-                              player.pw]);
+            this.sendMessage([Types.Messages.LOGIN, player.gxcId,
+                              player.tempKey]);
         },
 
        sendHello: function(player) {
 			if(player.hasGuild()){
-				this.sendMessage([Types.Messages.HELLO, player.name, player.pw, player.email, player.guild.id, player.guild.name]);
+				this.sendMessage([Types.Messages.HELLO, player.gxcId, player.pw, player.email, player.guild.id, player.guild.name]);
 			} else{
-                this.sendMessage([Types.Messages.HELLO, player.name, player.pw, player.email]);
+                this.sendMessage([Types.Messages.HELLO, player.gxcId, player.pw, player.email]);
             }
        },
 
@@ -761,28 +762,28 @@ define(['player', 'entityfactory', 'lib/bison'], function(Player, EntityFactory,
             this.sendMessage([Types.Messages.KUNG,
                               word]);
         },
-        
+
         sendWho: function(ids) {
             ids.unshift(Types.Messages.WHO);
             this.sendMessage(ids);
         },
-        
+
         sendNewGuild: function(name) {
 			this.sendMessage([Types.Messages.GUILD, Types.Messages.GUILDACTION.CREATE, name]);
 		},
-		
+
 		sendGuildInvite: function(invitee) {
 			this.sendMessage([Types.Messages.GUILD, Types.Messages.GUILDACTION.INVITE, invitee]);
 		},
-		
+
 		sendGuildInviteReply: function(guild, answer) {
 			this.sendMessage([Types.Messages.GUILD, Types.Messages.GUILDACTION.JOIN, guild, answer]);
 		},
-		
+
 		talkToGuild: function(message){
 			this.sendMessage([Types.Messages.GUILD, Types.Messages.GUILDACTION.TALK, message]);
 		},
-		
+
 		sendLeaveGuild: function(){
 			this.sendMessage([Types.Messages.GUILD, Types.Messages.GUILDACTION.LEAVE]);
 		}

@@ -88,7 +88,7 @@ module.exports = World = cls.Class.extend({
             var move_callback = function(x, y) {
                 log.debug(player.name + " is moving to (" + x + ", " + y + ").");
                 var isPVP = self.map.isPVP(x, y);
-                player.flagPVP(isPVP); 
+                player.flagPVP(isPVP);
                 player.forEachAttacker(function(mob) {
                      if(mob.target === null){
                         player.removeAttacker(mob);
@@ -474,9 +474,9 @@ module.exports = World = cls.Class.extend({
         delete this.players[player.id];
         delete this.outgoingQueues[player.id];
     },
-    loggedInPlayer: function(name){
+    loggedInPlayer: function(gxcId){
         for(var id in this.players) {
-            if(this.players[id].name === name){
+            if(this.players[id].gxcId === gxcId){
                 if(!this.players[id].isDead)
                     return true;
             }
@@ -1010,11 +1010,11 @@ module.exports = World = cls.Class.extend({
         if(this.kungTimeCallback){
           clearTimeout(this.kungTimeCallback);
         }
-  
+
         this.kungWords.push(word);
         this.lastKungPlayer = player;
         this.pushBroadcast(new Messages.Kung(player.name + " - " + word + " 쿵쿵따~!"));
-  
+
         var self = this;
         this.kungTimeCallback = setTimeout(function(){
           self.pushBroadcast(new Messages.Kung("쿵쿵따가 끝났습니다."));
@@ -1042,12 +1042,12 @@ module.exports = World = cls.Class.extend({
         if(this.kungWords.length === 0){
           return true;
         }
-  
+
         var lastWord = this.kungWords[this.kungWords.length-1];
         if(lastWord[2] === word[0]){
           return true;
         }
-  
+
         var charCode = lastWord.charCodeAt(2) - 44032;
         var chosung = Math.floor(Math.floor(charCode/21)/28);
         if(chosung === 2){ // ㄴ
@@ -1065,7 +1065,7 @@ module.exports = World = cls.Class.extend({
             return true;
           }
         }
-  
+
         return false;
       }
 });

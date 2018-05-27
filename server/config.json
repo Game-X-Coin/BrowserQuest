@@ -13,5 +13,8 @@
     "game_servers": [{"server": "localhost", "name": "localhost"}],
     "server_name" : "localhost",
     "production": "heroku",
-    "database": "redis"
+    "database": "redis",
+    "gxc_server": "https://mewapi.gamexcoin.io",
+    "gxc_client_id": "5b064ed6e63f19908cd45dc0",
+    "gxc_client_secret": "testtest"
 }
