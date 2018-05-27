@@ -445,6 +445,20 @@ define(['item'], function(Item) {
             },
         }),
 
+        TokenA: Item.extend({
+            init: function(id) {
+                this._super(id, Types.Entities.TOKEN_A, "object");
+                this.lootMessage = "You get a Token A";
+            },
+        }),
+
+        TokenB: Item.extend({
+            init: function(id) {
+                this._super(id, Types.Entities.TOKEN_B, "object");
+                this.lootMessage = "You eat a Token B";
+            },
+        }),
+
         Burger: Item.extend({
             init: function(id) {
                 this._super(id, Types.Entities.BURGER, "object");

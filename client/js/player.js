@@ -119,13 +119,14 @@ define(['character', 'exceptions'], function(Character, Exceptions) {
                             throw new Exceptions.LootException(msg);
                         }
                     }
-                } else if(item.kind === Types.Entities.CAKE){
+                } else if(item.kind === Types.Entities.CAKE
+                    || item.kind === Types.Entities.CD
+                    || item.kind === Types.Entities.TOKEN_A
+                    || item.kind === Types.Entities.TOKEN_B){
                     this.putInventory(item.kind, 1);
                 } else if(Types.isHealingItem(item.kind)){
                     this.putInventory(item.kind, item.count);
-                } else if(item.kind === Types.Entities.CD){
-                    this.putInventory(item.kind, 1);
-                }
+                } 
 
                 log.info('Player '+this.id+' has looted '+item.id);
                 if(Types.isArmor(item.kind) && this.invincible) {
@@ -135,26 +136,26 @@ define(['character', 'exceptions'], function(Character, Exceptions) {
             }
         },
         putInventory: function(itemKind, count){
+            const inventoryIndex = this.inventory.indexOf(itemKind);
             if(Types.isHealingItem(itemKind)){
-                if(this.inventory[0] === itemKind){
-                    this.inventoryCount[0] += count;
-                } else if(this.inventory[1] === itemKind){
-                    this.inventoryCount[1] += count;
-                } else{
-                    this._putInventory(itemKind, count);
+                if(this.inventory.indexOf(itemKind) !== -1) {
+                    this.inventoryCount[inventoryIndex] += count;
+                    return ;
                 }
-            } else{
-                this._putInventory(itemKind, count);
             }
+            this._putInventory(itemKind, count);
         },
         _putInventory: function(itemKind, count){
-            if(!this.inventory[0]){
-                this.inventory[0] = itemKind;
-                this.inventoryCount[0] = count;
-            } else if(!this.inventory[1]){
-                this.inventory[1] = itemKind;
-                this.inventoryCount[1] = count;
-            } else{
+            var isFull = true;
+            for(var i = 0; i < this.inventory.length; i++) {
+                if(!this.inventory[i]) {
+                    this.inventory[i] = itemKind;
+                    this.inventoryCount[i] = count;
+                    isFull = false;
+                    break;
+                }
+            }
+            if(isFull) {
                 throw new Exceptions.LootException("Inventory is full");
             }
         },
@@ -164,9 +165,7 @@ define(['character', 'exceptions'], function(Character, Exceptions) {
             this.inventoryCount[inventoryNumber] = number;
         },
         makeEmptyInventory: function(inventoryNumber){
-            if(inventoryNumber === 0 || inventoryNumber === 1){
-                this.inventory[inventoryNumber] = null;
-            }
+            this.inventory[inventoryNumber] = null;
         },
         decInventory: function(inventoryNumber){
             var self = this;

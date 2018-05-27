@@ -1,0 +1,13 @@
+{
+	"id": "item-tokena",
+	"width": 20,
+	"height": 20,
+	"animations": {
+		"idle": {
+			"length": 1,
+			"row": 0
+		}
+	},
+	"offset_x": 4,
+	"offset_y": 4
+}

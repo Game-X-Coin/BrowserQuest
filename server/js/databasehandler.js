@@ -7,7 +7,6 @@ var cls = require('./lib/class'),
     bluebird = require('bluebird'),
     rand = require('random-key');
 
-
 bluebird.promisifyAll(redis.RedisClient.prototype);
 bluebird.promisifyAll(redis.Multi.prototype);
 var client = redis.createClient(6379, '127.0.0.1', {socket_nodelay: true});
@@ -17,7 +16,7 @@ module.exports = DatabaseHandler = cls.Class.extend({
     loadPlayer: function(player) {
         var self = this;
         var userKey = 'u:' + player.gxcId;
-        console.log('loadplayer')
+        console.log('loadplayer');
         console.log(userKey);
         var curTime = new Date().getTime();
         client.smembers('usr', function(err, replies) {
@@ -104,6 +103,12 @@ module.exports = DatabaseHandler = cls.Class.extend({
                         .hget(userKey, 'achievement25:progress') // 67
                         .hget(userKey, 'achievement26:found') // 68
                         .hget(userKey, 'achievement26:progress') // 69
+                        .hget(userKey, 'inventory2') // 70
+                        .hget(userKey, 'inventory2:number') // 71
+                        .hget(userKey, 'inventory3') // 72
+                        .hget(userKey, 'inventory3:number') // 73
+                        .hget(userKey, 'inventory4') // 74
+                        .hget(userKey, 'inventory4:number') // 75
                         .exec(function(err, replies) {
                             console.log(replies);
                             console.log(err);
@@ -117,10 +122,18 @@ module.exports = DatabaseHandler = cls.Class.extend({
                             var avatar = replies[7];
                             var pubTopName = replies[8];
                             var nextNewArmor = replies[9];
-                            var inventory = [replies[10], replies[12]];
+                            var inventory = [
+                                replies[10],
+                                replies[12],
+                                replies[70],
+                                replies[72],
+                                replies[74]];
                             var inventoryNumber = [
                                 Utils.NaN2Zero(replies[11]),
-                                Utils.NaN2Zero(replies[13])];
+                                Utils.NaN2Zero(replies[13]),
+                                Utils.NaN2Zero(replies[71]),
+                                Utils.NaN2Zero(replies[73]),
+                                Utils.NaN2Zero(replies[75])];
                             var achievementFound = [
                                 null,
                                 Utils.trueFalse(replies[14]),
@@ -190,7 +203,8 @@ module.exports = DatabaseHandler = cls.Class.extend({
                             var y = Utils.NaN2Zero(replies[30]);
                             var chatBanEndTime = Utils.NaN2Zero(replies[35]);
                             // Check Password
-                            if(pw !== player.tempKey) {
+                            console.log(pw !== player.tempKey);
+                            if (pw !== player.tempKey) {
                                 player.connection.sendUTF8('invalidlogin');
                                 player.connection.close('Wrong Password: ' +
                                     player.name);
@@ -199,91 +213,88 @@ module.exports = DatabaseHandler = cls.Class.extend({
 
                             var d = new Date();
                             var lastLoginTimeDate = new Date(lastLoginTime);
-                            if (lastLoginTimeDate.getDate() !== d.getDate()
-                                && pubPoint > 0) {
+                            console.log(lastLoginTimeDate.getDate() !== d.getDate());
+                            console.log(pubPoint);
+
+                            if (true) {
                                 var targetInventoryNumber = -1;
-                                if (inventory[0] === 'burger') {
-                                    targetInventoryNumber = 0;
-                                } else if (inventory[1] === 'burger') {
-                                    targetInventoryNumber = 1;
-                                } else if (inventory[0] === null) {
-                                    targetInventoryNumber = 0;
-                                } else if (inventory[1] === null) {
-                                    targetInventoryNumber = 1;
+                                for (var i = 0; targetInventoryNumber !== -1 &&
+                                i < inventory.length; i++) {
+                                    if (inventory[i] === 'burger') {
+                                        targetInventoryNumber = i;
+                                    }
+                                }
+                                for (var i = 0; targetInventoryNumber !== -1 &&
+                                i < inventory.length; i++) {
+                                    if (inventory[i] === null) {
+                                        targetInventoryNumber = i;
+                                    }
                                 }
 
                                 if (targetInventoryNumber >= 0) {
                                     if (pubPoint > 100) {
                                         pubPoint = 100;
                                     }
-                                    inventory[targetInventoryNumber] = 'burger';
-                                    inventoryNumber[targetInventoryNumber] += pubPoint *
-                                        10;
-                                    self.setInventory(player.name,
-                                        Types.getKindFromString('burger'),
-                                        targetInventoryNumber,
-                                        inventoryNumber[targetInventoryNumber]);
-                                    client.zrem('adrank', player.name);
                                 }
-                            }
 
-                            // Check Ban
-                            d.setDate(d.getDate() - d.getDay());
-                            d.setHours(0, 0, 0);
-                            if (lastLoginTime < d.getTime()) {
-                                log.info(player.name +
-                                    'ban is initialized.');
-                                bannedTime = 0;
+                                // Check Ban
+                                d.setDate(d.getDate() - d.getDay());
+                                d.setHours(0, 0, 0);
+                                if (lastLoginTime < d.getTime()) {
+                                    log.info(player.name +
+                                        'ban is initialized.');
+                                    bannedTime = 0;
+                                    client.hset('b:' +
+                                        player.connection._connection.remoteAddress,
+                                        'time', bannedTime);
+                                }
                                 client.hset('b:' +
                                     player.connection._connection.remoteAddress,
-                                    'time', bannedTime);
-                            }
-                            client.hset('b:' +
-                                player.connection._connection.remoteAddress,
-                                'loginTime', curTime);
+                                    'loginTime', curTime);
 
-                            if (player.name === pubTopName.toString()) {
-                                avatar = nextNewArmor;
-                            }
-
-                            var admin = null;
-                            var i = 0;
-                            for (i = 0; i < adminnames.length; i++) {
-                                if (adminnames[i] === player.name) {
-                                    admin = 1;
-                                    log.info('Admin ' + player.name +
-                                        'login');
+                                if (player.name === pubTopName.toString()) {
+                                    avatar = nextNewArmor;
                                 }
-                            }
-                            log.info('Player name: ' + player.name);
-                            log.info('Armor: ' + armor);
-                            log.info('Weapon: ' + weapon);
-                            log.info('Experience: ' + exp);
-                            log.info('Banned Time: ' +
-                                (new Date(bannedTime)).toString());
-                            log.info('Ban Use Time: ' +
-                                (new Date(banUseTime)).toString());
-                            log.info('Last Login Time: ' +
-                                lastLoginTimeDate.toString());
-                            log.info('Chatting Ban End Time: ' +
-                                (new Date(chatBanEndTime)).toString());
 
-                            player.sendWelcome(armor, weapon,
-                                avatar, weaponAvatar, exp, admin,
-                                bannedTime, banUseTime,
-                                inventory, inventoryNumber,
-                                achievementFound, achievementProgress,
-                                x, y,
-                                chatBanEndTime);
+                                var admin = null;
+                                var i = 0;
+                                for (i = 0; i < adminnames.length; i++) {
+                                    if (adminnames[i] === player.name) {
+                                        admin = 1;
+                                        log.info('Admin ' + player.name +
+                                            'login');
+                                    }
+                                }
+                                log.info('Player name: ' + player.name);
+                                log.info('Armor: ' + armor);
+                                log.info('Weapon: ' + weapon);
+                                log.info('Experience: ' + exp);
+                                log.info('Banned Time: ' +
+                                    (new Date(bannedTime)).toString());
+                                log.info('Ban Use Time: ' +
+                                    (new Date(banUseTime)).toString());
+                                log.info('Last Login Time: ' +
+                                    lastLoginTimeDate.toString());
+                                log.info('Chatting Ban End Time: ' +
+                                    (new Date(chatBanEndTime)).toString());
+
+                                player.sendWelcome(armor, weapon,
+                                    avatar, weaponAvatar, exp, admin,
+                                    bannedTime, banUseTime,
+                                    inventory, inventoryNumber,
+                                    achievementFound, achievementProgress,
+                                    x, y,
+                                    chatBanEndTime);
+                            }
                         });
-                        return;
+                    return;
                 }
             }
         });
     },
 
     existsPlayer: function(gxcKey) {
-        const userKey = "u:" + gxcKey;
+        const userKey = 'u:' + gxcKey;
         return client.sismemberAsync('usr', userKey).
             then(function(reply) {
                 if (reply >= 1) return true;
@@ -291,12 +302,11 @@ module.exports = DatabaseHandler = cls.Class.extend({
             });
     },
     setTempKey: function(gxcKey) {
-        const userKey = "u:" + gxcKey;
+        const userKey = 'u:' + gxcKey;
         const key = rand.generate();
-        return client.hsetAsync(userKey, 'pw', key)
-            .then(function(res){
-                return key;
-            })
+        return client.hsetAsync(userKey, 'pw', key).then(function(res) {
+            return key;
+        });
     },
 
     // createPlayer: function(player) {
@@ -322,9 +332,8 @@ module.exports = DatabaseHandler = cls.Class.extend({
     //     });
     // },
     _createPlayer: function(player, callback) {
-        const userKey = "u:" + player.gxcKey;
-        return client.sismemberAsync('usr', userKey)
-        .then(function(reply) {
+        const userKey = 'u:' + player.gxcKey;
+        return client.sismemberAsync('usr', userKey).then(function(reply) {
             console.log('userKey : ' + userKey);
             if (reply >= 1) throw Error('alreadyExistPlayer');
             var curTime = new Date().getTime();

@@ -761,32 +761,36 @@ function(Camera, Item, Character, Player, Timer) {
         },
         drawInventory: function(){
             var s = this.scale;
+            var inventory = null;
 
             this.context.save();
             this.context.translate(this.camera.x*s,
                                    this.camera.y*s);
-
+            if(this.game.player){
+                inventory = this.game.player.inventory;
+            }
             if(this.game.player && this.game.player.healingCoolTimeCallback === null){
-                this.drawRect((this.camera.gridW-2)*this.tilesize*s,
+                this.drawRect((this.camera.gridW-inventory.length)*this.tilesize*s,
                           (this.camera.gridH-1)*this.tilesize*s,
-                          2, 1, "rgba(0, 0, 0, 0.8)");
+                          inventory.length, 1, "rgba(0, 0, 0, 0.8)");
             } else {
-                this.drawRect((this.camera.gridW-2)*this.tilesize*s,
+                this.drawRect((this.camera.gridW-inventory.length)*this.tilesize*s,
                           (this.camera.gridH-1)*this.tilesize*s,
-                          2, 1, "rgba(255, 0, 0, 0.8)");
+                          inventory.length, 1, "rgba(255, 0, 0, 0.8)");
             }
             
-            if(this.game.menu && this.game.menu.inventoryOn === "inventory0"){
-                this.drawRect((this.camera.gridW-2)*this.tilesize*s,
-                              (this.camera.gridH-1)*this.tilesize*s,
-                              1, 1, "rgba(0, 0, 255, 0.8)");
-            } else if(this.game.menu && this.game.menu.inventoryOn === "inventory1"){
-                this.drawRect((this.camera.gridW-1)*this.tilesize*s,
-                              (this.camera.gridH-1)*this.tilesize*s,
-                              1, 1, "rgba(0, 0, 255, 0.8)");
+            for(var i = 0; i < inventory.length; i++) {
+                if(this.game.menu && this.game.menu.inventoryOn === "inventory"+i){
+                    this.drawRect((this.camera.gridW-inventory.length+i)*this.tilesize*s,
+                                  (this.camera.gridH-1)*this.tilesize*s,
+                                  1, 1, "rgba(0, 0, 255, 0.8)");
+                    break;
+                }
             }
-            this._drawInventory(0);
-            this._drawInventory(1);
+
+            for(var i = 0; i < inventory.length; i++) {
+                this._drawInventory(i);
+            }
 
             this.drawInventoryMenu();
             this.context.restore();
@@ -812,7 +816,7 @@ function(Camera, Item, Character, Player, Timer) {
                             iw = item.width * os,
                             ih = item.height * os;
                         self.context.drawImage(item.image, ix, iy, iw, ih,
-                                               item.offsetX * s + (this.camera.gridW-2+i)*self.tilesize*s,
+                                               item.offsetX * s + (this.camera.gridW-inventory.length+i)*self.tilesize*s,
                                                item.offsetY * s + (this.camera.gridH-1)*self.tilesize*s,
                                                iw * ds, ih * ds);
                         if(Types.isHealingItem(itemKind)){
@@ -821,7 +825,7 @@ function(Camera, Item, Character, Player, Timer) {
                                 color = "lime";
 
                             self.drawText(this.game.player.inventoryCount[i].toString(),
-                                (this.camera.gridW-2+i)*self.tilesize*s,
+                                (this.camera.gridW-inventory.length+i)*self.tilesize*s,
                                 (this.camera.gridH-1)*self.tilesize*s, false, color);
                         }
                     }
@@ -831,7 +835,15 @@ function(Camera, Item, Character, Player, Timer) {
         drawInventoryMenu: function(){
             var s = this.scale;
             if(this.game.menu && this.game.menu.inventoryOn){
-                var inventoryNumber = (this.game.menu.inventoryOn === "inventory0") ? 0 : 1;
+                var inventoryNumber = -1;
+                var inventory = this.game.player.inventory;
+                for(var i = 0; i < inventory.length; i++) {
+                    if(this.game.menu.inventoryOn === "inventory"+i) {
+                        inventoryNumber = i;
+                        break;
+                    }
+                }
+                
                 if(this.game.player.inventory[inventoryNumber] === Types.Entities.CAKE
                 || this.game.player.inventory[inventoryNumber] === Types.Entities.CD){
                     this.drawRect((this.camera.gridW-2)*this.tilesize*s,

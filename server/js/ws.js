@@ -190,6 +190,10 @@ WS.WebsocketServer = Server.extend({
                         // Sends the real shared/js/gametypes.js to the client
                         sendFile('js/gametypes.js', response, log);
                         break;
+                    case '/shared/js/external.js':
+                        // Sends the real shared/js/gametypes.js to the client
+                        sendFile('js/external.js', response, log);
+                        break;
                     case '/oauth_callback':
                         const params = querystring.parse(request._parsedOriginalUrl.query);
                         const code = params.code;
@@ -211,12 +215,11 @@ WS.WebsocketServer = Server.extend({
                             if(!res) {
                                 const player = {gxcKey: gxcData.id, name: gxcData.account, gxcAccount: gxcData.account, email: gxcData.email };
                                 return self.databaseHandler._createPlayer(player)
-                                    .then(function (res) {
+                                    .then(function (tempKey) {
                                         console.log('create player');
-                                        console.log(res);
+                                        console.log(tempKey);
                                         response.writeHead(200);
                                         response.end("<html><script>window.opener.gxcLoginHander('" + gxcData.id + "','" + tempKey + "');</script></html>");
-                                        response.end(res);
                                 });
                             } else {
                                 return self.databaseHandler.setTempKey(gxcData.id)

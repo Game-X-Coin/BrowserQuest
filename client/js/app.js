@@ -8,6 +8,7 @@ define(['jquery'], function($) {
             this.isParchmentReady = true;
             this.ready = false;
             this.watchNameInputInterval = setInterval(this.toggleButton.bind(this), 100);
+            this.$play = $('.play');
             this.initFormFields(),
             this.$playDiv = $('.play span');
 
@@ -32,7 +33,7 @@ define(['jquery'], function($) {
                 loginPopupWindow = window.open("http://localhost:8080/authorize?response_type=code&client_id=5b064ed6e63f19908cd45dc0&redirect_uri=http%3A%2F%2Flocalhost%3A8000/oauth_callback", "MsgWindow", "width=400,height=200");
             });
             window.gxcLoginHander = function (gxcId, tempKey) {
-                // loginPopupWindow.close();
+                loginPopupWindow.close();
                 console.log(gxcId);
                 console.log(tempKey);
                 self.startGame(gxcId, tempKey);
@@ -52,7 +53,6 @@ define(['jquery'], function($) {
             var self = this;
 
             // Play button
-            this.$play = $('.play');
             this.getPlayButton = function() { return this.getActiveForm().find('.play span') };
             this.setPlayButtonState(true);
 

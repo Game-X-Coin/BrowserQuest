@@ -141,6 +141,8 @@ define(['player', 'entityfactory', 'lib/bison'], function(Player, EntityFactory,
                 } else {
                     data = JSON.stringify(json);
                 }
+                console.log('data1')
+                console.log(data)
                 this.connection.send(data);
             }
         },
@@ -199,18 +201,15 @@ define(['player', 'entityfactory', 'lib/bison'], function(Player, EntityFactory,
                 weaponAvatar = data[9],
                 experience = data[10],
                 admin = data[11],
-                inventory0 = data[12],
-                inventory0Number = data[13],
-                inventory1 = data[14];
-                inventory1Number = data[15];
-            var achievementFound = data[16];
-            var achievementProgress = data[17];
+                inventory = data[12],
+                inventoryNumber = data[13];
+            var achievementFound = data[14];
+            var achievementProgress = data[15];
 
             if(this.game.ready){
                 this.welcome_callback(
                      id, name, x, y, hp, armor, weapon, avatar, weaponAvatar,
-                      experience, admin, inventory0, inventory0Number,
-                      inventory1, inventory1Number,
+                      experience, admin, inventory, inventoryNumber,
                       achievementFound, achievementProgress);
             }
         },
@@ -653,7 +652,7 @@ define(['player', 'entityfactory', 'lib/bison'], function(Player, EntityFactory,
 
         sendCreate: function(player) {
             this.sendMessage([Types.Messages.CREATE,
-                              player.name,
+                              player.gxcId,
                               player.pw,
                               player.email]);
         },
@@ -665,9 +664,9 @@ define(['player', 'entityfactory', 'lib/bison'], function(Player, EntityFactory,
 
        sendHello: function(player) {
 			if(player.hasGuild()){
-				this.sendMessage([Types.Messages.HELLO, player.name, player.pw, player.email, player.guild.id, player.guild.name]);
+				this.sendMessage([Types.Messages.HELLO, player.gxcId, player.pw, player.email, player.guild.id, player.guild.name]);
 			} else{
-                this.sendMessage([Types.Messages.HELLO, player.name, player.pw, player.email]);
+                this.sendMessage([Types.Messages.HELLO, player.gxcId, player.pw, player.email]);
             }
        },
 
