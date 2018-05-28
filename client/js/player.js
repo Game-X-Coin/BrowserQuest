@@ -9,7 +9,7 @@ define(['character', 'exceptions'], function(Character, Exceptions) {
 
             this.name = name;
             this.pw = pw;
-            
+
             if (typeof guild !== 'undefined') {
 				this.setGuild(guild);
 			}
@@ -48,31 +48,31 @@ define(['character', 'exceptions'], function(Character, Exceptions) {
         getGuild: function() {
 			return this.guild;
 		},
-		
+
 		setGuild: function(guild) {
 			this.guild = guild;
 			$('#guild-population').addClass("visible");
 			$('#guild-name').html(guild.name);
 		},
-		
+
 		unsetGuild: function(){
 			delete this.guild;
 			$('#guild-population').removeClass("visible");
 		},
-		
+
         hasGuild: function(){
 			return (typeof this.guild !== 'undefined');
 		},
-		
-			
+
+
 		addInvite: function(inviteGuildId){
 			this.invite = {time:new Date().valueOf(), guildId: inviteGuildId};
 		},
-		
+
 		deleteInvite: function(){
 			delete this.invite;
 		},
-		
+
 		checkInvite: function(){
 			if(this.invite && ( (new Date().valueOf() - this.invite.time) < 595000)){
 				return this.invite.guildId;
@@ -89,55 +89,65 @@ define(['character', 'exceptions'], function(Character, Exceptions) {
 		},
 
         loot: function(item) {
-            if(item) {
-                var rank, currentRank, msg;
+            if(!item) return;
+            var rank, currentRank, msg;
+            var self = this;
 
-                if(item.type === "armor") {
-                    // rank = Types.getArmorRank(item.kind);
-                    // currentRank = Types.getArmorRank(Types.getKindFromString(currentArmorName));
-                    // msg = "You are wearing a better armor";
-                    if(this.level >= 100){
-                        this.putInventory(item.kind, 1);
-                      } else{
-                        rank = Types.getArmorRank(item.kind);
-                        currentRank = Types.getArmorRank(Types.getKindFromString(this.armorName));
-                        msg = "You are wielding a better armor";
-  
-                        if(rank && currentRank) {
-                          if(rank === currentRank) {
-                              throw new Exceptions.LootException("You already have this "+item.type);
-                          } else if(rank <= currentRank) {
-                              throw new Exceptions.LootException(msg);
-                          }
-                        }
-                      }
-                } else if(item.type === "weapon") {
-                    rank = Types.getWeaponRank(item.kind);
-                    currentRank = Types.getWeaponRank(Types.getKindFromString(this.weaponName));
-                    msg = "You are wielding a better weapon";
+            if(item.type === "armor") {
+                // rank = Types.getArmorRank(item.kind);
+                // currentRank = Types.getArmorRank(Types.getKindFromString(currentArmorName));
+                // msg = "You are wearing a better armor";
+                if(this.level >= 100){
+                    this.putInventory(item.kind, 1);
+                  } else{
+                    rank = Types.getArmorRank(item.kind);
+                    currentRank = Types.getArmorRank(Types.getKindFromString(this.armorName));
+                    msg = "You are wielding a better armor";
 
                     if(rank && currentRank) {
-                        if(rank === currentRank) {
-                            throw new Exceptions.LootException("You already have this "+item.type);
-                        } else if(rank <= currentRank) {
-                            throw new Exceptions.LootException(msg);
-                        }
+                      if(rank === currentRank) {
+                          throw new Exceptions.LootException("You already have this "+item.type);
+                      } else if(rank <= currentRank) {
+                          throw new Exceptions.LootException(msg);
+                      }
                     }
-                } else if(item.kind === Types.Entities.CAKE
-                    || item.kind === Types.Entities.CD){
-                    this.putInventory(item.kind, 1);
-                } else if(Types.isHealingItem(item.kind)){
-                    this.putInventory(item.kind, item.count);
-                } else if(Types.isToken(item.kind)) {
-                    this.incWallet(item.kind, 1);
-                }
+                  }
+            } else if(item.type === "weapon") {
+                rank = Types.getWeaponRank(item.kind);
+                currentRank = Types.getWeaponRank(Types.getKindFromString(this.weaponName));
+                msg = "You are wielding a better weapon";
 
-                log.info('Player '+this.id+' has looted '+item.id);
-                if(Types.isArmor(item.kind) && this.invincible) {
-                    this.stopInvincibility();
+                if(rank && currentRank) {
+                    if(rank === currentRank) {
+                        throw new Exceptions.LootException("You already have this "+item.type);
+                    } else if(rank <= currentRank) {
+                        throw new Exceptions.LootException(msg);
+                    }
                 }
-                item.onLoot(this);
+            } else if(item.kind === Types.Entities.CAKE
+                || item.kind === Types.Entities.CD){
+                this.putInventory(item.kind, 1);
+            } else if(Types.isHealingItem(item.kind)){
+                this.putInventory(item.kind, item.count);
+            } else if(Types.isToken(item.kind)) {
+
+                // this.incWallet(item.kind, 1);
+                setTimeout(function() {
+                    axios.get('http://localhost:3000/v1/eos/balance?accountName=' +
+                        self.name + '&tokenName=gxc.token').then(function(res) {
+                        console.log(res);
+                        if (res.data && res.data.success) self.setWallet(
+                            item.kind, res.data.balance);
+
+                    });
+                }, 500);
             }
+
+            log.info('Player '+this.id+' has looted '+item.id);
+            if(Types.isArmor(item.kind) && this.invincible) {
+                this.stopInvincibility();
+            }
+            item.onLoot(this);
         },
         putInventory: function(itemKind, count){
             const inventoryIndex = this.inventory.indexOf(itemKind);
@@ -243,7 +253,7 @@ define(['character', 'exceptions'], function(Character, Exceptions) {
         getWeaponName: function() {
             return this.weaponName;
         },
-        
+
         setWeaponName: function(name) {
             if(name) {
                 this.weaponName = name;
@@ -334,7 +344,7 @@ define(['character', 'exceptions'], function(Character, Exceptions) {
         onInvincible: function(callback) {
             this.invincible_callback = callback;
         },
-        
+
         startInvincibility: function() {
             var self = this;
 

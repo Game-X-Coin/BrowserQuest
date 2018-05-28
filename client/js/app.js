@@ -30,7 +30,8 @@ define(['jquery'], function($) {
             });
 
             $('#gxc-login').click(function(event){
-                loginPopupWindow = window.open("https://mew.gamexcoin.io/authorize?response_type=code&client_id=5b064ed6e63f19908cd45dc0&redirect_uri=http%3A%2F%2Flocalhost%3A8000/oauth_callback", "MsgWindow", "width=400,height=200");
+                // loginPopupWindow = window.open("https://mew.gamexcoin.io/authorize?response_type=code&client_id=5b064ed6e63f19908cd45dc0&redirect_uri=http%3A%2F%2Flocalhost%3A8000/oauth_callback", "MsgWindow", "width=400,height=200");
+                loginPopupWindow = window.open("http://localhost:8080/authorize?response_type=code&client_id=5b064ed6e63f19908cd45dc0&redirect_uri=http%3A%2F%2Flocalhost%3A8000/oauth_callback", "MsgWindow", "width=400,height=800");
             });
             window.gxcLoginHander = function (gxcId, tempKey) {
                 loginPopupWindow.close();
