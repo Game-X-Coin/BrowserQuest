@@ -803,7 +803,6 @@ module.exports = Player = Character.extend({
     incExp: function(gotexp){
         this.experience = parseInt(this.experience) + (parseInt(gotexp));
         this.databaseHandler.setExp(this.gxcId, this.experience);
-        GXC.consumeToken(this.accessToken, 'gxc.token', 1.0);
         var origLevel = this.level;
         this.level = Types.getLevel(this.experience);
         if(origLevel !== this.level) {
@@ -919,7 +918,7 @@ module.exports = Player = Character.extend({
     incWallet: function(kind, amount) {
 
         //kind 192 -> gxc.token
-        var tokenName = 'gxc.token';
+        var tokenName = 'GXQ';
         var self = this;
         GXC.generateToken(this.name, tokenName, amount)
         .then(function() {

@@ -134,11 +134,10 @@ define(['character', 'exceptions'], function(Character, Exceptions) {
                 // this.incWallet(item.kind, 1);
                 setTimeout(function() {
                     axios.get('http://localhost:3000/v1/eos/balance?accountName=' +
-                        self.name + '&tokenName=gxc.token').then(function(res) {
+                        self.name + '&symbol=GXQ').then(function(res) {
                         console.log(res);
                         if (res.data && res.data.success) self.setWallet(
                             item.kind, res.data.balance);
-
                     });
                 }, 500);
             }
