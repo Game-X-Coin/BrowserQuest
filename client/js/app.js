@@ -42,7 +42,6 @@ define(['jquery'], function($) {
                 itemType = (itemType === 'A') ? Types.Entities.GOLDENSWORD : Types.Entities.PURPLECLOUDKALLEGE;
                 tokenType = (tokenType === 'A') ? Types.Entities.TOKEN_A : Types.Entities.TOKEN_B;
                 price = parseInt(price);
-                console.log("Buy Item! : " + itemType + " : " + tokenType + " : " + price);
                 self.game.client.sendShop(itemType, tokenType, price);
             });
             window.gxcLoginHander = function (gxcId, tempKey) {

@@ -1733,6 +1733,10 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
                     self.player.buyItem(itemType, tokenType, price);
                 });
 
+                self.client.onInventory(function(itemKind, inventoryNumber, number) {
+                    self.player.setInventory(itemKind, inventoryNumber, number);
+                });
+
                 self.client.onAchievement(function(id, type) {
                     var key = null;
                     _.each(self.achievements, function(value, _key) {

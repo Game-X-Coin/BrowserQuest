@@ -397,15 +397,17 @@ module.exports = Player = Character.extend({
                 var itemType = message[1];
                 var tokenType = message[2];
                 var price = message[3];
+                var item = { kind: itemType, count: 1 };
 
-                self.buyItem(itemType, tokenType, price);
+                self.buyItem(item, tokenType, price);
             }
             else if(action === Types.Messages.INVENTORY){
                 log.info("INVENTORY: " + self.name + " " + message[1] + " " + message[2] + " " + message[3]);
                 var inventoryNumber = message[2],
                     count = message[3];
 
-                if(inventoryNumber !== 0 && inventoryNumber !== 1){
+                
+                if(self.inventory.indexOf[inventoryNumber] === -1) {
                     return;
                 }
 
@@ -921,12 +923,15 @@ module.exports = Player = Character.extend({
 
     },
     buyItem: function(item, tokenType, price) {
-        console.log("buy item: ready");
         if(Types.isToken(tokenType)) {
-            if(this.wallet[tokenType] - price > 0) {
-                console.log("buy item: ing");
+            if(this.wallet[tokenType] - price >= 0) {
                 this.decWallet(tokenType, price);
-                this.putInventory(item);
+                const result = this.putInventory(item);
+                if(result != null) {
+                    this.send([Types.Messages.INVENTORY, item.kind, result.inventoryNumber, item.count]);
+                } else {
+                    console.log("inventory is full");
+                }
                 console.log("buy item: completed");
             } else {
                 console.log("The amount is insufficient.");
@@ -943,15 +948,19 @@ module.exports = Player = Character.extend({
         .then(function() {
             self.wallet[kind] += amount;
             self.databaseHandler.setWallet(self.name, kind, self.wallet[kind]);
+            self.send([Types.Messages.WALLET, kind, self.wallet[kind]]);
         });
     },
     decWallet: function(kind, amount) {
         var tokenName = 'GXQ';
         var self = this;
-        GXC.consumeToken(this.name, tokenName, amount)
-        .then(function() {
+        GXC.consumeToken(this.accessToken, tokenName, amount)
+        .then(function(data) {
             self.wallet[kind] -= amount;
             self.databaseHandler.setWallet(self.name, kind, self.wallet[kind]);
+            self.send([Types.Messages.WALLET, kind, self.wallet[kind]]);
+        }).catch(function(e) {
+            console.log(e);
         });
     },
     putInventory: function(item){
@@ -960,11 +969,11 @@ module.exports = Player = Character.extend({
                 if(this.inventory[i] === item.kind){
                     this.inventoryCount[i] += item.count;
                     this.databaseHandler.setInventory(this.gxcId, item.kind, i, this.inventoryCount[i]);
-                    return ;
+                    return { inventoryNumber: i };
                 }
             }
         }
-        this._putInventory(item);
+        return this._putInventory(item);
     },
     _putInventory: function(item){
         for(var i=0; i < this.inventory.length; i++) {
@@ -972,8 +981,9 @@ module.exports = Player = Character.extend({
                 this.inventory[i] = item.kind;
                 this.inventoryCount[i] = item.count;
                 this.databaseHandler.setInventory(this.gxcId, item.kind, i, item.count);
-                break;
+                return { inventoryNumber: i };
             }
         }
+        return null;
     },
 });
