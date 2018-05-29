@@ -484,8 +484,6 @@ module.exports = DatabaseHandler = cls.Class.extend({
         client.hset('u:' + name, 'exp', exp);
     },
     setInventory: function(name, itemKind, inventoryNumber, itemNumber) {
-
-
         if (itemKind) {
             client.hset('u:' + name, 'inventory' + inventoryNumber,
                 Types.getKindAsString(itemKind));
