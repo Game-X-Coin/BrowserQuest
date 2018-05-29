@@ -49,7 +49,8 @@ define(['player', 'entityfactory', 'lib/bison'], function(Player, EntityFactory,
             this.handlers[Types.Messages.NOTIFY] = this.receiveNotify;
             this.handlers[Types.Messages.KUNG] = this.receiveKung;
             this.handlers[Types.Messages.WALLET] = this.receiveWallet;
-            this.handlers[Types.Messages.Shop] = this.receiveShop;
+            this.handlers[Types.Messages.SHOP] = this.receiveShop;
+            this.handlers[Types.Messages.INVENTORY] = this.receiveInventory;
 
             this.useBison = false;
             this.enable();
@@ -485,6 +486,15 @@ define(['player', 'entityfactory', 'lib/bison'], function(Player, EntityFactory,
                 this.shop_callback(itemType, tokenType, price);
             }   
         },
+
+        receiveInventory: function(data) {
+            var itemKind = data[1],
+                inventoryNumber = data[2],
+                inventoryCount = data[3];
+            if(this.inventory_callback) {
+                this.inventory_callback(itemKind, inventoryNumber, inventoryCount);
+            }
+        },
 		
 		receiveGuild: function(data) {
 			if( (data[1] === Types.Messages.GUILDACTION.CONNECT) &&
@@ -637,6 +647,9 @@ define(['player', 'entityfactory', 'lib/bison'], function(Player, EntityFactory,
         },
         onShop: function(callback) {
             this.shop_callback = callback;
+        },
+        onInventory: function(callback) {
+            this.inventory_callback = callback;
         },
         onGuildError: function(callback) {
 			this.guilderror_callback = callback;
