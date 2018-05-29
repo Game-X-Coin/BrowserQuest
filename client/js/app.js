@@ -31,7 +31,19 @@ define(['jquery'], function($) {
 
             $('#gxc-login').click(function(event){
                 // loginPopupWindow = window.open("https://mew.gamexcoin.io/authorize?response_type=code&client_id=5b064ed6e63f19908cd45dc0&redirect_uri=http%3A%2F%2Flocalhost%3A8000/oauth_callback", "MsgWindow", "width=400,height=200");
-                loginPopupWindow = window.open("http://localhost:8080/authorize?response_type=code&client_id=5b064ed6e63f19908cd45dc0&redirect_uri=http%3A%2F%2Flocalhost%3A8000/oauth_callback", "MsgWindow", "width=400,height=800");
+                loginPopupWindow = window.open("https://mew.gamexcoin.io/authorize?response_type=code&client_id=5b064ed6e63f19908cd45dc0&redirect_uri=http%3A%2F%2Flocalhost%3A8000/oauth_callback", "MsgWindow", "width=400,height=800");
+            });
+
+            $('#shop-modal .item-row button[name="buy-button"]').click(function(event) {
+                $div = $(this).parent().parent();
+                var itemType = $div.find('input[name="itemType"]').val();
+                var tokenType = $div.find('input[name="tokenType"]').val();
+                var price = $div.find('input[name="price"]').val();
+                itemType = (itemType === 'A') ? Types.Entities.GOLDENSWORD : Types.Entities.PURPLECLOUDKALLEGE;
+                tokenType = (tokenType === 'A') ? Types.Entities.TOKEN_A : Types.Entities.TOKEN_B;
+                price = parseInt(price);
+                console.log("Buy Item! : " + itemType + " : " + tokenType + " : " + price);
+                self.game.client.sendShop(itemType, tokenType, price);
             });
             window.gxcLoginHander = function (gxcId, tempKey) {
                 loginPopupWindow.close();

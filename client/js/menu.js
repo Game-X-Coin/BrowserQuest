@@ -10,13 +10,6 @@ define(['jquery'], function() {
              this.inventoryOn = "inventory"+i;
          }
      },
-     clickInventory1: function(){
-         if(this.inventoryOn === "inventory1"){
-             this.close();
-         } else{
-             this.inventoryOn = "inventory1";
-         }
-     },
      isClickedInventoryMenu: function(pos, camera){
       if(pos.x === camera.gridX + camera.gridW-2
          || pos.x === camera.gridX + camera.gridW-1){

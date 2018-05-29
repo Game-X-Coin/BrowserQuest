@@ -40,6 +40,7 @@ Types = {
         CREATE: 36,
         LOGIN: 37,
         WALLET: 38,
+        SHOP: 39,
     },
 
     Entities: {

@@ -1729,6 +1729,10 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
                     self.player.setWallet(type, amount);
                 });
 
+                self.client.onShop(function(itemType, tokenType, price) {
+                    self.player.buyItem(itemType, tokenType, price);
+                });
+
                 self.client.onAchievement(function(id, type) {
                     var key = null;
                     _.each(self.achievements, function(value, _key) {

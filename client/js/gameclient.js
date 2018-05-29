@@ -49,6 +49,7 @@ define(['player', 'entityfactory', 'lib/bison'], function(Player, EntityFactory,
             this.handlers[Types.Messages.NOTIFY] = this.receiveNotify;
             this.handlers[Types.Messages.KUNG] = this.receiveKung;
             this.handlers[Types.Messages.WALLET] = this.receiveWallet;
+            this.handlers[Types.Messages.Shop] = this.receiveShop;
 
             this.useBison = false;
             this.enable();
@@ -471,12 +472,18 @@ define(['player', 'entityfactory', 'lib/bison'], function(Player, EntityFactory,
         receiveWallet: function(data) {
             var type = data[1],
                 amount = data[2];
-                console.log('receive wallet');
             if(this.wallet_callback) {
-                console.log('receive wallet:'+type);
-                console.log('receive wallet:'+amount);
                 this.wallet_callback(type, amount);
             }
+        },
+
+        receiveShop: function(data) {
+            var itemType = data[1],
+                tokenType = data[2],
+                price = data[3];
+            if(this.shop_callback) {
+                this.shop_callback(itemType, tokenType, price);
+            }   
         },
 		
 		receiveGuild: function(data) {
@@ -628,6 +635,9 @@ define(['player', 'entityfactory', 'lib/bison'], function(Player, EntityFactory,
         onWallet: function(callback) {
             this.wallet_callback = callback;
         },
+        onShop: function(callback) {
+            this.shop_callback = callback;
+        },
         onGuildError: function(callback) {
 			this.guilderror_callback = callback;
 		},
@@ -755,6 +765,9 @@ define(['player', 'entityfactory', 'lib/bison'], function(Player, EntityFactory,
         },
         sendWallet: function(type, amount) {
             this.sendMessage([Types.Messages.WALLET, type, amount]);
+        },
+        sendShop: function(itemType, tokenType, price) {
+            this.sendMessage([Types.Messages.SHOP, itemType, tokenType, price]);
         },
         sendAchievement: function(id, type) {
             this.sendMessage([Types.Messages.ACHIEVEMENT, id, type]);
