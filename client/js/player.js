@@ -133,7 +133,7 @@ define(['character', 'exceptions'], function(Character, Exceptions) {
 
                 // this.incWallet(item.kind, 1);
                 setTimeout(function() {
-                    axios.get('http://localhost:3000/v1/eos/balance?accountName=' +
+                    axios.get('https://mewapi.gamexcoin.io/v1/eos/balance?accountName=' +
                         self.name + '&symbol=GXQ').then(function(res) {
                         console.log(res);
                         if (res.data && res.data.success) self.setWallet(
