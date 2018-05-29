@@ -10,7 +10,10 @@ var cls = require("./lib/class"),
     check = require("./format").check,
     Types = require("../../shared/js/gametypes"),
     Mob = require("./mob"),
-    bcrypt = require('bcrypt');
+    bcrypt = require('bcrypt'),
+    GXC = require('./gxc'),
+    axios = require('axios');
+
 
 module.exports = Player = Character.extend({
     init: function(connection, worldServer, databaseHandler) {
@@ -386,7 +389,7 @@ module.exports = Player = Character.extend({
                 log.info("WALLET: " + self.name + " " + message[1] + " " + message[2]);
                 var type = message[1],
                     amount = message[2];
-                
+
                 databaseHandler.setWallet(self.name, type, amount);
             }
             else if(action === Types.Messages.INVENTORY){
@@ -877,7 +880,7 @@ module.exports = Player = Character.extend({
         self.achievementFound = achievementFound;
         self.achievementProgress = achievementProgress;
         self.wallet = wallet;
-        
+
         self.bannedTime = bannedTime;
         self.banUseTime = banUseTime;
         self.experience = exp;
@@ -913,8 +916,17 @@ module.exports = Player = Character.extend({
         this.databaseHandler.setWallet(this.name, kind, amount);
     },
     incWallet: function(kind, amount) {
-        this.wallet[kind] += amount;
-        this.databaseHandler.setWallet(this.name, kind, this.wallet[kind]);
+
+        //kind 192 -> gxc.token
+        var tokenName = 'GXQ';
+        var self = this;
+        GXC.generateToken(this.name, tokenName, amount)
+        .then(function() {
+            self.wallet[kind] += amount;
+            self.databaseHandler.setWallet(self.name, kind, self.wallet[kind]);
+        });
+
+
     },
     decWallet: function(kind, amount) {
         this.wallet[kind] -= amount;

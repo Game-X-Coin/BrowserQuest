@@ -101,6 +101,7 @@ module.exports = DatabaseHandler = cls.Class.extend({
                         .hget(userKey, "inventory4:number") // 77
                         .hget(userKey, "wallet"+Types.Entities.TOKEN_A) // 78
                         .hget(userKey, "wallet"+Types.Entities.TOKEN_B) // 79
+                        .hget(userKey, "accessToken") // 80
                         .exec(function(err, replies){
                             var pw = replies[0];
                             var armor = replies[1];
@@ -130,7 +131,7 @@ module.exports = DatabaseHandler = cls.Class.extend({
                                 Utils.trueFalse(replies[24]),
                                 Utils.trueFalse(replies[31]),
                                 Utils.trueFalse(replies[33]),
-                                
+
                                 Utils.trueFalse(replies[36]),
                                 Utils.trueFalse(replies[38]),
                                 Utils.trueFalse(replies[40]),
@@ -187,7 +188,9 @@ module.exports = DatabaseHandler = cls.Class.extend({
                         var x = Utils.NaN2Zero(replies[29]);
                         var y = Utils.NaN2Zero(replies[30]);
                         var chatBanEndTime = Utils.NaN2Zero(replies[35]);
-                            
+                        var accessToken = replies[80];
+                        player.accessToken = accessToken;
+
                         // Check Password
                             if (pw !== player.tempKey) {
                                 player.connection.sendUTF8('invalidlogin');
@@ -482,8 +485,7 @@ module.exports = DatabaseHandler = cls.Class.extend({
     },
     setInventory: function(name, itemKind, inventoryNumber, itemNumber) {
 
-        // return axios.post(process.env.GXC_SERVER + '/v1/oauth/transfer_token', {},
-        //     {headers: {Authorization: 'Bearer ' + 'RqkwPQZCWLpok8g2Fv8se6z0ZHqH5YTCcLiGQS8b5LprNijmP5vHAnMoNEh3i1W4gnnMCKSXDlxYQI5fBDZgcgKCzse5S4xAVtHVyYPxYY47vQc6PJSQ0mjiMVRdmvhjXJ5XOkjTKP4BqwDFuiHZ3kgtySQGbBQfA1IPWIogomqaMHM1RTrPccyRU7az12J4DLD1fedgKTjJ7CFNMPnMQV4TGWcN01Xu2gui4F2v3QygMCzyc7rty8MpGjejmIP0'}});
+
         if (itemKind) {
             client.hset('u:' + name, 'inventory' + inventoryNumber,
                 Types.getKindAsString(itemKind));
@@ -499,6 +501,7 @@ module.exports = DatabaseHandler = cls.Class.extend({
     },
     setWallet: function(name, type, amount) {
         client.hset("u:" + name, "wallet" + type, amount);
+
         log.info("Set Wallet: " + name + " " + type + " " + amount);
     },
     makeEmptyInventory: function(name, number) {
