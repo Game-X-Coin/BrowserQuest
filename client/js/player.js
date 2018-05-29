@@ -136,8 +136,8 @@ define(['character', 'exceptions'], function(Character, Exceptions) {
                     axios.get('https://mewapi.gamexcoin.io/v1/eos/balance?accountName=' +
                         self.name + '&symbol=GXQ').then(function(res) {
                         console.log(res);
-                        if (res.data && res.data.success) self.setWallet(
-                            item.kind, res.data.balance);
+                        if (res.data && res.data.success)
+                            self.setWallet(item.kind, res.data.balance);
                     });
                 }, 500);
             }
@@ -185,6 +185,11 @@ define(['character', 'exceptions'], function(Character, Exceptions) {
             if (tokenAmount > amount) {
                 this.wallet[tokenKind] = tokenAmount - amount;
             }
+        },
+        buyItem: function(itemKind, tokenKind, price) {
+            var count = 1;
+            decWallet(tokenKind, price);
+            putInventory(itemKind, count);
         },
         incWallet: function(tokenKind, amount) {
             var tokenAmount = this.wallet[tokenKind] || 0;

@@ -824,28 +824,29 @@ function(Camera, Item, Character, Player, Timer) {
                                    this.camera.y*s);
             if(this.game.player){
                 inventory = this.game.player.inventory;
-            }
-            if(this.game.player && this.game.player.healingCoolTimeCallback === null){
-                this.drawRect((this.camera.gridW-inventory.length)*this.tilesize*s,
-                          (this.camera.gridH-1)*this.tilesize*s,
-                          inventory.length, 1, "rgba(0, 0, 0, 0.8)");
-            } else {
-                this.drawRect((this.camera.gridW-inventory.length)*this.tilesize*s,
-                          (this.camera.gridH-1)*this.tilesize*s,
-                          inventory.length, 1, "rgba(255, 0, 0, 0.8)");
-            }
 
-            for(var i = 0; i < inventory.length; i++) {
-                if(this.game.menu && this.game.menu.inventoryOn === "inventory"+i){
-                    this.drawRect((this.camera.gridW-inventory.length+i)*this.tilesize*s,
-                                  (this.camera.gridH-1)*this.tilesize*s,
-                                  1, 1, "rgba(0, 0, 255, 0.8)");
-                    break;
+                if(this.game.player.healingCoolTimeCallback === null){
+                    this.drawRect((this.camera.gridW-inventory.length)*this.tilesize*s,
+                              (this.camera.gridH-1)*this.tilesize*s,
+                              inventory.length, 1, "rgba(0, 0, 0, 0.8)");
+                } else {
+                    this.drawRect((this.camera.gridW-inventory.length)*this.tilesize*s,
+                              (this.camera.gridH-1)*this.tilesize*s,
+                              inventory.length, 1, "rgba(255, 0, 0, 0.8)");
                 }
-            }
-
-            for(var i = 0; i < inventory.length; i++) {
-                this._drawInventory(i);
+    
+                for(var i = 0; i < inventory.length; i++) {
+                    if(this.game.menu && this.game.menu.inventoryOn === "inventory"+i){
+                        this.drawRect((this.camera.gridW-inventory.length+i)*this.tilesize*s,
+                                      (this.camera.gridH-1)*this.tilesize*s,
+                                      1, 1, "rgba(0, 0, 255, 0.8)");
+                        break;
+                    }
+                }
+    
+                for(var i = 0; i < inventory.length; i++) {
+                    this._drawInventory(i);
+                }
             }
 
             this.drawInventoryMenu();

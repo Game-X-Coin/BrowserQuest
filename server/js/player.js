@@ -392,6 +392,14 @@ module.exports = Player = Character.extend({
 
                 databaseHandler.setWallet(self.name, type, amount);
             }
+            else if(action === Types.Messages.SHOP) {
+                log.info("SHOP: " + self.name + " " + message[1] + " " + message[2] + " " + message[3]);
+                var itemType = message[1];
+                var tokenType = message[2];
+                var price = message[3];
+
+                self.buyItem(itemType, tokenType, price);
+            }
             else if(action === Types.Messages.INVENTORY){
                 log.info("INVENTORY: " + self.name + " " + message[1] + " " + message[2] + " " + message[3]);
                 var inventoryNumber = message[2],
@@ -912,12 +920,23 @@ module.exports = Player = Character.extend({
         // self.server.addPlayer(self, aGuildId);
 
     },
+    buyItem: function(item, tokenType, price) {
+        console.log("buy item: ready");
+        if(Types.isToken(tokenType)) {
+            if(this.wallet[tokenType] - price > 0) {
+                console.log("buy item: ing");
+                this.decWallet(tokenType, price);
+                this.putInventory(item);
+                console.log("buy item: completed");
+            } else {
+                console.log("The amount is insufficient.");
+            }
+        }
+    },
     setWallet: function(kind, amount) {
         this.databaseHandler.setWallet(this.name, kind, amount);
     },
     incWallet: function(kind, amount) {
-
-        //kind 192 -> gxc.token
         var tokenName = 'GXQ';
         var self = this;
         GXC.generateToken(this.name, tokenName, amount)
@@ -925,12 +944,15 @@ module.exports = Player = Character.extend({
             self.wallet[kind] += amount;
             self.databaseHandler.setWallet(self.name, kind, self.wallet[kind]);
         });
-
-
     },
     decWallet: function(kind, amount) {
-        this.wallet[kind] -= amount;
-        this.databaseHandler.setWallet(this.name, kind, this.wallet[kind]);
+        var tokenName = 'GXQ';
+        var self = this;
+        GXC.consumeToken(this.accessToken, tokenName, amount)
+        .then(function() {
+            self.wallet[kind] -= amount;
+            self.databaseHandler.setWallet(self.name, kind, self.wallet[kind]);
+        });
     },
     putInventory: function(item){
         if(Types.isHealingItem(item.kind) || Types.isToken(item.kind)){
