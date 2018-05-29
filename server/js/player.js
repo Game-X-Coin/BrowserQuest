@@ -399,7 +399,9 @@ module.exports = Player = Character.extend({
                 var price = message[3];
                 var item = { kind: itemType, count: 1 };
 
-                self.buyItem(item, tokenType, price);
+                if(Types.isWeapon(itemType) && Types.getItemPrice(itemType)) {
+                    self.buyItem(item, tokenType, price);
+                }
             }
             else if(action === Types.Messages.INVENTORY){
                 log.info("INVENTORY: " + self.name + " " + message[1] + " " + message[2] + " " + message[3]);
