@@ -400,7 +400,7 @@ module.exports = Player = Character.extend({
                 var price = message[3];
                 var item = { kind: itemType, count: 1 };
 
-                if(Types.isWeapon(itemType) && Types.getItemPrice(itemType)) {
+                if(Types.isWeapon(itemType) && Types.getItemPrice(itemType) === price) {
                     self.buyItem(item, tokenType, price);
                 }
             }
