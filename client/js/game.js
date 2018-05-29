@@ -2,11 +2,11 @@ define(['infomanager', 'bubble', 'renderer', 'map', 'animation', 'sprite',
         'tile', 'warrior', 'gameclient', 'audio', 'updater', 'transition',
         'pathfinder', 'item', 'mob', 'npc', 'player', 'character', 'chest',
         'mobs', 'exceptions', 'config', 'chathandler', 'textwindowhandler',
-        'menu', 'boardhandler', 'kkhandler', 'guild', '../../shared/js/gametypes'],
+        'menu', 'boardhandler', 'guild', '../../shared/js/gametypes'],
 function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedTile,
          Warrior, GameClient, AudioManager, Updater, Transition, Pathfinder,
          Item, Mob, Npc, Player, Character, Chest, Mobs, Exceptions, config,
-         ChatHandler, TextWindowHandler, Menu, BoardHandler, KkHandler, Guild) {
+         ChatHandler, TextWindowHandler, Menu, BoardHandler, Guild) {
     var Game = Class.extend({
         init: function(app) {
             this.app = app;
@@ -63,8 +63,7 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
             this.infoManager = new InfoManager(this);
 
             // Chat commands
-            this.kkhandler = new KkHandler();
-            this.chathandler = new ChatHandler(this, this.kkhandler);
+            this.chathandler = new ChatHandler(this);
             this.boardhandler = new BoardHandler(this);
 
             // TextWindow Handler
@@ -1810,9 +1809,6 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
                 });
                 self.client.onNotify(function(msg){
                     self.showNotification(msg);
-                });
-                self.client.onKung(function(msg){
-                    self.kkhandler.add(msg, self.player);
                 });
 
                 self.gamestart_callback();

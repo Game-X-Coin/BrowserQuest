@@ -575,10 +575,6 @@ module.exports = Player = Character.extend({
                     databaseHandler.writeReply(self, reply, number);
                   }
                 }
-            } else if(action === Types.Messages.KUNG){
-                log.info("KUNG: " + self.name + " " + message[1]);
-                var word = message[1];
-                databaseHandler.pushKungWord(self, word);
             } else if(action === Types.Messages.GUILD) {
                 if(message[1] === Types.Messages.GUILDACTION.CREATE) {
                     var guildname = Utils.sanitize(message[2]);

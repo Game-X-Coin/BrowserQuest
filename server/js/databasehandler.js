@@ -768,32 +768,4 @@ module.exports = DatabaseHandler = cls.Class.extend({
                     });
             });
     },
-    pushKungWord: function(player, word) {
-        var server = player.server;
-
-        if (player === server.lastKungPlayer) {
-            return;
-        }
-        if (server.isAlreadyKung(word)) {
-            return;
-        }
-        if (!server.isRightKungWord(word)) {
-            return;
-        }
-
-        if (server.kungWords.length === 0) {
-            client.srandmember('dic', function(err, reply) {
-                var randWord = reply;
-                server.pushKungWord(player, randWord);
-            });
-        } else {
-            client.sismember('dic', word, function(err, reply) {
-                if (reply === 1) {
-                    server.pushKungWord(player, word);
-                } else {
-                    player.send([Types.Messages.NOTIFY, word + '는 사전에 없습니다.']);
-                }
-            });
-        }
-    },
 });
