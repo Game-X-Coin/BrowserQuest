@@ -35,10 +35,12 @@ define(['jquery'], function($) {
                 var itemType = $div.find('input[name="itemType"]').val();
                 var tokenType = $div.find('input[name="tokenType"]').val();
                 var price = $div.find('input[name="price"]').val();
-                itemType = (itemType === 'A') ? Types.Entities.GOLDENSWORD : Types.Entities.PURPLECLOUDKALLEGE;
+                itemType = parseInt(itemType);
                 tokenType = (tokenType === 'A') ? Types.Entities.TOKEN_A : Types.Entities.TOKEN_B;
                 price = parseInt(price);
                 self.game.client.sendShop(itemType, tokenType, price);
+                closeShopmodal();
+                self.game.showNotification("Buy Item");
             });
             $('#gxc-login-button').click(function(event){
                 const width = 400;

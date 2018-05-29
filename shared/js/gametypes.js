@@ -344,20 +344,20 @@ var kinds = {
 
     goldgolem: [Types.Entities.GOLDGOLEM, "mob", 1, 1],
 
-    sword1: [Types.Entities.SWORD1, "weapon", 0],
-    sword2: [Types.Entities.SWORD2, "weapon", 0],
-    axe: [Types.Entities.AXE, "weapon", 0],
-    redsword: [Types.Entities.REDSWORD, "weapon", 0],
-    bluesword: [Types.Entities.BLUESWORD, "weapon", 0],
-    goldensword: [Types.Entities.GOLDENSWORD, "weapon", 0],
-    morningstar: [Types.Entities.MORNINGSTAR, "weapon", 0],
-    sidesword: [Types.Entities.SIDESWORD, "weapon", 0],
-    spear: [Types.Entities.SPEAR, "weapon", 0],
-    scimitar: [Types.Entities.SCIMITAR, "weapon", 0],
-    trident: [Types.Entities.TRIDENT, "weapon", 0],
+    sword1: [Types.Entities.SWORD1, "weapon", 0, 0],
+    sword2: [Types.Entities.SWORD2, "weapon", 0, 10],
+    axe: [Types.Entities.AXE, "weapon", 0, 30],
+    morningstar: [Types.Entities.MORNINGSTAR, "weapon", 50],    
+    bluesword: [Types.Entities.BLUESWORD, "weapon", 100],
+    redsword: [Types.Entities.REDSWORD, "weapon", 150],
+    goldensword: [Types.Entities.GOLDENSWORD, "weapon", 200],
+    sidesword: [Types.Entities.SIDESWORD, "weapon", 250],
+    spear: [Types.Entities.SPEAR, "weapon", 300],
+    scimitar: [Types.Entities.SCIMITAR, "weapon", 350],
+    trident: [Types.Entities.TRIDENT, "weapon", 400],
     bluescimitar: [Types.Entities.BLUESCIMITAR, "weapon", 0],
     hammer: [Types.Entities.HAMMER, "weapon", 0],
-    greenlightsaber: [Types.Entities.GREENLIGHTSABER, "weapon", 0],
+    greenlightsaber: [Types.Entities.GREENLIGHTSABER, "weapon", 700],
     skylightsaber: [Types.Entities.SKYLIGHTSABER, "weapon", 0],
     redlightsaber: [Types.Entities.REDLIGHTSABER, "weapon", 0],
     redmetalsword: [Types.Entities.REDMETALSWORD, "weapon", 0],
@@ -366,15 +366,15 @@ var kinds = {
     rose: [Types.Entities.ROSE, "weapon", 0],
     icerose: [Types.Entities.ICEROSE, "weapon", 0],
     justicehammer: [Types.Entities.JUSTICEHAMMER, "weapon", 0],
-    firesword: [Types.Entities.FIRESWORD, "weapon", 0],
     whip: [Types.Entities.WHIP, "weapon", 0],
     forestguardiansword: [Types.Entities.FORESTGUARDIANSWORD, "weapon", 0],
     sickle: [Types.Entities.SICKLE, "weapon", 0],
     plunger: [Types.Entities.PLUNGER, "weapon", 0],
     redsickle: [Types.Entities.REDSICKLE, "weapon", 0],
     daywalker: [Types.Entities.DAYWALKER, "weapon", 0],
-    purplecloudkallege: [Types.Entities.PURPLECLOUDKALLEGE, "weapon", 0],
     searage: [Types.Entities.SEARAGE, "weapon", 0],
+    purplecloudkallege: [Types.Entities.PURPLECLOUDKALLEGE, "weapon", 1300],
+    firesword: [Types.Entities.FIRESWORD, "weapon", 1500],
 
     clotharmor: [Types.Entities.CLOTHARMOR, "armor", 0],
     leatherarmor: [Types.Entities.LEATHERARMOR, "armor", 0],
@@ -453,6 +453,9 @@ var kinds = {
         return kinds[Types.getKindAsString(kind)][2];
     },
     getMobLevel: function(kind){
+        return kinds[Types.getKindAsString(kind)][3];
+    },
+    getItemPrice: function(kind){
         return kinds[Types.getKindAsString(kind)][3];
     }
 };
@@ -624,6 +627,7 @@ Types.isBenef = function(kind) {
     return kinds.getType(kind) === "benef";
 };
 
+
 Types.isCharacter = function(kind) {
     return Types.isMob(kind) || Types.isNpc(kind) || Types.isPlayer(kind);
 };
@@ -750,6 +754,10 @@ Types.getMessageTypeAsString = function(type) {
     }
     return typeName;
 };
+
+Types.getItemPrice = function(kind) {
+    return kinds.getItemPrice(kind);
+}
 
 if(!(typeof exports === 'undefined')) {
     module.exports = Types;

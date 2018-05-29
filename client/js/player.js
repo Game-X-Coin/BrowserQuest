@@ -188,8 +188,8 @@ define(['character', 'exceptions'], function(Character, Exceptions) {
         },
         buyItem: function(itemKind, tokenKind, price) {
             var count = 1;
-            decWallet(tokenKind, price);
-            putInventory(itemKind, count);
+            this.decWallet(tokenKind, price);
+            this.putInventory(itemKind, count);
         },
         incWallet: function(tokenKind, amount) {
             var tokenAmount = this.wallet[tokenKind] || 0;
