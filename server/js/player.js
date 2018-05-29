@@ -948,7 +948,7 @@ module.exports = Player = Character.extend({
     decWallet: function(kind, amount) {
         var tokenName = 'GXQ';
         var self = this;
-        GXC.consumeToken(this.name, tokenName, amount)
+        GXC.consumeToken(this.accessToken, tokenName, amount)
         .then(function() {
             self.wallet[kind] -= amount;
             self.databaseHandler.setWallet(self.name, kind, self.wallet[kind]);
