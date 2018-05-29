@@ -1762,7 +1762,7 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
 
                     if(key === 'ANGRY_RATS'){
                         setTimeout(function() {
-                            self.infoManager.addDamageInfo("+50 exp", self.player.x, self.player.y - 15, "exp", 3000);
+                            self.infoManager.addDamageInfo("+50 exp, +30 Token", self.player.x, self.player.y - 15, "exp", 3000);
                         }, 1000);
                     } else if(key === 'BRING_LEATHERARMOR'){
                         self.player.switchArmor("clotharmor", self.sprites["clotharmor"]);
@@ -1771,7 +1771,7 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
                         }, 1000);
                     } else if(key === 'KILL_CRAeB'){
                         setTimeout(function() {
-                            self.infoManager.addDamageInfo("+50 exp", self.player.x, self.player.y - 15, "exp", 3000);
+                            self.infoManager.addDamageInfo("+50 exp, +50 Token", self.player.x, self.player.y - 15, "exp", 3000);
                         }, 1000);
                     } else if(key === 'FIND_CAKE'){
                         for(var i = 0; i < self.player.inventory.length; i++) {
@@ -1795,7 +1795,7 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
                         }, 1000);
                     } else if(key === 'KILL_SKELETON'){
                         setTimeout(function() {
-                            self.infoManager.addDamageInfo("+200 exp", self.player.x, self.player.y - 15, "exp", 3000);
+                            self.infoManager.addDamageInfo("+200 exp, +100 Token", self.player.x, self.player.y - 15, "exp", 3000);
                         }, 1000);
                     } else if(key === 'BRING_AXE'){
                         self.player.switchWeapon("sword2");
