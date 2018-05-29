@@ -2440,8 +2440,9 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
             && !this.hoveringCollidingTile
             && !this.hoveringPlateauTile) {
                 entity = this.getEntityAt(pos.x, pos.y);
+                var isMove = (this.player.moveUp || this.player.moveDown || this.player.moveLeft || this.player.moveRight);
 
-        	    if(entity instanceof Mob || (entity instanceof Player && entity !== this.player && this.player.pvpFlag && this.pvpFlag)) {
+        	    if(!isMove && entity instanceof Mob || (entity instanceof Player && entity !== this.player && this.player.pvpFlag && this.pvpFlag)) {
                     this.makePlayerAttack(entity);
                 }
                 else if(entity instanceof Item) {
@@ -2454,7 +2455,7 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
                         if(!this.player.disableKeyboardNpcTalk) {
                             this.makeNpcTalk(entity);
 
-                            if(this.player.moveUp || this.player.moveDown || this.player.moveLeft || this.player.moveRight)
+                            if(isMove)
                                 this.player.disableKeyboardNpcTalk = true;
                         }
                     }
