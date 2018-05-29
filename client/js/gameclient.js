@@ -47,7 +47,6 @@ define(['player', 'entityfactory', 'lib/bison'], function(Player, EntityFactory,
             this.handlers[Types.Messages.ACHIEVEMENT] = this.receiveAchievement;
             this.handlers[Types.Messages.BOARD] = this.receiveBoard;
             this.handlers[Types.Messages.NOTIFY] = this.receiveNotify;
-            this.handlers[Types.Messages.KUNG] = this.receiveKung;
             this.handlers[Types.Messages.WALLET] = this.receiveWallet;
             this.handlers[Types.Messages.SHOP] = this.receiveShop;
             this.handlers[Types.Messages.INVENTORY] = this.receiveInventory;
@@ -463,12 +462,6 @@ define(['player', 'entityfactory', 'lib/bison'], function(Player, EntityFactory,
                 this.notify_callback(msg);
             }
         },
-        receiveKung: function(data){
-            var msg = data[1];
-            if(this.kung_callback){
-                this.kung_callback(msg);
-            }
-        },
 
         receiveWallet: function(data) {
             var type = data[1],
@@ -639,9 +632,6 @@ define(['player', 'entityfactory', 'lib/bison'], function(Player, EntityFactory,
         onNotify: function(callback){
             this.notify_callback = callback;
         },
-        onKung: function(callback){
-            this.kung_callback = callback;
-        },
         onWallet: function(callback) {
             this.wallet_callback = callback;
         },
@@ -803,10 +793,6 @@ define(['player', 'entityfactory', 'lib/bison'], function(Player, EntityFactory,
                             command,
                             title,
                             content]);
-        },
-        sendKung: function(word) {
-            this.sendMessage([Types.Messages.KUNG,
-                              word]);
         },
         
         sendWho: function(ids) {

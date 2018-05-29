@@ -2,11 +2,11 @@ define(['infomanager', 'bubble', 'renderer', 'map', 'animation', 'sprite',
         'tile', 'warrior', 'gameclient', 'audio', 'updater', 'transition',
         'pathfinder', 'item', 'mob', 'npc', 'player', 'character', 'chest',
         'mobs', 'exceptions', 'config', 'chathandler', 'textwindowhandler',
-        'menu', 'boardhandler', 'kkhandler', 'guild', '../../shared/js/gametypes'],
+        'menu', 'boardhandler', 'guild', '../../shared/js/gametypes'],
 function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedTile,
          Warrior, GameClient, AudioManager, Updater, Transition, Pathfinder,
          Item, Mob, Npc, Player, Character, Chest, Mobs, Exceptions, config,
-         ChatHandler, TextWindowHandler, Menu, BoardHandler, KkHandler, Guild) {
+         ChatHandler, TextWindowHandler, Menu, BoardHandler, Guild) {
     var Game = Class.extend({
         init: function(app) {
             this.app = app;
@@ -63,8 +63,7 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
             this.infoManager = new InfoManager(this);
 
             // Chat commands
-            this.kkhandler = new KkHandler();
-            this.chathandler = new ChatHandler(this, this.kkhandler);
+            this.chathandler = new ChatHandler(this);
             this.boardhandler = new BoardHandler(this);
 
             // TextWindow Handler
@@ -1762,7 +1761,7 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
 
                     if(key === 'ANGRY_RATS'){
                         setTimeout(function() {
-                            self.infoManager.addDamageInfo("+50 exp", self.player.x, self.player.y - 15, "exp", 3000);
+                            self.infoManager.addDamageInfo("+50 exp, +30 Token", self.player.x, self.player.y - 15, "exp", 3000);
                         }, 1000);
                     } else if(key === 'BRING_LEATHERARMOR'){
                         self.player.switchArmor("clotharmor", self.sprites["clotharmor"]);
@@ -1771,7 +1770,7 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
                         }, 1000);
                     } else if(key === 'KILL_CRAeB'){
                         setTimeout(function() {
-                            self.infoManager.addDamageInfo("+50 exp", self.player.x, self.player.y - 15, "exp", 3000);
+                            self.infoManager.addDamageInfo("+50 exp, +50 Token", self.player.x, self.player.y - 15, "exp", 3000);
                         }, 1000);
                     } else if(key === 'FIND_CAKE'){
                         for(var i = 0; i < self.player.inventory.length; i++) {
@@ -1795,7 +1794,7 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
                         }, 1000);
                     } else if(key === 'KILL_SKELETON'){
                         setTimeout(function() {
-                            self.infoManager.addDamageInfo("+200 exp", self.player.x, self.player.y - 15, "exp", 3000);
+                            self.infoManager.addDamageInfo("+200 exp, +100 Token", self.player.x, self.player.y - 15, "exp", 3000);
                         }, 1000);
                     } else if(key === 'BRING_AXE'){
                         self.player.switchWeapon("sword2");
@@ -1810,9 +1809,6 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
                 });
                 self.client.onNotify(function(msg){
                     self.showNotification(msg);
-                });
-                self.client.onKung(function(msg){
-                    self.kkhandler.add(msg, self.player);
                 });
 
                 self.gamestart_callback();
@@ -2440,8 +2436,9 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
             && !this.hoveringCollidingTile
             && !this.hoveringPlateauTile) {
                 entity = this.getEntityAt(pos.x, pos.y);
+                var isMove = (this.player.moveUp || this.player.moveDown || this.player.moveLeft || this.player.moveRight);
 
-        	    if(entity instanceof Mob || (entity instanceof Player && entity !== this.player && this.player.pvpFlag && this.pvpFlag)) {
+        	    if(!isMove && entity instanceof Mob || (entity instanceof Player && entity !== this.player && this.player.pvpFlag && this.pvpFlag)) {
                     this.makePlayerAttack(entity);
                 }
                 else if(entity instanceof Item) {
@@ -2454,7 +2451,7 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
                         if(!this.player.disableKeyboardNpcTalk) {
                             this.makeNpcTalk(entity);
 
-                            if(this.player.moveUp || this.player.moveDown || this.player.moveLeft || this.player.moveRight)
+                            if(isMove)
                                 this.player.disableKeyboardNpcTalk = true;
                         }
                     }
