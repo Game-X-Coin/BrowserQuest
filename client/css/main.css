@@ -1707,3 +1707,36 @@ footer, header, hgroup, menu, nav, section {
     .opera #achievements.active, .opera #instructions.active { z-index: 30000;}
     .opera #coinsparks {display:none;}
     .opera #death, .opera #about, .opera #credits, .opera #error, .opera #confirmation, .opera #loadcharacter, .opera #legal { z-index: -30000; }
+
+
+    #gxc-logo {
+        position: absolute;
+        left: 50%;
+        top: 10%;
+        width: auto;
+        max-height: 12vw;
+        transform: translateX(-50%);
+    }
+
+    #gxc-info {
+        margin: 30px;
+        text-align: center;
+        font-size: 16px;
+    }
+
+    #gxc-login-button {
+        
+    }
+
+    @media screen and (max-width: 1000px) and (min-width: 800px) {
+        #gxc-info {
+            margin: 10px 30px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        #gxc-login-button {
+            height: 60px;
+            width: auto;
+        }
+    }
