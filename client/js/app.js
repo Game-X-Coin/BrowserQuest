@@ -28,7 +28,7 @@ define(['jquery'], function($) {
                     self.game.boardhandler.hide();
                 }
             });
-            
+
 
             $('#shop-modal .item-row button[name="buy-button"]').click(function(event) {
                 $div = $(this).parent().parent();
@@ -46,7 +46,8 @@ define(['jquery'], function($) {
                 const height = 500;
                 const left = (screen.availWidth - width) / 2;
                 const top = (screen.availHeight - height) / 2;
-                loginPopupWindow = window.open("https://mew.gamexcoin.io/authorize?response_type=code&client_id=5b064ed6e63f19908cd45dc0&redirect_uri=http%3A%2F%2Flocalhost%3A8000/oauth_callback", Math.random(), `width=${width}, height=${height}, left=${left}, top=${top}`);
+                // loginPopupWindow = window.open("https://mew.gamexcoin.io/authorize?response_type=code&client_id=5b064ed6e63f19908cd45dc0&redirect_uri=http%3A%2F%2Flocalhost%3A8000/oauth_callback", Math.random(), `width=${width}, height=${height}, left=${left}, top=${top}`);
+                loginPopupWindow = window.open("http://localhost:8080/authorize?response_type=code&client_id=5b064ed6e63f19908cd45dc0&redirect_uri=http%3A%2F%2Flocalhost%3A8000/oauth_callback", Math.random(), `width=${width}, height=${height}, left=${left}, top=${top}`);
 
             });
             window.gxcLoginHander = function (gxcId, tempKey) {
