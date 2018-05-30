@@ -945,6 +945,7 @@ module.exports = Player = Character.extend({
     },
     setWallet: function(kind, amount) {
         this.databaseHandler.setWallet(this.name, kind, amount);
+        self.send([Types.Messages.WALLET, kind, amount]);
     },
     incWallet: function(kind, amount) {
         var tokenName = 'GXQ';
@@ -958,7 +959,6 @@ module.exports = Player = Character.extend({
                     self.wallet[kind] = res.data.balance;
                     self.wallet[kind] += amount;
                     self.setWallet(self.name, kind, self.wallet[kind]);
-                    self.send([Types.Messages.WALLET, kind, self.wallet[kind]]);
                 });
             } else {
                 console.log(e);
@@ -977,7 +977,6 @@ module.exports = Player = Character.extend({
                     self.wallet[kind] = res.data.balance;
                     self.wallet[kind] -= amount;
                     self.databaseHandler.setWallet(self.name, kind, self.wallet[kind]);
-                    self.send([Types.Messages.WALLET, kind, self.wallet[kind]]);
                     if(callback) {
                         callback();
                     }
