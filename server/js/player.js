@@ -954,7 +954,7 @@ module.exports = Player = Character.extend({
         axios.get('https://mewapi.gamexcoin.io/v1/eos/balance?accountName=' + self.name + '&symbol=GXQ')
         .then(function(res) {
             if (res.data && res.data.success) {
-                GXC.generateToken(this.name, tokenName, amount)
+                GXC.generateToken(self.name, tokenName, amount)
                 .then(function(data) {
                     self.wallet[kind] = res.data.balance;
                     self.wallet[kind] += amount;
@@ -972,7 +972,7 @@ module.exports = Player = Character.extend({
         axios.get('https://mewapi.gamexcoin.io/v1/eos/balance?accountName=' + self.name + '&symbol=GXQ')
         .then(function(res) {
             if (res.data && res.data.success) {
-                GXC.consumeToken(this.accessToken, tokenName, amount)
+                GXC.consumeToken(self.accessToken, tokenName, amount)
                 .then(function(data) {
                     self.wallet[kind] = res.data.balance;
                     self.wallet[kind] -= amount;
