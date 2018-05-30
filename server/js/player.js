@@ -112,6 +112,18 @@ module.exports = Player = Character.extend({
                 }
                 databaseHandler.checkBan(self);
                 databaseHandler.loadPlayer(self);
+                axios.get('https://mewapi.gamexcoin.io/v1/eos/balance?accountName=' + self.name + '&symbol=GXQ')
+                .then(function(res) {
+                    if (res.data && res.data.success) {
+                        self.setWallet(Types.Entities.TOKEN_A, res.data.balance);
+                    } else {
+                        console.log(e);
+                        self.send([Types.Messages.SHOP_ERROR, Types.Messages.SHOP_ERROR_TYPE.CHAIN, kind]);
+                    }
+                }).catch(function(e) {
+                    console.log(e);
+                    self.send([Types.Messages.SHOP_ERROR, Types.Messages.SHOP_ERROR_TYPE.CHAIN, kind]);
+                });
             }
             else if(action === Types.Messages.WHO) {
                 log.info("WHO: " + self.name);
@@ -925,7 +937,7 @@ module.exports = Player = Character.extend({
             if(Types.isToken(tokenType)) {
                 if(this.wallet[tokenType] - price >= 0) {
                     var callback = function() { 
-                        self.putInventory(item);
+                        var result = self.putInventory(item);
                         if(result != null) {
                             self.send([Types.Messages.INVENTORY, item.kind, result.inventoryNumber, item.count]);
                         } else {
@@ -945,7 +957,7 @@ module.exports = Player = Character.extend({
     },
     setWallet: function(kind, amount) {
         this.databaseHandler.setWallet(this.name, kind, amount);
-        self.send([Types.Messages.WALLET, kind, amount]);
+        this.send([Types.Messages.WALLET, kind, amount]);
     },
     incWallet: function(kind, amount) {
         var tokenName = 'GXQ';
@@ -954,16 +966,23 @@ module.exports = Player = Character.extend({
         axios.get('https://mewapi.gamexcoin.io/v1/eos/balance?accountName=' + self.name + '&symbol=GXQ')
         .then(function(res) {
             if (res.data && res.data.success) {
-                GXC.generateToken(this.name, tokenName, amount)
+                GXC.generateToken(self.name, tokenName, amount)
                 .then(function(data) {
                     self.wallet[kind] = res.data.balance;
                     self.wallet[kind] += amount;
-                    self.setWallet(self.name, kind, self.wallet[kind]);
+                    self.setWallet(kind, self.wallet[kind]);
+                })
+                .catch(function(e) {
+                    console.log(e);
+                    self.send([Types.Messages.SHOP_ERROR, Types.Messages.SHOP_ERROR_TYPE.CHAIN, kind]);
                 });
             } else {
                 console.log(e);
                 self.send([Types.Messages.SHOP_ERROR, Types.Messages.SHOP_ERROR_TYPE.CHAIN, kind]);
             }
+        }).catch(function(e) {
+            console.log(e);
+            self.send([Types.Messages.SHOP_ERROR, Types.Messages.SHOP_ERROR_TYPE.CHAIN, kind]);
         });
     },
     decWallet: function(kind, amount, callback) {
@@ -972,11 +991,11 @@ module.exports = Player = Character.extend({
         axios.get('https://mewapi.gamexcoin.io/v1/eos/balance?accountName=' + self.name + '&symbol=GXQ')
         .then(function(res) {
             if (res.data && res.data.success) {
-                GXC.consumeToken(this.accessToken, tokenName, amount)
+                GXC.consumeToken(self.accessToken, tokenName, amount)
                 .then(function(data) {
                     self.wallet[kind] = res.data.balance;
                     self.wallet[kind] -= amount;
-                    self.databaseHandler.setWallet(self.name, kind, self.wallet[kind]);
+                    self.setWallet(kind, self.wallet[kind]);
                     if(callback) {
                         callback();
                     }
@@ -985,6 +1004,9 @@ module.exports = Player = Character.extend({
                     self.send([Types.Messages.SHOP_ERROR, Types.Messages.SHOP_ERROR_TYPE.CHAIN, kind]);
                 });
             }
+        }).catch(function(e) {
+            console.log(e);
+            self.send([Types.Messages.SHOP_ERROR, Types.Messages.SHOP_ERROR_TYPE.CHAIN, kind]);
         });
     },
     putInventory: function(item){
