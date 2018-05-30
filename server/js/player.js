@@ -400,9 +400,7 @@ module.exports = Player = Character.extend({
                 var price = message[3];
                 var item = { kind: itemType, count: 1 };
 
-                if(Types.isWeapon(itemType) && Types.getItemPrice(itemType) === price) {
-                    self.buyItem(item, tokenType, price);
-                }
+                self.buyItem(item, tokenType, price);
             }
             else if(action === Types.Messages.INVENTORY){
                 log.info("INVENTORY: " + self.name + " " + message[1] + " " + message[2] + " " + message[3]);
@@ -922,19 +920,27 @@ module.exports = Player = Character.extend({
 
     },
     buyItem: function(item, tokenType, price) {
-        if(Types.isToken(tokenType)) {
-            if(this.wallet[tokenType] - price >= 0) {
-                this.decWallet(tokenType, price);
-                const result = this.putInventory(item);
-                if(result != null) {
-                    this.send([Types.Messages.INVENTORY, item.kind, result.inventoryNumber, item.count]);
+        var self = this;
+        if(Types.isWeapon(item.kind) && Types.getItemPrice(item.kind) === price) {
+            if(Types.isToken(tokenType)) {
+                if(this.wallet[tokenType] - price >= 0) {
+                    var callback = function() { 
+                        self.putInventory(item);
+                        if(result != null) {
+                            self.send([Types.Messages.INVENTORY, item.kind, result.inventoryNumber, item.count]);
+                        } else {
+                            self.send([Types.Messages.SHOP_ERROR, Types.Messages.SHOP_ERROR_TYPE.INVENTORY_IS_FULL, item.kind]);
+                        }
+                    }
+                    this.decWallet(tokenType, price, callback);
                 } else {
-                    console.log("inventory is full");
+                    this.send([Types.Messages.SHOP_ERROR, Types.Messages.SHOP_ERROR_TYPE.INSUFFICIENT, this.wallet[tokenType]]);
                 }
-                console.log("buy item: completed");
             } else {
-                console.log("The amount is insufficient.");
+                this.send([Types.Messages.SHOP_ERROR, Types.Messages.SHOP_ERROR_TYPE.DONT_USE_TYPE, this.wallet[tokenType]]);
             }
+        } else {
+            this.send([Types.Messages.SHOP_ERROR, Types.Messages.SHOP_ERROR_TYPE.NOT_MATCH_PRICE, Types.getItemPrice(itemType)]);
         }
     },
     setWallet: function(kind, amount) {
@@ -943,23 +949,43 @@ module.exports = Player = Character.extend({
     incWallet: function(kind, amount) {
         var tokenName = 'GXQ';
         var self = this;
-        GXC.generateToken(this.name, tokenName, amount)
-        .then(function() {
-            self.wallet[kind] += amount;
-            self.databaseHandler.setWallet(self.name, kind, self.wallet[kind]);
-            self.send([Types.Messages.WALLET, kind, self.wallet[kind]]);
+        
+        axios.get('https://mewapi.gamexcoin.io/v1/eos/balance?accountName=' + self.name + '&symbol=GXQ')
+        .then(function(res) {
+            if (res.data && res.data.success) {
+                GXC.generateToken(this.name, tokenName, amount)
+                .then(function(data) {
+                    self.wallet[kind] = res.data.balance;
+                    self.wallet[kind] += amount;
+                    self.setWallet(self.name, kind, self.wallet[kind]);
+                    self.send([Types.Messages.WALLET, kind, self.wallet[kind]]);
+                });
+            } else {
+                console.log(e);
+                self.send([Types.Messages.SHOP_ERROR, Types.Messages.SHOP_ERROR_TYPE.CHAIN, kind]);
+            }
         });
     },
-    decWallet: function(kind, amount) {
+    decWallet: function(kind, amount, callback) {
         var tokenName = 'GXQ';
         var self = this;
-        GXC.consumeToken(this.accessToken, tokenName, amount)
-        .then(function(data) {
-            self.wallet[kind] -= amount;
-            self.databaseHandler.setWallet(self.name, kind, self.wallet[kind]);
-            self.send([Types.Messages.WALLET, kind, self.wallet[kind]]);
-        }).catch(function(e) {
-            console.log(e);
+        axios.get('https://mewapi.gamexcoin.io/v1/eos/balance?accountName=' + self.name + '&symbol=GXQ')
+        .then(function(res) {
+            if (res.data && res.data.success) {
+                GXC.consumeToken(this.accessToken, tokenName, amount)
+                .then(function(data) {
+                    self.wallet[kind] = res.data.balance;
+                    self.wallet[kind] -= amount;
+                    self.databaseHandler.setWallet(self.name, kind, self.wallet[kind]);
+                    self.send([Types.Messages.WALLET, kind, self.wallet[kind]]);
+                    if(callback) {
+                        callback();
+                    }
+                }).catch(function(e) {
+                    console.log(e);
+                    self.send([Types.Messages.SHOP_ERROR, Types.Messages.SHOP_ERROR_TYPE.CHAIN, kind]);
+                });
+            }
         });
     },
     putInventory: function(item){

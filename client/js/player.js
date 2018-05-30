@@ -130,16 +130,7 @@ define(['character', 'exceptions'], function(Character, Exceptions) {
             } else if(Types.isHealingItem(item.kind)){
                 this.putInventory(item.kind, item.count);
             } else if(Types.isToken(item.kind)) {
-
-                // this.incWallet(item.kind, 1);
-                setTimeout(function() {
-                    axios.get('https://mewapi.gamexcoin.io/v1/eos/balance?accountName=' +
-                    self.name + '&symbol=GXQ').then(function(res) {
-                        console.log(res);
-                        if (res.data && res.data.success)
-                            self.setWallet(item.kind, res.data.balance);
-                    });
-                }, 500);
+                this.incWallet(item.kind, 1);
             }
 
             log.info('Player '+this.id+' has looted '+item.id);

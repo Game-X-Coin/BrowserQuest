@@ -49,6 +49,7 @@ define(['player', 'entityfactory', 'lib/bison'], function(Player, EntityFactory,
             this.handlers[Types.Messages.NOTIFY] = this.receiveNotify;
             this.handlers[Types.Messages.WALLET] = this.receiveWallet;
             this.handlers[Types.Messages.SHOP] = this.receiveShop;
+            this.handlers[Types.Messages.SHOP_ERROR] = this.receiveShopError;
             this.handlers[Types.Messages.INVENTORY] = this.receiveInventory;
 
             this.useBison = false;
@@ -143,8 +144,6 @@ define(['player', 'entityfactory', 'lib/bison'], function(Player, EntityFactory,
                 } else {
                     data = JSON.stringify(json);
                 }
-                console.log('data1')
-                console.log(data)
                 this.connection.send(data);
             }
         },
@@ -158,8 +157,6 @@ define(['player', 'entityfactory', 'lib/bison'], function(Player, EntityFactory,
                 } else {
                     data = JSON.parse(message);
                 }
-
-                console.log("data: " + message);
 
                 if(data instanceof Array) {
                     if(data[0] instanceof Array) {
@@ -435,9 +432,7 @@ define(['player', 'entityfactory', 'lib/bison'], function(Player, EntityFactory,
         receiveAchievement: function(data){
             var id = data[1],
                 type = data[2];
-                console.log("receive!!Achi")
             if(this.achievement_callback) {
-                console.log("call back!");
                 this.achievement_callback(id, type);
             }
         },
@@ -478,6 +473,14 @@ define(['player', 'entityfactory', 'lib/bison'], function(Player, EntityFactory,
             if(this.shop_callback) {
                 this.shop_callback(itemType, tokenType, price);
             }   
+        },
+
+        receiveShopError: function(data) {
+            var errorType = data[1],
+                value = data[2];
+            if(this.shop_error_callback) {
+                this.shop_error_callback(errorType, value)
+            }
         },
 
         receiveInventory: function(data) {
@@ -643,7 +646,11 @@ define(['player', 'entityfactory', 'lib/bison'], function(Player, EntityFactory,
         },
         onGuildError: function(callback) {
 			this.guilderror_callback = callback;
-		},
+        },
+        
+        onShopError: function(callback) {
+            this.shop_error_callback = callback;
+        },
 		
 		onGuildCreate: function(callback) {
 			this.guildcreate_callback = callback;

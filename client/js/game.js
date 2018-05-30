@@ -1462,7 +1462,23 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
 					else if(errorType === Types.Messages.GUILDERRORTYPE.BADINVITE){
 						self.showNotification(info+" is ALREADY a member of “"+self.player.getGuild().name+"”");
 					}
-				});
+                });
+                
+                self.client.onShopError(function(errorType, info) {
+                    if(errorType === Types.Messages.SHOP_ERROR_TYPE.INVENTORY_IS_FULL) {
+                        self.showNotification("Inventory is Full");
+                    } else if(errorType === Types.Messages.SHOP_ERROR_TYPE.INSUFFICIENT) {
+                        self.showNotification("Money is insufficient");
+                    } else if(errorType === Types.Messages.SHOP_ERROR_TYPE.CHAIN) {
+                        self.showNotification("Chain Error");
+                    } else if(errorType === Types.Messages.SHOP_ERROR_TYPE.DONT_USE_TYPE) {
+                        self.showNotification("Don't Use Item Type");
+                    } else if(errorType === Types.Messages.SHOP_ERROR_TYPE.NOT_MATCH_PRICE) {
+                        self.showNotification("Price Not Match : " + info);
+                    } else {
+                        self.showNotification("Server Error");
+                    }
+                });
 
 				self.client.onGuildCreate(function(guildId, guildName) {
 					self.player.setGuild(new Guild(guildId, guildName));
