@@ -40,6 +40,14 @@ Types = {
         LOGIN: 37,
         WALLET: 38,
         SHOP: 39,
+        SHOP_ERROR: 40,
+        SHOP_ERROR_TYPE: {
+            INVENTORY_IS_FULL: 1,
+            INSUFFICIENT: 2,
+            CHAIN: 3,
+            DONT_USE_TYPE: 4,
+            NOT_MATCH_PRICE: 5,
+        }
     },
 
     Entities: {
