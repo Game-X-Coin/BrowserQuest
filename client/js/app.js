@@ -40,7 +40,6 @@ define(['jquery'], function($) {
                 price = parseInt(price);
                 self.game.client.sendShop(itemType, tokenType, price);
                 closeShopmodal();
-                self.game.showNotification("Buy Item");
             });
             $('#gxc-login-button').click(function(event){
                 const width = 400;
