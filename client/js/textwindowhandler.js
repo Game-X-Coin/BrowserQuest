@@ -7,11 +7,11 @@ define(['jquery'], function() {
          this.textWindow = $('#textWindow');
 
          var text = '<p><h4>GXC Quest</h4></p>'
-                     + '<p><h3>Demo Game based on GXC Token Model.</h3></p>'
-                     + '<p>You can get GXQ token via killng some mobs.</p>'
-                     + '<p>Using token, You can buy some items via npc.</p>'
-                     + '<p>You can check token balance on right upper corner.</p>'
-                     + '<p>or visit https://mew.gamexcoin.io/balances.</h3></p>'
+                     + '<p><h3>This demo game is operating on blockchain venture’s own GXC test blockchain -- which is a hardfork of EOS.</h3></p>'
+                     + '<p>Acquiring game token: Players can kill monsters to acquire yellow game tokens.</p>'
+                     + '<p>Using game token: You can purchase items by talking to the wizard located left to the village.</p>'
+                     + '<p>This game is developed to showcase different applications of GXC to game developers. We’ll continue to add new functionalities to this game.</p>'
+                     + '<p>https://mew.gamexcoin.io to check your balance!</h3></p>'
 
                      + '<footer>Thank you. Enjoy the game!</footer>';
          $('#textWindow').html(text);
