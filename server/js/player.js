@@ -253,25 +253,24 @@ module.exports = Player = Character.extend({
                                         self.achievementProgress[achievementId] = 999;
                                         self.incExp(50);
                                         self.incWallet(Types.Entities.TOKEN_A, 50);
-                                        self.send([Types.Messages.WALLET, Types.Entities.TOKEN_A, this.wallet[Types.Entities.TOKEN_A]]);
+                                        self.send([Types.Messages.WALLET, Types.Entities.TOKEN_A, self.wallet[Types.Entities.TOKEN_A]]);
                                     }
                                     databaseHandler.progressAchievement(self.gxcId, achievementId, self.achievementProgress[achievementId]);
                                 }
                             } else if(mob.kind === Types.Entities.SKELETON){
                                 const achievementId = 21;
                                 if(self.achievementFound[achievementId] && self.achievementProgress[achievementId] !== 999){
-
                                     if(isNaN(self.achievementProgress[achievementId])){
                                         self.achievementProgress[achievementId] = 0;
                                     } else{
                                         self.achievementProgress[achievementId]++;
                                     }
                                     if(self.achievementProgress[achievementId] >= 10){
-                                        self.send([Types.Messages.ACHIEVEMENT, 21, "complete"]);
+                                        self.send([Types.Messages.ACHIEVEMENT, achievementId, "complete"]);
                                         self.achievementProgress[achievementId] = 999;
                                         self.incExp(200);
                                         self.incWallet(Types.Entities.TOKEN_A, 100);
-                                        self.send([Types.Messages.WALLET, Types.Entities.TOKEN_A, this.wallet[Types.Entities.TOKEN_A]]);
+                                        self.send([Types.Messages.WALLET, Types.Entities.TOKEN_A, self.wallet[Types.Entities.TOKEN_A]]);
                                     }
                                     databaseHandler.progressAchievement(self.gxcId, achievementId, self.achievementProgress[achievementId]);
                                 }
