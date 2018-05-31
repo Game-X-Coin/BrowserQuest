@@ -2410,6 +2410,8 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
                     } else if(Types.isHealingItem(this.player.inventory[inventoryNumber])) {
                         this.eat(inventoryNumber);
                         return;
+                    } else if(Types.isWeapon(this.player.inventory[inventoryNumber])){
+                        this.equip(inventoryNumber);
                     }
                 } else if(clickedMenu === 1) {
                     if((Types.isHealingItem(this.player.inventory[inventoryNumber]) || Types.isToken(this.player.inventory[inventoryNumber])) && (this.player.inventoryCount[inventoryNumber] > 1)) {
@@ -3160,6 +3162,13 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
             if(Types.isArmor(this.player.inventory[inventoryNumber])){
                 this.client.sendInventory("armor", inventoryNumber, 1);
                 this.player.equipFromInventory("armor", inventoryNumber, this.sprites);
+                if(this.equipment_callback) {
+                     this.equipment_callback();
+                }
+                this.menu.close();
+            } else if(Types.isWeapon(this.player.inventory[inventoryNumber])){
+                this.client.sendInventory("weapon", inventoryNumber, 1);
+                this.player.equipFromInventory("weapon", inventoryNumber, this.sprites);
                 if(this.equipment_callback) {
                      this.equipment_callback();
                 }

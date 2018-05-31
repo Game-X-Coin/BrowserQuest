@@ -276,6 +276,9 @@ define(['character', 'exceptions'], function(Character, Exceptions) {
                         this.setSpriteName(itemString);
                         this.setSprite(itemSprite);
                         this.setArmorName(itemString);
+                    } else if(type === "weapon"){
+                        this.inventory[inventoryNumber] = Types.getKindFromString(this.getWeaponName());
+                        this.setWeaponName(itemString);
                     } else if(type === "avatar"){
                         this.inventory[inventoryNumber] = null;
                         this.setSpriteName(itemString);
