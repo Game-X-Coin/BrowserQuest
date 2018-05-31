@@ -2410,6 +2410,8 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
                     } else if(Types.isHealingItem(this.player.inventory[inventoryNumber])) {
                         this.eat(inventoryNumber);
                         return;
+                    } else if(Types.isWeapon(this.player.inventory[inventoryNumber])){
+                        this.equip(inventoryNumber);
                     }
                 } else if(clickedMenu === 1) {
                     if((Types.isHealingItem(this.player.inventory[inventoryNumber]) || Types.isToken(this.player.inventory[inventoryNumber])) && (this.player.inventoryCount[inventoryNumber] > 1)) {
