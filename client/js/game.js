@@ -2478,6 +2478,16 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
                     this.makePlayerOpenChest(entity);
                 }
                 else {
+                    if(this.player.moveUp) {
+                        this.player.turnTo(Types.Orientations.UP);
+                    } else if(this.player.moveRight) {
+                        this.player.turnTo(Types.Orientations.RIGHT);
+                    } else if(this.player.moveLeft) {
+                        this.player.turnTo(Types.Orientations.LEFT);
+                    } else if(this.player.moveDown) {
+                        this.player.turnTo(Types.Orientations.DOWN);
+                    }
+
                     this.makePlayerGoTo(pos.x, pos.y);
                 }
             }

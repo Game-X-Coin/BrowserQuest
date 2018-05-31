@@ -461,6 +461,7 @@ define(['jquery', 'app', 'entrypoint'], function($, App, EntryPoint) {
                             game.player.moveDown = true;
                             break;
                         case Types.Keys.SPACE:
+                            game.player.hit();
                             game.makePlayerAttackNext();
                         default:
                             break;
