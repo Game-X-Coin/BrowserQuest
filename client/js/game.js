@@ -3164,6 +3164,13 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
                      this.equipment_callback();
                 }
                 this.menu.close();
+            } else if(Types.isWeapon(this.player.inventory[inventoryNumber])){
+                this.client.sendInventory("weapon", inventoryNumber, 1);
+                this.player.equipFromInventory("weapon", inventoryNumber, this.sprites);
+                if(this.equipment_callback) {
+                     this.equipment_callback();
+                }
+                this.menu.close();
             }
         },
         avatar: function(inventoryNumber){
