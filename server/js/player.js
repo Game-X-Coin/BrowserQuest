@@ -932,7 +932,7 @@ module.exports = Player = Character.extend({
     },
     buyItem: function(item, tokenType, price) {
         var self = this;
-        if(Types.isWeapon(item.kind) && Types.getItemPrice(item.kind) === price) {
+        if((Types.isWeapon(item.kind) || Types.isArmor(item.kind)) && Types.getItemPrice(item.kind) === price) {
             if(Types.isToken(tokenType)) {
                 if(this.wallet[tokenType] - price >= 0) {
                     var callback = function() { 
@@ -951,7 +951,7 @@ module.exports = Player = Character.extend({
                 this.send([Types.Messages.SHOP_ERROR, Types.Messages.SHOP_ERROR_TYPE.DONT_USE_TYPE, this.wallet[tokenType]]);
             }
         } else {
-            this.send([Types.Messages.SHOP_ERROR, Types.Messages.SHOP_ERROR_TYPE.NOT_MATCH_PRICE, Types.getItemPrice(itemType)]);
+            this.send([Types.Messages.SHOP_ERROR, Types.Messages.SHOP_ERROR_TYPE.NOT_MATCH_PRICE, Types.getItemPrice(item.kind)]);
         }
     },
     setWallet: function(kind, amount) {
