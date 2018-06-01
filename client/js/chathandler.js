@@ -98,9 +98,9 @@ define(['jquery'], function() {
           var name = message.split(':')[0];
           var contents = message.split(':')[1];
           if(type == "world") {
-              var el = $("<p class='world'>" + "<span>" + name + "</span>: " + contents + "</p>");
+              var el = $("<p class='world'>" + "<span class='name'>" + name + "</span>: " + contents + "</p>");
           } else {
-            var el = $("<p>" + "<span>" + name + "</span>: " + contents + "</p>");
+            var el = $("<p>" + "<span class='name'>" + name + "</span>: " + contents + "</p>");
           }
           $(el).appendTo(this.chatLog);
           $(this.chatLog).scrollTop(999999);
