@@ -1017,6 +1017,7 @@ function(Camera, Item, Character, Player, Timer) {
         },
 
         renderStaticCanvases: function() {
+            this.clearScreen(this.background);
             this.background.save();
             this.setCameraView(this.background);
             this.drawTerrain();
