@@ -65,7 +65,7 @@ define(['jquery'], function() {
                       // World chat
                       "/1 ": function(entityId, message) {
                           messageId = Math.floor(Math.random() * 10000);
-                          self.addToChatLog(message);
+                          self.addToChatLog(message, "world");
                           return true;
                       }
                   }
@@ -80,12 +80,28 @@ define(['jquery'], function() {
                   }
                   
               }
+          } else {
+            switch(type) {
+                case 'senders':
+                    // self.game.client.sendChat(self.game.player.name + ": " + message);
+                    return false;
+                case 'receivers':
+                    messageId = Math.floor(Math.random() * 10000);
+                    self.addToChatLog(self.game.player.name + ": " + message);
+                    return false;
+            }
           }
           return false;
       },
-      addToChatLog: function(message){
+      addToChatLog: function(message, type){
           var self = this;
-          var el = $("<p>" + message + "</p>");
+          var name = message.split(':')[0];
+          var contents = message.split(':')[1];
+          if(type == "world") {
+              var el = $("<p class='world'>" + "<span>" + name + "</span>: " + contents + "</p>");
+          } else {
+            var el = $("<p>" + "<span>" + name + "</span>: " + contents + "</p>");
+          }
           $(el).appendTo(this.chatLog);
           $(this.chatLog).scrollTop(999999);
       },
