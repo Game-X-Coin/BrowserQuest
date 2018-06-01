@@ -436,6 +436,10 @@ module.exports = Player = Character.extend({
                             self.equipItem(itemKind, false);
                         }
                         self.broadcast(self.equip(itemKind));
+                    } else if(message[1] === "weapon") {
+                        self.inventory[inventoryNumber] = self.weapon;
+                        databaseHandler.setInventory(self.name, self.weapon, inventoryNumber, 1);
+                        self.equipItem(itemKind, false);
                     } else if(message[1] === "empty"){
                         //var item = self.server.addItem(self.server.createItem(itemKind, self.x, self.y));
                         var item = self.server.addItemFromChest(itemKind, self.x, self.y);
