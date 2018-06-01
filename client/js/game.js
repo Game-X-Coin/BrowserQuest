@@ -1064,6 +1064,11 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
                 self.player.onStep(function() {
                     if(self.player.hasNextStep()) {
                         self.registerEntityDualPosition(self.player);
+                        const nextStep = self.player.path[self.player.step+1];
+                        var item = self.getItemAt(nextStep[0], nextStep[1]);
+                        if(item instanceof Item) {
+                            self.tryLootingItem(item);
+                        }
                     }
 
                     if(self.isZoningTile(self.player.gridX, self.player.gridY)) {
@@ -1071,11 +1076,6 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
                     }
 
                     self.player.forEachAttacker(self.makeAttackerFollow);
-
-                    var item = self.getItemAt(self.player.gridX, self.player.gridY);
-                    if(item instanceof Item) {
-                        self.tryLootingItem(item);
-                    }
 
                     self.updatePlayerCheckpoint();
 
