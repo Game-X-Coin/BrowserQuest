@@ -953,6 +953,21 @@ function(Camera, Item, Character, Player, Timer) {
                 }
             }
         },
+        drawCoordination: function(){
+            var self = this;
+            var s = this.scale;
+
+            this.context.save();
+            this.context.translate(this.camera.x*s, this.camera.y*s);
+            var color = "white";
+            self.drawText(this.game.player.gridX.toString(),
+                                (0.5)*self.tilesize*s-this.game.player.gridX.toString().length*self.tilesize*0.25,
+                                (this.camera.gridH)*self.tilesize*s-5, false, color);
+            self.drawText(this.game.player.gridY.toString(),
+                                (1.5)*self.tilesize*s-this.game.player.gridY.toString().length*self.tilesize*0.25,
+                                (this.camera.gridH)*self.tilesize*s-5, false, color);
+            this.context.restore();
+        },
 
         setCameraView: function(ctx) {
             ctx.translate(-this.camera.x * this.scale, -this.camera.y * this.scale);
@@ -1045,6 +1060,7 @@ function(Camera, Item, Character, Player, Timer) {
             }
             this.drawInventory();
             this.drawWallet();
+            this.drawCoordination();
             this.context.restore();
 
             // Overlay UI elements
