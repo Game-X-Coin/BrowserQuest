@@ -810,8 +810,8 @@ function(Camera, Item, Character, Player, Timer) {
                         amount = wallet[key];
                     }
                     self.drawText(amount.toString(),
-                        (this.camera.gridW-2+index)*self.tilesize*s,
-                        1*self.tilesize*s, false, color);
+                        (this.camera.gridW-2+index+0.5)*self.tilesize*s - amount.toString().length*self.tilesize*0.25,
+                        1.2*self.tilesize*s, false, color);
                 }
             }
         },
@@ -882,7 +882,7 @@ function(Camera, Item, Character, Player, Timer) {
                                 color = "lime";
 
                             self.drawText(this.game.player.inventoryCount[i].toString(),
-                                (this.camera.gridW-inventory.length+i)*self.tilesize*s,
+                                (this.camera.gridW-inventory.length+i+0.5)*self.tilesize*s-this.game.player.inventoryCount[i].toString().length*self.tilesize*0.25,
                                 (this.camera.gridH-1)*self.tilesize*s, false, color);
                         }
                     }
