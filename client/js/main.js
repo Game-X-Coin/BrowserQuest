@@ -657,7 +657,7 @@ define(['jquery', 'app', 'entrypoint'], function($, App, EntryPoint) {
                         hpg.css('display', 'block');
 
                         setInterval(function () {
-                            if(((game.player.hitPoints / game.player.maxHitPoints) <= game.hpGuide) && 
+                            if(game.player && ((game.player.hitPoints / game.player.maxHitPoints) <= game.hpGuide) && 
                                (game.healShortCut >= 0) && 
                                Types.isHealingItem(game.player.inventory[game.healShortCut]) &&
                                (game.player.inventoryCount[game.healShortCut] > 0)
