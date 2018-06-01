@@ -348,15 +348,16 @@ module.exports = Player = Character.extend({
                         } else if(Types.isHealingItem(kind)) {
                             self.putInventory(item);
                         } else if(Types.isWeapon(kind)) {
-                            self.equipItem(item.kind);
-                            self.broadcast(self.equip(kind));
+                            // self.equipItem(item.kind);
+                            // self.broadcast(self.equip(kind));
+                            self.putInventory(item);
                         } else if(Types.isArmor(kind)) {
-                            if(self.level < 100){
-                                self.equipItem(item.kind);
-                                self.broadcast(self.equip(kind));
-                            } else {
-                                self.putInventory(item);
-                            }
+                            // if(self.level < 100){
+                                // self.equipItem(item.kind);
+                                // self.broadcast(self.equip(kind));
+                            // } else {
+                            self.putInventory(item);
+                            // }
                         } else if(kind == Types.Entities.CAKE
                             || kind === Types.Entities.CD){
                             self.putInventory(item);
@@ -436,6 +437,10 @@ module.exports = Player = Character.extend({
                             self.equipItem(itemKind, false);
                         }
                         self.broadcast(self.equip(itemKind));
+                    } else if(message[1] === "weapon") {
+                        self.inventory[inventoryNumber] = self.weapon;
+                        databaseHandler.setInventory(self.name, self.weapon, inventoryNumber, 1);
+                        self.equipItem(itemKind, false);
                     } else if(message[1] === "empty"){
                         //var item = self.server.addItem(self.server.createItem(itemKind, self.x, self.y));
                         var item = self.server.addItemFromChest(itemKind, self.x, self.y);

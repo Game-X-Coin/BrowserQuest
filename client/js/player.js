@@ -97,33 +97,35 @@ define(['character', 'exceptions'], function(Character, Exceptions) {
                 // rank = Types.getArmorRank(item.kind);
                 // currentRank = Types.getArmorRank(Types.getKindFromString(currentArmorName));
                 // msg = "You are wearing a better armor";
-                if(this.level >= 100){
-                    this.putInventory(item.kind, 1);
-                  } else{
-                    rank = Types.getArmorRank(item.kind);
-                    currentRank = Types.getArmorRank(Types.getKindFromString(this.armorName));
-                    msg = "You are wielding a better armor";
+                // if(this.level >= 100){
+                //     this.putInventory(item.kind, 1);
+                //   } else{
+                //     rank = Types.getArmorRank(item.kind);
+                //     currentRank = Types.getArmorRank(Types.getKindFromString(this.armorName));
+                //     msg = "You are wielding a better armor";
 
-                    if(rank && currentRank) {
-                      if(rank === currentRank) {
-                          throw new Exceptions.LootException("You already have this "+item.type);
-                      } else if(rank <= currentRank) {
-                          throw new Exceptions.LootException(msg);
-                      }
-                    }
-                  }
+                //     if(rank && currentRank) {
+                //       if(rank === currentRank) {
+                //           throw new Exceptions.LootException("You already have this "+item.type);
+                //       } else if(rank <= currentRank) {
+                //           throw new Exceptions.LootException(msg);
+                //       }
+                //     }
+                //   }
+                this.putInventory(item.kind, 1);
             } else if(item.type === "weapon") {
-                rank = Types.getWeaponRank(item.kind);
-                currentRank = Types.getWeaponRank(Types.getKindFromString(this.weaponName));
-                msg = "You are wielding a better weapon";
+                // rank = Types.getWeaponRank(item.kind);
+                // currentRank = Types.getWeaponRank(Types.getKindFromString(this.weaponName));
+                // msg = "You are wielding a better weapon";
 
-                if(rank && currentRank) {
-                    if(rank === currentRank) {
-                        throw new Exceptions.LootException("You already have this "+item.type);
-                    } else if(rank <= currentRank) {
-                        throw new Exceptions.LootException(msg);
-                    }
-                }
+                // if(rank && currentRank) {
+                //     if(rank === currentRank) {
+                //         throw new Exceptions.LootException("You already have this "+item.type);
+                //     } else if(rank <= currentRank) {
+                //         throw new Exceptions.LootException(msg);
+                //     }
+                // }
+                this.putInventory(item.kind, 1);
             } else if(item.kind === Types.Entities.CAKE
                 || item.kind === Types.Entities.CD){
                 this.putInventory(item.kind, 1);
