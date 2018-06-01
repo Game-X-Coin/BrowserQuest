@@ -348,15 +348,16 @@ module.exports = Player = Character.extend({
                         } else if(Types.isHealingItem(kind)) {
                             self.putInventory(item);
                         } else if(Types.isWeapon(kind)) {
-                            self.equipItem(item.kind);
-                            self.broadcast(self.equip(kind));
+                            // self.equipItem(item.kind);
+                            // self.broadcast(self.equip(kind));
+                            self.putInventory(item);
                         } else if(Types.isArmor(kind)) {
-                            if(self.level < 100){
-                                self.equipItem(item.kind);
-                                self.broadcast(self.equip(kind));
-                            } else {
-                                self.putInventory(item);
-                            }
+                            // if(self.level < 100){
+                                // self.equipItem(item.kind);
+                                // self.broadcast(self.equip(kind));
+                            // } else {
+                            self.putInventory(item);
+                            // }
                         } else if(kind == Types.Entities.CAKE
                             || kind === Types.Entities.CD){
                             self.putInventory(item);
