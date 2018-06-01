@@ -2488,7 +2488,9 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
                         this.player.turnTo(Types.Orientations.DOWN);
                     }
 
-                    this.makePlayerGoTo(pos.x, pos.y);
+                    if(!(entity instanceof Player && entity !== this.player)) {
+                        this.makePlayerGoTo(pos.x, pos.y);
+                    }
                 }
             }
         },
@@ -2880,7 +2882,7 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
             this.player = new Warrior("player", this.username);
             this.player.gxcId = this.gxcId;
             this.player.tempKey = this.tempKey;
-            console.log(this.player);
+
             this.initPlayer();
             this.app.initTargetHud();
 
