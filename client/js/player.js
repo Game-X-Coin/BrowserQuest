@@ -139,7 +139,7 @@ define(['character', 'exceptions'], function(Character, Exceptions) {
             if(Types.isArmor(item.kind) && this.invincible) {
                 this.stopInvincibility();
             }
-            item.onLoot(this);
+            // item.onLoot(this);
         },
         putInventory: function(itemKind, count){
             const inventoryIndex = this.inventory.indexOf(itemKind);

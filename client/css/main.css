@@ -376,6 +376,10 @@ footer, header, hgroup, menu, nav, section {
       #chatLog p .name{
         font-weight: bold;
       }
+      
+      #chatLog p.world {
+          color: yellow;
+      }
   
       #board{
         position: absolute; 
