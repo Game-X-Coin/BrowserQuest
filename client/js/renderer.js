@@ -426,7 +426,12 @@ function(Camera, Item, Character, Player, Timer) {
                     }
                 }
 
-                if(entity instanceof Character && !entity.isDead && entity.hasWeapon()) {
+                if(entity instanceof Character) {
+                  if(entity.id === this.game.playerId) {
+                    this.game.focusPlayer();
+                    this.game.resetZone();
+                  }
+                  if(!entity.isDead && entity.hasWeapon()) {
                     var weapon = this.game.sprites[entity.getWeaponName()];
 
                     if(weapon) {
@@ -438,10 +443,11 @@ function(Camera, Item, Character, Player, Timer) {
                             wh = weapon.height * os;
 
                         this.context.drawImage(weapon.image, wx, wy, ww, wh,
-                                               weapon.offsetX * s,
-                                               weapon.offsetY * s,
-                                               ww * ds, wh * ds);
+                                              weapon.offsetX * s,
+                                              weapon.offsetY * s,
+                                              ww * ds, wh * ds);
                     }
+                  }
                 }
 
                 this.context.restore();
