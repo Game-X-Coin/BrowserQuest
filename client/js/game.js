@@ -2756,7 +2756,7 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
         },
 
         resetZone: function() {
-            this.bubbleManager.clean();
+            // this.bubbleManager.clean();
             this.initAnimatedTiles();
             this.renderer.renderStaticCanvases();
         },

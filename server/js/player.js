@@ -166,7 +166,7 @@ module.exports = Player = Character.extend({
                             databaseHandler.chatBan(self, targetPalyer);
                         }
                     } else {
-                        self.broadcastToZone(new Messages.Chat(self, msg), false);
+                        self.server.pushBroadcast(new Messages.Chat(self, msg), false);
                     }
                 }
             }
