@@ -1,0 +1,1638 @@
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO Processing map info...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Map is [176x352] Tile Size: 16
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO * Phase 1 Tileset Processing
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing map tileset properties...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1] is an animated tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 4
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [4] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 5
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [5] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 7
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [7] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 10
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [10] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 18
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [18] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 19
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [19] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 20
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [20] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 25
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [25] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 38
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [38] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 39
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [39] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 40
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [40] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 44
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [44] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 45
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [45] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 46
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [46] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 47
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [47] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 48
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [48] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 49
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [49] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 50
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [50] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 51
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [51] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 58
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [58] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 59
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [59] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 60
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [60] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 61
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [61] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 62
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [62] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 64
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [64] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 65
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [65] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [65] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 66
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [66] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 67
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [67] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 68
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [68] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 69
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [69] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 70
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [70] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [70] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 71
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [71] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 81
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [81] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 82
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [82] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 84
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [84] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 85
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [85] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [85] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 86
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [86] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 87
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [87] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 88
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [88] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 89
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [89] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 90
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [90] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [90] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 91
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [91] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 98
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [98] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 101
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [101] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 102
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [102] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 104
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [104] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 105
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [105] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [105] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 106
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [106] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 107
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [107] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 108
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [108] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 109
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [109] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 110
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [110] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [110] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 111
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [111] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 121
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [121] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 122
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [122] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 125
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [125] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 126
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [126] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 127
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [127] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 128
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [128] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 129
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [129] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 130
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [130] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 131
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [131] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 141
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [141] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 142
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [142] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 143
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [143] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 145
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [145] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 146
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [146] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 147
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [147] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 148
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [148] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 149
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [149] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 150
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [150] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 151
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [151] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 161
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [161] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 162
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [162] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 163
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [163] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 165
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [165] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 166
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [166] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 167
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [167] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 168
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [168] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 169
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [169] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 170
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [170] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 171
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [171] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 181
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [181] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 182
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [182] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 183
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [183] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 206
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [206] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 207
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [207] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 208
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [208] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 213
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [213] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 214
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [214] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 215
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [215] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 216
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [216] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 225
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [225] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 226
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [226] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 227
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [227] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 228
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [228] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 229
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [229] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 233
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [233] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 234
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [234] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 235
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [235] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 236
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [236] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 241
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [241] is an animated tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 244
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [244] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 245
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [245] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 246
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [246] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 247
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [247] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 248
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [248] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 249
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [249] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 250
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [250] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 253
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [253] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 254
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [254] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 255
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [255] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 256
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [256] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 257
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [257] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 258
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [258] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 259
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [259] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 260
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [260] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 264
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [264] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 265
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [265] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 266
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [266] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 267
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [267] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 268
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [268] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 269
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [269] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 270
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [270] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [270] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 271
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [271] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 273
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [273] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 274
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [274] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [274] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 275
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [275] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [275] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 276
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [276] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 277
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [277] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 278
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [278] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 279
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [279] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 280
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [280] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 281
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [281] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 282
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [282] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 284
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [284] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 285
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [285] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [285] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 286
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [286] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 287
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [287] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 288
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [288] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 289
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [289] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 290
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [290] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [290] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 291
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [291] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 293
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [293] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 294
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [294] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 295
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [295] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 296
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [296] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 301
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [301] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 302
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [302] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 304
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [304] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 305
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [305] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [305] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 306
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [306] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 307
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [307] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 308
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [308] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 309
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [309] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 310
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [310] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [310] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 311
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [311] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 321
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [321] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 322
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [322] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 324
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [324] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [324] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 325
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [325] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [325] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 326
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [326] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 327
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [327] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 328
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [328] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 329
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [329] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 330
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [330] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [330] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 331
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [331] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 332
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [332] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 333
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [333] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 341
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [341] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 342
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [342] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 344
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [344] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 345
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [345] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [345] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 346
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [346] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 347
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [347] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 348
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [348] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 349
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [349] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 350
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [350] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [350] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 351
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [351] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 352
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [352] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 353
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [353] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 364
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [364] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 365
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [365] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 366
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [366] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 367
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [367] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 368
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [368] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 369
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [369] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 370
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [370] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 371
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [371] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 372
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [372] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 373
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [373] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 382
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [382] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 401
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [401] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 402
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [402] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 403
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [403] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 406
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [406] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 407
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [407] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 408
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [408] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 409
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [409] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 410
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [410] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 411
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [411] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 421
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [421] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 422
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [422] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 423
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [423] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 426
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [426] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 427
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [427] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 428
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [428] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 429
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [429] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 430
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [430] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 431
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [431] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 441
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [441] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 442
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [442] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 443
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [443] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 446
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [446] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 447
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [447] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 448
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [448] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 449
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [449] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 450
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [450] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 451
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [451] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 466
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [466] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 467
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [467] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 468
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [468] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 469
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [469] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 470
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [470] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 471
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [471] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 481
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [481] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 482
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [482] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 501
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [501] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 502
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [502] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 602
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [602] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 606
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 611
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [611] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 612
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [612] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 613
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [613] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 618
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [618] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 619
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [619] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 621
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [621] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 622
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [622] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 623
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [623] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 626
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 631
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [631] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 633
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [633] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 637
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [637] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 638
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [638] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 639
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [639] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 640
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [640] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 641
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [641] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 642
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [642] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 643
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [643] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 646
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 649
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [649] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 651
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [651] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 652
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [652] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 653
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [653] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 657
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [657] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 658
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [658] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 659
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [659] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 660
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [660] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 661
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [661] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 662
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [662] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 663
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [663] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 666
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [666] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 667
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [667] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 669
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [669] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 677
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [677] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 678
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [678] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 679
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [679] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 680
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [680] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 685
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [685] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 686
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [686] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 687
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [687] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 688
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [688] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 689
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [689] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 690
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [690] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 698
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [698] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 699
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [699] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 701
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [701] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 702
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [702] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 703
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [703] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 704
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [704] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 705
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [705] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 706
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [706] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [706] is an animated tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 721
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [721] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 722
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [722] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 723
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [723] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 724
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [724] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 725
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [725] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 726
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [726] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [726] is an animated tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 737
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [737] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 738
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [738] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 739
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [739] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 741
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [741] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 742
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [742] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 743
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [743] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 744
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [744] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 745
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [745] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 748
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 757
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [757] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 758
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [758] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 759
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [759] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 761
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [761] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 762
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [762] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 763
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [763] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 764
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [764] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 765
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [765] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 777
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [777] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 778
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [778] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 779
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [779] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 781
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [781] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 783
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [783] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 784
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [784] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 795
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [795] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 797
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [797] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 798
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [798] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 799
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [799] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 801
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [801] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 804
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [804] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 814
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [814] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 815
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [815] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 816
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [816] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 821
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [821] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 824
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [824] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 834
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [834] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 835
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [835] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 836
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [836] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 841
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [841] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 844
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [844] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 854
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [854] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 855
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [855] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 856
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [856] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 861
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 864
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 875
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [875] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 885
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [885] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 886
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [886] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 887
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [887] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 906
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [906] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 921
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [921] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 922
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [922] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 923
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [923] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 924
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [924] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 925
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [925] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 933
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [933] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 934
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [934] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 937
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [937] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 938
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [938] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 942
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [942] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 943
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [943] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 944
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [944] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 952
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [952] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 953
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [953] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 955
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [955] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 956
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [956] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 958
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [958] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 959
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [959] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 963
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [963] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 967
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [967] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 968
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [968] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 969
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [969] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 970
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [970] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 971
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [971] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 972
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [972] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 975
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [975] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 976
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [976] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 979
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [979] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 980
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [980] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 987
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [987] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 988
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [988] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 989
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [989] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 990
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [990] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 991
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [991] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 995
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [995] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 996
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [996] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1000
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1000] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1001
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1001] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1001] is an animated tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1007
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1007] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1008
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1008] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1011
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1011] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1014
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1014] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1015
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1015] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1016
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1016] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1020
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1020] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1021
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1021] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1021] is an animated tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1027
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1027] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1028
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1028] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1031
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1031] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1032
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1032] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1039
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1039] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1040
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1040] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1041
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1041] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1041] is an animated tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1047
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1047] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1048
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1048] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1051
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1051] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1052
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1052] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1053
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1053] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1058
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1058] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1059
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1059] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1060
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1060] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1061
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1061] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1061] is an animated tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1067
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1067] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1068
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1068] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1072
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1072] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1073
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1073] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1074
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1074] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1075
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1075] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1076
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1076] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1077
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1077] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1078
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1078] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1079
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1079] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1081
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1093
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1093] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1094
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1094] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1095
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1095] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1096
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1096] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1097
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1097] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1098
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1098] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1101
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1101] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1102
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1102] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1103
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1103] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1104
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1104] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1105
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1105] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1106
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1106] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1107
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1107] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1120
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1120] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1121
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1122
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1122] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1122] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1125
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1125] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1127
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1127] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1129
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1129] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1130
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1130] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1131
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1131] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1132
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1132] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1133
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1133] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1134
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1134] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1135
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1135] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1136
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1136] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1137
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1137] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1140
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1140] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1141
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1147
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1147] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1148
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1148] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1150
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1150] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1151
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1151] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1152
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1152] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1153
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1153] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1154
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1154] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1155
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1155] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1156
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1156] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1157
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1157] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1159
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1159] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1160
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1160] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1161
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1167
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1167] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1169
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1169] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1178
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1178] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1179
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1179] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1180
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1180] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1181
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1181] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1183
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1183] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1184
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1184] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1185
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1185] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1188
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1188] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1189
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1189] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1190
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1190] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1191
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1191] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1192
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1192] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1193
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1193] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1194
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1194] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1195
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1195] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1196
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1196] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1197
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1197] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1198
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1198] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1199
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1199] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1204
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1204] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1209
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1209] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1210
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1210] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1211
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1211] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1212
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1212] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1213
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1213] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1214
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1214] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1215
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1215] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1216
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1216] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1217
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1217] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1218
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1218] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1223
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1223] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1224
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1224] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1227
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1227] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1228
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1228] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1236
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1237
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1237] is an animated tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1241
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1242
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1242] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1243
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1243] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1245
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1245] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1246
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1246] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1247
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1248
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1248] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1249
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1249] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1251
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1251] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1251] is an animated tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1257
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1257] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1257] is an animated tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1258
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1261
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1261] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1262
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1262] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1265
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1265] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1266
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1266] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1269
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1269] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1270
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1270] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1271
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1271] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1271] is an animated tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1281
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1281] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1285
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1285] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1286
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1286] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1290
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1290] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1291
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1291] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1291] is an animated tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1296
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1301
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1301] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1304
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1304] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1305
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1305] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1306
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1306] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1310
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1310] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1311
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1311] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1311] is an animated tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1316
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1321
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1321] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1322
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1322] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1323
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1329
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1329] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1330
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1330] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1331
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1331] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1331] is an animated tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1336
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1341
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1341] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1342
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1342] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1343
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1343] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1344
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1345
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1346
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1347
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1348
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1348] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1349
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1349] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1350
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1350] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1362
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1362] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1363
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1363] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1364
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1364] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1365
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1365] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1366
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1366] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1367
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1367] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1368
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1368] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1369
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1369] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1371
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1371] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1372
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1372] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1373
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1373] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1383
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1383] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1384
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1384] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1385
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1385] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1386
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1386] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1387
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1387] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1388
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1388] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1391
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1391] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1393
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1393] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1401
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1401] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1401] is an animated tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1411
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1411] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1411] is an animated tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1418
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1421
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1421] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1421] is an animated tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1428
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1428] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1428] is an animated tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1437
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1441
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1442
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1443
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1443] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1444
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1444] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1455
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1455] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1456
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1456] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1461
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1461] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1462
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1462] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1463
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1463] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1464
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1464] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1466
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1466] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1467
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1467] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1468
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1468] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1469
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1469] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1474
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1474] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1475
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1475] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1476
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1476] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1477
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1477] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1481
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1481] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1482
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1482] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1483
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1483] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1484
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1484] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1486
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1486] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1489
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1489] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1493
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1493] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1494
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1494] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1495
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1495] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1496
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1496] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1497
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1497] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1498
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1498] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1501
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1501] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1501] is an animated tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1506
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1506] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1509
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1509] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1512
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1512] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1513
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1513] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1514
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1514] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1515
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1515] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1516
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1516] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1517
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1517] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1518
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1518] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1519
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1519] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1521
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1521] is an animated tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1526
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1526] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1527
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1527] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1528
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1528] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1529
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1529] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1532
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1532] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1533
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1533] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1533] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1534
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1534] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1535
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1535] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1536
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1536] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1537
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1537] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1538
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1538] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1538] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1539
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1539] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1552
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1552] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1553
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1553] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1553] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1554
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1554] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1555
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1555] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1556
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1556] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1557
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1557] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1558
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1558] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1558] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1559
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1559] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1561
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1561] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1562
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1562] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1563
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1563] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1572
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1572] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1573
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1573] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1574
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1574] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1575
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1575] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1576
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1576] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1577
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1577] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1578
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1578] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1579
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1579] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1581
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1581] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1582
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1582] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1583
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1583] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1584
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1584] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1586
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1586] is an animated tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1593
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1593] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1594
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1594] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1595
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1595] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1596
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1596] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1597
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1597] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1598
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1598] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1599
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1599] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1601
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1601] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1602
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1602] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1603
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1603] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1604
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1604] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1605
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1605] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1613
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1613] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1614
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1614] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1615
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1615] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1616
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1616] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1617
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1617] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1618
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1618] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1619
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1619] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1622
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1622] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1622] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1623
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1623] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1624
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1624] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1626
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1626] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1627
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1627] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1628
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1628] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1647
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1647] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1661
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1661] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1662
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1662] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1663
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1663] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1666
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1666] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1667
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1667] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1669
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1669] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1670
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1670] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1671
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1671] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1678
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1678] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1679
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1679] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1680
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1680] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1681
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1681] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1683
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1683] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1686
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1686] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1687
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1687] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1689
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1689] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1690
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1690] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1691
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1691] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1698
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1698] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1699
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1699] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1700
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1700] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1718
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1718] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1719
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1719] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1720
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1720] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1721
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1721] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1721] is an animated tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1739
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1739] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1741
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1741] is an animated tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1744
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1744] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1745
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1745] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1746
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1746] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1747
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1747] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1747] is an animated tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1764
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1764] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1766
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1766] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1767
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1767] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1781
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1781] is an animated tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1800
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1800] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1801
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1801] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1801] is an animated tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1820
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1820] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1821
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1821] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1822
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1822] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1823
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1823] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1841
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1841] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1842
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1842] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1843
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1843] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1857
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1857] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1858
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1858] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1859
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1859] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1861
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1861] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1862
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1862] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1863
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1863] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1864
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1864] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1865
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1865] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1877
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1877] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1878
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1878] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1879
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1879] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1881
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1881] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1882
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1882] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1883
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1883] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1884
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1884] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1885
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1885] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1886
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1886] is an animated tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1894
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1897
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1897] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1898
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1898] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1899
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1899] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1902
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1902] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1903
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1903] is a high tile (obscures foreground)
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1906
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1906] is an animated tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1914
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1914] is an animated tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1917
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1917] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1919
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1919] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing Tile ID 1921
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1921] is a collision tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] DEBUG Tile ID [1921] is an animated tile
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO * Phase 2 Layer Processing
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing doors...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing music trigger areas...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing map checkpoints...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO * Phase 3 Tile Map Processing
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: mobile zones
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: checkpoints
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: music
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: blocking
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing blocking tiles...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: plateau
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Processing plateau tiles...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: zones
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: pvp
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: portals
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Process raw layer data...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: roaming
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: doors
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: chestareas
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: chests
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: entities
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: mase walls
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Process raw layer data...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: mase
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Process raw layer data...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: forest objects 2
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Process raw layer data...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: forest objects 1
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Process raw layer data...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: bridge
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Process raw layer data...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: bridges shadows
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Process raw layer data...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: sea
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Process raw layer data...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: forest trees
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Process raw layer data...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: forest boundaries
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Process raw layer data...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: forest lakes
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Process raw layer data...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: forest
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Process raw layer data...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: forest paths
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Process raw layer data...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: easter eggs
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Process raw layer data...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: indoor objects
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Process raw layer data...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: carpets
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Process raw layer data...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: indoor doors
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Process raw layer data...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: indoorwalls
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Process raw layer data...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: indoor
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Process raw layer data...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: cavewalls
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Process raw layer data...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: caveriver
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Process raw layer data...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: trees2
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Process raw layer data...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: cave
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Process raw layer data...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: lava boundaries
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Process raw layer data...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: lavafalls
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Process raw layer data...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: cactus
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Process raw layer data...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: totems
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Process raw layer data...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: cliffs 2
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Process raw layer data...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: cliffs
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Process raw layer data...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: canyon
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Process raw layer data...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: lava
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Process raw layer data...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: bones
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Process raw layer data...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: camps
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Process raw layer data...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: dead trees
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Process raw layer data...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: graveyard
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Process raw layer data...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: small rocks
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Process raw layer data...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: dead leaves
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Process raw layer data...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: dead grass
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Process raw layer data...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: graveyard mud
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Process raw layer data...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: big rocks
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Process raw layer data...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: dryground2
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Process raw layer data...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: dryground
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Process raw layer data...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: houses
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Process raw layer data...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: houses layer 2
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Process raw layer data...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: river
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Process raw layer data...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: village boundaries lvl 2
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Process raw layer data...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: village boundaries
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Process raw layer data...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: lakes
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Process raw layer data...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: grassvariations
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Process raw layer data...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: water
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Process raw layer data...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: stone
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Process raw layer data...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: grass
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Process raw layer data...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: mud
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Process raw layer data...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: groundvariations
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Process raw layer data...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: ground
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Process raw layer data...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: sand objects
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Process raw layer data...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: snow
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Process raw layer data...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO ** Processing layer: sand
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO *** Process raw layer data...
+[Thu Jun 07 2018 21:34:56 GMT+0900 (KST)] INFO * Phase 4 Map Data Fixup

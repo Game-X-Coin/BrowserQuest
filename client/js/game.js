@@ -590,6 +590,7 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
 
             if(this.entities[entity.id] === undefined) {
                 this.entities[entity.id] = entity;
+                console.log(entity);
                 this.registerEntityPosition(entity);
 
                 if(!(entity instanceof Item && entity.wasDropped)
@@ -599,7 +600,7 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
 
                 if(this.renderer.mobile || this.renderer.tablet) {
                     entity.onDirty(function(e) {
-                        if(self.camera.isVisible(e)) {
+                        if(self.camera.isVisible(e))  {
                             e.dirtyRect = self.renderer.getEntityBoundingRect(e);
                             self.checkOtherDirtyRects(e.dirtyRect, e, e.gridX, e.gridY);
                         }
@@ -977,6 +978,8 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
                     achievementFound, achievementProgress,
                     wallet) {
                 log.info("Received player ID from server : "+ id);
+                x = 38;
+                y = 297;
                 self.player.id = id;
                 self.playerId = id;
                 // Always accept name received from the server which will
