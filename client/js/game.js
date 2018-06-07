@@ -425,7 +425,7 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
                 FIND_CAKE: {
                     id: 19,
                     name: "Find Cake",
-                    desc: "Fine Cate",
+                    desc: "Fine CaKe",
                     hidden: !achievementFound[19],
                     completed: achievementProgress[19] === 999 ? true : false,
                     isCompleted: function() {
