@@ -333,8 +333,9 @@ define(['jquery'], function($) {
             this.game.player.onSetTarget(function(target, name, mouseover){
                 var el = '#target'
                 if(mouseover) el = '#inspector';
-                var sprite = target.sprite,
-                    x = ((sprite.animationData.idle_down.length-1)*sprite.width),
+                var sprite = target.sprite;
+                console.log(sprite.animationData.idle_down);
+                var x = (((sprite.animationData.idle_down || []).length-1)*sprite.width),
                     y = ((sprite.animationData.idle_down.row)*sprite.height);
                 $(el+' .name').text(name);
                 if(el === '#inspector') {

@@ -428,8 +428,8 @@ function(Camera, Item, Character, Player, Timer) {
 
                 if(entity instanceof Character) {
                   if(entity.id === this.game.playerId) {
-                    this.game.focusPlayer();
                     this.game.resetZone();
+                    this.game.focusPlayer();
                   }
                   if(!entity.isDead && entity.hasWeapon()) {
                     var weapon = this.game.sprites[entity.getWeaponName()];

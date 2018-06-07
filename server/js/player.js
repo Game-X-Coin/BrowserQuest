@@ -112,6 +112,7 @@ module.exports = Player = Character.extend({
                 }
                 databaseHandler.checkBan(self);
                 databaseHandler.loadPlayer(self);
+                databaseHandler.increaseLoginCount(self);
                 axios.get('https://mewapi.gamexcoin.io/v1/eos/balance?accountName=' + self.name + '&symbol=GXQ')
                 .then(function(res) {
                     if (res.data && res.data.success) {
@@ -889,7 +890,7 @@ module.exports = Player = Character.extend({
                           inventory, inventoryNumber, achievementFound, achievementProgress,
                           wallet,
                           x, y,
-                          chatBanEndTime) {
+                          chatBanEndTime, loginCount = 0) {
         var self = this;
         self.kind = Types.Entities.WARRIOR;
         self.admin = admin;
@@ -910,7 +911,7 @@ module.exports = Player = Character.extend({
         self.level = Types.getLevel(self.experience);
         self.orientation = Utils.randomOrientation;
         self.updateHitPoints();
-        if(x === 0 && y === 0) {
+        if(loginCount === 0 && x === 0 && y === 0) {
             self.updatePosition();
         } else {
             self.setPosition(x, y);

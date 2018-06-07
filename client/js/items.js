@@ -3,6 +3,13 @@ define(['item'], function(Item) {
 
     var Items = {
 
+        Sword1: Item.extend({
+            init: function(id) {
+                this._super(id, Types.Entities.SWORD1, "weapon");
+                this.lootMessage = "You get a normal sword";
+            },
+        }),
+
         Sword2: Item.extend({
             init: function(id) {
                 this._super(id, Types.Entities.SWORD2, "weapon");

@@ -128,7 +128,7 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
                 "sorcerer", "octocat", "beachnpc", "forestnpc", "desertnpc", "lavanpc",
                 "clotharmor", "item-clotharmor", "leatherarmor", "mailarmor", "platearmor",
                 "redarmor", "goldenarmor", "firefox", "death", "sword1", "axe", "chest",
-                "sword2", "redsword", "bluesword", "goldensword", "item-sword2", "item-axe",
+                "sword2", "redsword", "bluesword", "goldensword", "item-sword1", "item-sword2", "item-axe",
                 "item-redsword", "item-bluesword", "item-goldensword", "item-leatherarmor",
                 "item-mailarmor", "item-platearmor", "item-redarmor", "item-goldenarmor",
                 "item-flask", "item-cake", "item-burger", "morningstar", "item-morningstar",

@@ -98,6 +98,7 @@ define(['npc'], function(Npc) {
         Coder: Npc.extend({
             init: function(id) {
                 this._super(id, Types.Entities.CODER, 1);
+                this.shop = true;
                 this.beforeQuestCompleteTalk = [
                     "Hi! Do you know that you can also play BrowserQuest on your tablet or mobile?",
                     "That's the beauty of HTML5!",

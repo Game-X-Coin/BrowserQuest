@@ -273,6 +273,10 @@ define(['mobs', 'items', 'npcs', 'warrior', 'chest'], function(Mobs, Items, NPCs
 
     //===== items ======
 
+    EntityFactory.builders[Types.Entities.SWORD1] = function(id) {
+      return new Items.Sword1(id);
+    };
+
     EntityFactory.builders[Types.Entities.SWORD2] = function(id) {
         return new Items.Sword2(id);
     };

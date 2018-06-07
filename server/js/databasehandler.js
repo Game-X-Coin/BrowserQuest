@@ -106,6 +106,7 @@ module.exports = DatabaseHandler = cls.Class.extend({
                         .hget(userKey, "inventory5:number") // 82
                         .hget(userKey, "inventory6") // 83
                         .hget(userKey, "inventory6:number") // 84
+                        .hget(userKey, "loginCount") // 85
                         .exec(function(err, replies){
                             var pw = replies[0];
                             var armor = replies[1];
@@ -196,6 +197,7 @@ module.exports = DatabaseHandler = cls.Class.extend({
                         var chatBanEndTime = Utils.NaN2Zero(replies[35]);
                         var accessToken = replies[80];
                         player.accessToken = accessToken;
+                        player.loginCount = Utils.NaN2Zero(replies[85]);
 
                         // Check Password
                             if (pw !== player.tempKey) {
@@ -272,7 +274,7 @@ module.exports = DatabaseHandler = cls.Class.extend({
                                     achievementFound, achievementProgress,
                                     wallet,
                                     x, y,
-                                    chatBanEndTime);
+                                    chatBanEndTime, player.loginCount);
                             }
                         });
                     return;
@@ -507,6 +509,12 @@ module.exports = DatabaseHandler = cls.Class.extend({
         client.hset("u:" + name, "wallet" + type, amount);
 
         log.info("Set Wallet: " + name + " " + type + " " + amount);
+    },
+    increaseLoginCount: function(player) {
+        const loginCount = (player.loginCount || 0) + 1;
+        client.hset("u:" + player.name, "loginCount", loginCount);
+
+        log.info("Increase Login Count: " + player.name + " " + loginCount);
     },
     makeEmptyInventory: function(name, number) {
         log.info('Empty Inventory: ' + name + ' ' + number);
