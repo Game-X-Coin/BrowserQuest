@@ -25,8 +25,8 @@ define(['jquery'], function() {
        * @param string message
        * @param boolean send
        */
-      processSendMessage: function(message) {
-          return this.processMessage(null, message, 'senders');
+      processSendMessage: function(sender, message) {
+          return this.processMessage(null, sender, message, 'senders');
       },
 
       /**
@@ -34,8 +34,8 @@ define(['jquery'], function() {
        *
        * @param string message
        */
-      processReceiveMessage: function(entityId, message) {
-          return this.processMessage(entityId, message, 'receivers');
+      processReceiveMessage: function(entityId, sender, message) {
+          return this.processMessage(entityId, sender, message, 'receivers');
       },
 
       /**
@@ -44,18 +44,18 @@ define(['jquery'], function() {
        * @param string message
        * @param string type
        */
-      processMessage: function(entityId, message, type) {
+      processMessage: function(entityId, sender, message, type) {
           var pattern = message.substring(0, 3),
               self = this,
               commandPatterns = {
                   senders: {
                     // World chat
-                    "/1 ": function(message) {
-                        self.game.client.sendChat("/1 " + self.game.player.name + ": " + message);
+                    "/1 ": function(sender, message) {
+                        self.game.client.sendChat("/1 " + message);
                         return true;
                     },
                     // Heal target set
-                    "/h ": function(message){
+                    "/h ": function(sender, message){
                         self.game.client.sendMagic("setheal", message);
                         self.game.player.healTargetName = message;
                         return true;
@@ -63,9 +63,9 @@ define(['jquery'], function() {
                   },
                   receivers: {
                       // World chat
-                      "/1 ": function(entityId, message) {
+                      "/1 ": function(entityId, sender, message) {
                           messageId = Math.floor(Math.random() * 10000);
-                          self.addToChatLog(message, "world");
+                          self.addToChatLog(sender, message, "world");
                           return true;
                       }
                   }
@@ -74,33 +74,31 @@ define(['jquery'], function() {
               if (typeof commandPatterns[type][pattern] == "function") {
                   switch(type) {
                       case 'senders':
-                          return commandPatterns[type][pattern](message.substring(3));
+                          return commandPatterns[type][pattern](sender, message.substring(3));
                       case 'receivers':
-                          return commandPatterns[type][pattern](entityId, message.substring(3));
+                          return commandPatterns[type][pattern](entityId, sender, message.substring(3));
                   }
                   
               }
           } else {
             switch(type) {
                 case 'senders':
-                    // self.game.client.sendChat(self.game.player.name + ": " + message);
+                    // self.game.client.sendChat(message);
                     return false;
                 case 'receivers':
                     messageId = Math.floor(Math.random() * 10000);
-                    self.addToChatLog(self.game.player.name + ": " + message);
+                    self.addToChatLog(sender, message);
                     return false;
             }
           }
           return false;
       },
-      addToChatLog: function(message, type){
+      addToChatLog: function(sender, message, type){
           var self = this;
-          var name = message.split(':')[0];
-          var contents = message.split(':')[1];
           if(type == "world") {
-              var el = $("<p class='world'>" + "<span class='name'>" + name + "</span>: " + contents + "</p>");
+              var el = $("<p class='world'>" + "<span class='name'>" + sender + "</span>: " + message + "</p>");
           } else {
-            var el = $("<p>" + "<span class='name'>" + name + "</span>: " + contents + "</p>");
+            var el = $("<p>" + "<span class='name'>" + sender + "</span>: " + message + "</p>");
           }
           $(el).appendTo(this.chatLog);
           $(this.chatLog).scrollTop(999999);

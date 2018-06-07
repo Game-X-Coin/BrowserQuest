@@ -1710,8 +1710,8 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
                     }
                 });
 
-                self.client.onChatMessage(function(entityId, message) {
-                    if(!self.chathandler.processReceiveMessage(entityId, message)){
+                self.client.onChatMessage(function(entityId, sender, message) {
+                    if(!self.chathandler.processReceiveMessage(entityId, sender, message)){
                         var entity = self.getEntityById(entityId);
                         self.createBubble(entityId, message);
                         self.assignBubbleTo(entity);
@@ -2825,7 +2825,9 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
 						break;
 				}
             }
-            if(!this.chathandler.processSendMessage(message)){
+
+            console.log(this.player.name, message);
+            if(!this.chathandler.processSendMessage(this.player.name, message)){
                 this.client.sendChat(message);
             }
         },

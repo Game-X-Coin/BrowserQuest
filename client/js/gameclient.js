@@ -320,10 +320,11 @@ define(['player', 'entityfactory', 'lib/bison'], function(Player, EntityFactory,
 
         receiveChat: function(data) {
             var id = data[1],
-                text = data[2];
+                sender = data[2],
+                text = data[3];
 
             if(this.chat_callback) {
-                this.chat_callback(id, text);
+                this.chat_callback(id, sender, text);
             }
         },
 
