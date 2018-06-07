@@ -102,6 +102,10 @@ module.exports = DatabaseHandler = cls.Class.extend({
                         .hget(userKey, "wallet"+Types.Entities.TOKEN_A) // 78
                         .hget(userKey, "wallet"+Types.Entities.TOKEN_B) // 79
                         .hget(userKey, "accessToken") // 80
+                        .hget(userKey, "inventory5") // 81
+                        .hget(userKey, "inventory5:number") // 82
+                        .hget(userKey, "inventory6") // 83
+                        .hget(userKey, "inventory6:number") // 84
                         .exec(function(err, replies){
                             var pw = replies[0];
                             var armor = replies[1];
@@ -113,13 +117,15 @@ module.exports = DatabaseHandler = cls.Class.extend({
                             var avatar = replies[7];
                             var pubTopName = replies[8];
                             var nextNewArmor = replies[9];
-                            var inventory = [replies[10], replies[12], replies[72], replies[74], replies[76]];
+                            var inventory = [replies[10], replies[12], replies[72], replies[74], replies[76], replies[81], replies[83]];
                             var inventoryNumber = [
                                 Utils.NaN2Zero(replies[11]),
                                 Utils.NaN2Zero(replies[13]),
                                 Utils.NaN2Zero(replies[73]),
                                 Utils.NaN2Zero(replies[75]),
-                                Utils.NaN2Zero(replies[77])
+                                Utils.NaN2Zero(replies[77]),
+                                Utils.NaN2Zero(replies[82]),
+                                Utils.NaN2Zero(replies[84]),
                             ];
                             var achievementFound = [
                                 null,

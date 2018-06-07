@@ -121,13 +121,13 @@ Messages.Drop = Message.extend({
 Messages.Chat = Message.extend({
     init: function (player, message) {
         this.playerId = player.id;
+        this.playerName = player.name;
         this.message = message;
     },
     serialize: function () {
-        console.log(this.playerId);
-        console.log('chat');
         return [Types.Messages.CHAT,
                 this.playerId,
+                this.playerName,
                 this.message];
     }
 });

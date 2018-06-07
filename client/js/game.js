@@ -425,7 +425,7 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
                 FIND_CAKE: {
                     id: 19,
                     name: "Find Cake",
-                    desc: "Fine Cate",
+                    desc: "Fine CaKe",
                     hidden: !achievementFound[19],
                     completed: achievementProgress[19] === 999 ? true : false,
                     isCompleted: function() {
@@ -1710,8 +1710,8 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
                     }
                 });
 
-                self.client.onChatMessage(function(entityId, message) {
-                    if(!self.chathandler.processReceiveMessage(entityId, message)){
+                self.client.onChatMessage(function(entityId, sender, message) {
+                    if(!self.chathandler.processReceiveMessage(entityId, sender, message)){
                         var entity = self.getEntityById(entityId);
                         self.createBubble(entityId, message);
                         self.assignBubbleTo(entity);
@@ -2488,7 +2488,9 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
                         this.player.turnTo(Types.Orientations.DOWN);
                     }
 
-                    this.makePlayerGoTo(pos.x, pos.y);
+                    if(!(entity instanceof Player && entity !== this.player)) {
+                        this.makePlayerGoTo(pos.x, pos.y);
+                    }
                 }
             }
         },
@@ -2823,7 +2825,9 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
 						break;
 				}
             }
-            if(!this.chathandler.processSendMessage(message)){
+
+            console.log(this.player.name, message);
+            if(!this.chathandler.processSendMessage(this.player.name, message)){
                 this.client.sendChat(message);
             }
         },
@@ -2880,7 +2884,7 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
             this.player = new Warrior("player", this.username);
             this.player.gxcId = this.gxcId;
             this.player.tempKey = this.tempKey;
-            console.log(this.player);
+
             this.initPlayer();
             this.app.initTargetHud();
 
