@@ -1,10 +1,9 @@
 
 define(['jquery'], function() {
   var ChatHandler = Class.extend({
-      init: function(game, kkhandler) {
+      init: function(game) {
           this.self = this;
           this.game = game;
-          this.kkhandler = kkhandler;
           this.chatLog = $('#chatLog');
           this.board = $('#board');
           this.max_height = 15;
@@ -12,14 +11,12 @@ define(['jquery'], function() {
 
       show: function(){
         $('#chatLog').css('display', 'block');
-        $('#kungLog').css('display', 'block');
         $('#gamebutton').css('display', 'block');
         $('#boardbutton').css('display', 'block');
       },
 
       hide: function(){
         $('#chatLog').css('display', 'none');
-        $('#kungLog').css('display', 'none');
       },
 
       /**
@@ -28,8 +25,8 @@ define(['jquery'], function() {
        * @param string message
        * @param boolean send
        */
-      processSendMessage: function(message) {
-          return this.processMessage(null, message, 'senders');
+      processSendMessage: function(sender, message) {
+          return this.processMessage(null, sender, message, 'senders');
       },
 
       /**
@@ -37,8 +34,8 @@ define(['jquery'], function() {
        *
        * @param string message
        */
-      processReceiveMessage: function(entityId, message) {
-          return this.processMessage(entityId, message, 'receivers');
+      processReceiveMessage: function(entityId, sender, message) {
+          return this.processMessage(entityId, sender, message, 'receivers');
       },
 
       /**
@@ -47,36 +44,28 @@ define(['jquery'], function() {
        * @param string message
        * @param string type
        */
-      processMessage: function(entityId, message, type) {
+      processMessage: function(entityId, sender, message, type) {
           var pattern = message.substring(0, 3),
               self = this,
               commandPatterns = {
                   senders: {
                     // World chat
-                    "/1 ": function(message) {
-                        self.game.client.sendChat("/1 " + self.game.player.name + ": " + message);
+                    "/1 ": function(sender, message) {
+                        self.game.client.sendChat("/1 " + message);
                         return true;
                     },
                     // Heal target set
-                    "/h ": function(message){
+                    "/h ": function(sender, message){
                         self.game.client.sendMagic("setheal", message);
                         self.game.player.healTargetName = message;
                         return true;
                     },
-                    "/2 ": function(message){
-                        if(message.length !== 3){
-                        self.game.showNotification(message+"란 단어는 쿵쿵따 규칙에 맞지 않습니다.");
-                        } else{
-                        self.game.client.sendKung(message);
-                        }
-                        return true;
-                    }
                   },
                   receivers: {
                       // World chat
-                      "/1 ": function(entityId, message) {
+                      "/1 ": function(entityId, sender, message) {
                           messageId = Math.floor(Math.random() * 10000);
-                          self.addToChatLog(message);
+                          self.addToChatLog(sender, message, "world");
                           return true;
                       }
                   }
@@ -85,18 +74,32 @@ define(['jquery'], function() {
               if (typeof commandPatterns[type][pattern] == "function") {
                   switch(type) {
                       case 'senders':
-                          return commandPatterns[type][pattern](message.substring(3));
+                          return commandPatterns[type][pattern](sender, message.substring(3));
                       case 'receivers':
-                          return commandPatterns[type][pattern](entityId, message.substring(3));
+                          return commandPatterns[type][pattern](entityId, sender, message.substring(3));
                   }
                   
               }
+          } else {
+            switch(type) {
+                case 'senders':
+                    // self.game.client.sendChat(message);
+                    return false;
+                case 'receivers':
+                    messageId = Math.floor(Math.random() * 10000);
+                    self.addToChatLog(sender, message);
+                    return false;
+            }
           }
           return false;
       },
-      addToChatLog: function(message){
+      addToChatLog: function(sender, message, type){
           var self = this;
-          var el = $("<p>" + message + "</p>");
+          if(type == "world") {
+              var el = $("<p class='world'>" + "<span class='name'>" + sender + "</span>: " + message + "</p>");
+          } else {
+            var el = $("<p>" + "<span class='name'>" + sender + "</span>: " + message + "</p>");
+          }
           $(el).appendTo(this.chatLog);
           $(this.chatLog).scrollTop(999999);
       },

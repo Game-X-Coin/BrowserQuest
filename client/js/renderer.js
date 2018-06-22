@@ -388,7 +388,7 @@ function(Camera, Item, Character, Player, Timer) {
                                                entity.shadowOffsetY * ds,
                                                shadow.width * os * ds, shadow.height * os * ds);
                     }
-                    
+
                     if(entity.invincible){
                         var benef = this.game.sprites["firebenef"];
                         if(benef){
@@ -595,6 +595,7 @@ function(Camera, Item, Character, Player, Timer) {
 
         drawEntityName: function(entity) {
             this.context.save();
+
             if(entity.name && entity instanceof Player) {
                 var color = (entity.id === this.game.playerId) ? "#fcda5c" : "white";
                 var name = (entity.level) ? "lv." + entity.level + " " + entity.name : entity.name;
@@ -759,34 +760,94 @@ function(Camera, Item, Character, Player, Timer) {
             });
             this.context.restore();
         },
+        drawWallet: function(){
+            var s = this.scale;
+            var wallet = null;
+
+            this.context.save();
+            this.context.translate(this.camera.x*s, this.camera.y*s);
+
+            if(this.game.player) {
+                wallet = this.game.player.wallet;
+                this.drawRect((this.camera.gridW-2)*this.tilesize*s,
+                          0*this.tilesize*s,
+                          2, 1, "rgba(0, 0, 0, 0.8)");
+            }
+
+            this._drawWallet(Types.Entities.TOKEN_A, 0);
+            this._drawWallet(Types.Entities.TOKEN_B, 1);
+
+            this.context.restore();
+        },
+        _drawWallet: function(key, index){
+            var self = this;
+            var s = this.scale;
+            var ds = this.upscaledRendering ? this.scale : 1;
+            var os = this.upscaledRendering ? 1 : this.scale;
+            var wallet = null;
+
+            if(this.game.player){
+                wallet = this.game.player.wallet;
+            }
+
+            var itemKind = parseInt(key);
+            var item = this.game.sprites["item-" + Types.getKindAsString(itemKind)];
+            if(item){
+                var itemAnimData = item.animationData["idle"];
+                if(itemAnimData){
+                    var ix = item.width * 0 * os,
+                        iy = item.height * itemAnimData.row * os,
+                        iw = item.width * os,
+                        ih = item.height * os;
+                    self.context.drawImage(item.image, ix, iy, iw, ih,
+                                            item.offsetX * s + (this.camera.gridW-2+index)*self.tilesize*s,
+                                            item.offsetY * s + 0*self.tilesize*s,
+                                            iw * ds, ih * ds);
+                    var color = "white";
+
+                    var amount = 0;
+                    if(wallet) {
+                        amount = wallet[key];
+                    }
+                    self.drawText(amount.toString(),
+                        (this.camera.gridW-2+index+0.5)*self.tilesize*s - amount.toString().length*self.tilesize*0.25,
+                        1.2*self.tilesize*s, false, color);
+                }
+            }
+        },
         drawInventory: function(){
             var s = this.scale;
+            var inventory = null;
 
             this.context.save();
             this.context.translate(this.camera.x*s,
                                    this.camera.y*s);
+            if(this.game.player){
+                inventory = this.game.player.inventory;
 
-            if(this.game.player && this.game.player.healingCoolTimeCallback === null){
-                this.drawRect((this.camera.gridW-2)*this.tilesize*s,
-                          (this.camera.gridH-1)*this.tilesize*s,
-                          2, 1, "rgba(0, 0, 0, 0.8)");
-            } else {
-                this.drawRect((this.camera.gridW-2)*this.tilesize*s,
-                          (this.camera.gridH-1)*this.tilesize*s,
-                          2, 1, "rgba(255, 0, 0, 0.8)");
-            }
-            
-            if(this.game.menu && this.game.menu.inventoryOn === "inventory0"){
-                this.drawRect((this.camera.gridW-2)*this.tilesize*s,
+                if(this.game.player.healingCoolTimeCallback === null){
+                    this.drawRect((this.camera.gridW-inventory.length)*this.tilesize*s,
                               (this.camera.gridH-1)*this.tilesize*s,
-                              1, 1, "rgba(0, 0, 255, 0.8)");
-            } else if(this.game.menu && this.game.menu.inventoryOn === "inventory1"){
-                this.drawRect((this.camera.gridW-1)*this.tilesize*s,
+                              inventory.length, 1, "rgba(0, 0, 0, 0.8)");
+                } else {
+                    this.drawRect((this.camera.gridW-inventory.length)*this.tilesize*s,
                               (this.camera.gridH-1)*this.tilesize*s,
-                              1, 1, "rgba(0, 0, 255, 0.8)");
+                              inventory.length, 1, "rgba(255, 0, 0, 0.8)");
+                }
+    
+                for(var i = 0; i < inventory.length; i++) {
+                    if(this.game.menu && this.game.menu.inventoryOn === "inventory"+i){
+                        this.drawRect((this.camera.gridW-inventory.length+i)*this.tilesize*s,
+                                      (this.camera.gridH-1)*this.tilesize*s,
+                                      1, 1, "rgba(0, 0, 255, 0.8)");
+                        break;
+                    }
+                }
+    
+                for(var i = 0; i < inventory.length; i++) {
+                    this._drawInventory(i);
+                }
             }
-            this._drawInventory(0);
-            this._drawInventory(1);
 
             this.drawInventoryMenu();
             this.context.restore();
@@ -812,16 +873,16 @@ function(Camera, Item, Character, Player, Timer) {
                             iw = item.width * os,
                             ih = item.height * os;
                         self.context.drawImage(item.image, ix, iy, iw, ih,
-                                               item.offsetX * s + (this.camera.gridW-2+i)*self.tilesize*s,
+                                               item.offsetX * s + (this.camera.gridW-inventory.length+i)*self.tilesize*s,
                                                item.offsetY * s + (this.camera.gridH-1)*self.tilesize*s,
                                                iw * ds, ih * ds);
-                        if(Types.isHealingItem(itemKind)){
+                        if(Types.isHealingItem(itemKind) || Types.isToken(itemKind)){
                             var color = "white";
                             if(i === this.game.healShortCut)
                                 color = "lime";
 
                             self.drawText(this.game.player.inventoryCount[i].toString(),
-                                (this.camera.gridW-2+i)*self.tilesize*s,
+                                (this.camera.gridW-inventory.length+i+0.5)*self.tilesize*s-this.game.player.inventoryCount[i].toString().length*self.tilesize*0.25,
                                 (this.camera.gridH-1)*self.tilesize*s, false, color);
                         }
                     }
@@ -831,9 +892,25 @@ function(Camera, Item, Character, Player, Timer) {
         drawInventoryMenu: function(){
             var s = this.scale;
             if(this.game.menu && this.game.menu.inventoryOn){
-                var inventoryNumber = (this.game.menu.inventoryOn === "inventory0") ? 0 : 1;
+                var inventoryNumber = -1;
+                var inventory = this.game.player.inventory;
+                for(var i = 0; i < inventory.length; i++) {
+                    if(this.game.menu.inventoryOn === "inventory"+i) {
+                        inventoryNumber = i;
+                        break;
+                    }
+                }
+
                 if(this.game.player.inventory[inventoryNumber] === Types.Entities.CAKE
                 || this.game.player.inventory[inventoryNumber] === Types.Entities.CD){
+                    this.drawRect((this.camera.gridW-2)*this.tilesize*s,
+                                  (this.camera.gridH-2)*this.tilesize*s,
+                                  2, 1, "rgba(0, 0, 0, 0.8)");
+                    this.drawText("drop",
+                                  (this.camera.gridW-1)*this.tilesize*s,
+                                  (this.camera.gridH-1.4)*this.tilesize*s,
+                                  true, "white", "black");
+                } if(Types.isToken(this.game.player.inventory[inventoryNumber])) {
                     this.drawRect((this.camera.gridW-2)*this.tilesize*s,
                                   (this.camera.gridH-2)*this.tilesize*s,
                                   2, 1, "rgba(0, 0, 0, 0.8)");
@@ -875,6 +952,23 @@ function(Camera, Item, Character, Player, Timer) {
                                   true, "white", "black");
                 }
             }
+        },
+        drawCoordination: function(){
+            var self = this;
+            var s = this.scale;
+
+            this.context.save();
+            this.context.translate(this.camera.x*s, this.camera.y*s);
+            var color = "white";
+            if(this.game.player) {
+                self.drawText(this.game.player.gridX.toString(),
+                                (0.5)*self.tilesize*s-this.game.player.gridX.toString().length*self.tilesize*0.25,
+                                (this.camera.gridH)*self.tilesize*s-5, false, color);
+            self.drawText(this.game.player.gridY.toString(),
+                                (1.5)*self.tilesize*s-this.game.player.gridY.toString().length*self.tilesize*0.25,
+                                (this.camera.gridH)*self.tilesize*s-5, false, color);
+            }
+            this.context.restore();
         },
 
         setCameraView: function(ctx) {
@@ -967,6 +1061,8 @@ function(Camera, Item, Character, Player, Timer) {
                 this.drawItemInfo();
             }
             this.drawInventory();
+            this.drawWallet();
+            this.drawCoordination();
             this.context.restore();
 
             // Overlay UI elements

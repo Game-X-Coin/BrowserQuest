@@ -4,7 +4,8 @@ var Types = require("../../shared/js/gametypes");
 var Properties = {
     wizard: {
         drops: {
-            flask: 50,
+            tokena: 40,
+            flask: 30,
             platearmor: 5,
             firepotion: 5
         },
@@ -12,30 +13,34 @@ var Properties = {
     },
     crab: {
         drops: {
-            flask: 50,
+            tokena: 25,
+            flask: 30,
             firepotion: 5
         },
         hp: 25,
     },
     rat: {
         drops: {
-            flask: 50,
-            sword2: 20,
+            tokena: 20,
+            flask: 5,
+            sword2: 5,
             firepotion: 5
         },
         hp: 80,
     },
     bat: {
         drops: {
-            flask: 50,
-            sword2: 20,
+            tokena: 25,
+            flask: 20,
+            sword2: 10,
             firepotion: 5
         },
         hp: 100,
     },
     goblin: {
         drops: {
-            flask: 50,
+            tokena: 25,
+            flask: 30,
             leatherarmor: 20,
             firepotion: 5
         },
@@ -51,7 +56,8 @@ var Properties = {
     },
     skeleton: {
         drops: {
-            flask: 40,
+            tokena: 30,
+            flask: 30,
             axe: 20,
             firepotion: 5
         },
@@ -67,7 +73,8 @@ var Properties = {
     },
     snake: {
         drops: {
-            flask: 50,
+            tokena: 35,
+            flask: 30,
             mailarmor: 20,
             firepotion: 5
         },
@@ -83,26 +90,29 @@ var Properties = {
     },
     ogre: {
         drops: {
+            tokena: 35,
             burger: 10,
-            flask: 50,
-            morningstar: 20,
+            flask: 30,
+            morningstar: 15,
             firepotion: 5
         },
         hp: 300,
     },
     clam: {
         drops: {
+            tokena: 25,
             burger: 10,
             flask: 50,
-            morningstar: 20,
+            morningstar: 15,
             firepotion: 5
         },
         hp: 300,
     },
     skeleton2: {
         drops: {
+            tokena: 35,
             flask: 60,
-            platearmor: 20,
+            platearmor: 15,
             firepotion: 5
         },
         hp: 300,
@@ -117,8 +127,9 @@ var Properties = {
     },
     eye: {
         drops: {
-            flask: 50,
-            bluesword: 20,
+            tokena: 40,
+            flask: 20,
+            bluesword: 10,
             firepotion: 5
         },
         hp: 300,

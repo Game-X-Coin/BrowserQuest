@@ -508,6 +508,14 @@ define(['mobs', 'items', 'npcs', 'warrior', 'chest'], function(Mobs, Items, NPCs
         return new Items.Cake(id);
     };
 
+    EntityFactory.builders[Types.Entities.TOKEN_A] = function(id) {
+        return new Items.TokenA(id);
+    };
+
+    EntityFactory.builders[Types.Entities.TOKEN_B] = function(id) {
+        return new Items.TokenB(id);
+    };
+
     EntityFactory.builders[Types.Entities.CHEST] = function(id) {
         return new Chest(id);
     };

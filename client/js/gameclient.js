@@ -47,7 +47,10 @@ define(['player', 'entityfactory', 'lib/bison'], function(Player, EntityFactory,
             this.handlers[Types.Messages.ACHIEVEMENT] = this.receiveAchievement;
             this.handlers[Types.Messages.BOARD] = this.receiveBoard;
             this.handlers[Types.Messages.NOTIFY] = this.receiveNotify;
-            this.handlers[Types.Messages.KUNG] = this.receiveKung;
+            this.handlers[Types.Messages.WALLET] = this.receiveWallet;
+            this.handlers[Types.Messages.SHOP] = this.receiveShop;
+            this.handlers[Types.Messages.SHOP_ERROR] = this.receiveShopError;
+            this.handlers[Types.Messages.INVENTORY] = this.receiveInventory;
 
             this.useBison = false;
             this.enable();
@@ -155,8 +158,6 @@ define(['player', 'entityfactory', 'lib/bison'], function(Player, EntityFactory,
                     data = JSON.parse(message);
                 }
 
-                console.log("data: " + message);
-
                 if(data instanceof Array) {
                     if(data[0] instanceof Array) {
                         // Multiple actions received
@@ -199,19 +200,17 @@ define(['player', 'entityfactory', 'lib/bison'], function(Player, EntityFactory,
                 weaponAvatar = data[9],
                 experience = data[10],
                 admin = data[11],
-                inventory0 = data[12],
-                inventory0Number = data[13],
-                inventory1 = data[14];
-                inventory1Number = data[15];
-            var achievementFound = data[16];
-            var achievementProgress = data[17];
+                inventory = data[12],
+                inventoryNumber = data[13],
+                achievementFound = data[14],
+                achievementProgress = data[15],
+                wallet = data[16];
 
             if(this.game.ready){
                 this.welcome_callback(
                      id, name, x, y, hp, armor, weapon, avatar, weaponAvatar,
-                      experience, admin, inventory0, inventory0Number,
-                      inventory1, inventory1Number,
-                      achievementFound, achievementProgress);
+                      experience, admin, inventory, inventoryNumber,
+                      achievementFound, achievementProgress, wallet);
             }
         },
 
@@ -321,10 +320,11 @@ define(['player', 'entityfactory', 'lib/bison'], function(Player, EntityFactory,
 
         receiveChat: function(data) {
             var id = data[1],
-                text = data[2];
+                sender = data[2],
+                text = data[3];
 
             if(this.chat_callback) {
-                this.chat_callback(id, text);
+                this.chat_callback(id, sender, text);
             }
         },
 
@@ -458,10 +458,38 @@ define(['player', 'entityfactory', 'lib/bison'], function(Player, EntityFactory,
                 this.notify_callback(msg);
             }
         },
-        receiveKung: function(data){
-            var msg = data[1];
-            if(this.kung_callback){
-                this.kung_callback(msg);
+
+        receiveWallet: function(data) {
+            var type = data[1],
+                amount = data[2];
+            if(this.wallet_callback) {
+                this.wallet_callback(type, amount);
+            }
+        },
+
+        receiveShop: function(data) {
+            var itemType = data[1],
+                tokenType = data[2],
+                price = data[3];
+            if(this.shop_callback) {
+                this.shop_callback(itemType, tokenType, price);
+            }   
+        },
+
+        receiveShopError: function(data) {
+            var errorType = data[1],
+                value = data[2];
+            if(this.shop_error_callback) {
+                this.shop_error_callback(errorType, value)
+            }
+        },
+
+        receiveInventory: function(data) {
+            var itemKind = data[1],
+                inventoryNumber = data[2],
+                inventoryCount = data[3];
+            if(this.inventory_callback) {
+                this.inventory_callback(itemKind, inventoryNumber, inventoryCount);
             }
         },
 		
@@ -608,12 +636,22 @@ define(['player', 'entityfactory', 'lib/bison'], function(Player, EntityFactory,
         onNotify: function(callback){
             this.notify_callback = callback;
         },
-        onKung: function(callback){
-            this.kung_callback = callback;
+        onWallet: function(callback) {
+            this.wallet_callback = callback;
+        },
+        onShop: function(callback) {
+            this.shop_callback = callback;
+        },
+        onInventory: function(callback) {
+            this.inventory_callback = callback;
         },
         onGuildError: function(callback) {
 			this.guilderror_callback = callback;
-		},
+        },
+        
+        onShopError: function(callback) {
+            this.shop_error_callback = callback;
+        },
 		
 		onGuildCreate: function(callback) {
 			this.guildcreate_callback = callback;
@@ -653,22 +691,21 @@ define(['player', 'entityfactory', 'lib/bison'], function(Player, EntityFactory,
 
         sendCreate: function(player) {
             this.sendMessage([Types.Messages.CREATE,
-                              player.name,
+                              player.gxcId,
                               player.pw,
                               player.email]);
         },
 
         sendLogin: function(player) {
-            this.sendMessage([Types.Messages.LOGIN,
-                              player.name,
-                              player.pw]);
+            this.sendMessage([Types.Messages.LOGIN, player.gxcId,
+                              player.tempKey]);
         },
 
        sendHello: function(player) {
 			if(player.hasGuild()){
-				this.sendMessage([Types.Messages.HELLO, player.name, player.pw, player.email, player.guild.id, player.guild.name]);
+				this.sendMessage([Types.Messages.HELLO, player.gxcId, player.pw, player.email, player.guild.id, player.guild.name]);
 			} else{
-                this.sendMessage([Types.Messages.HELLO, player.name, player.pw, player.email]);
+                this.sendMessage([Types.Messages.HELLO, player.gxcId, player.pw, player.email]);
             }
        },
 
@@ -737,6 +774,12 @@ define(['player', 'entityfactory', 'lib/bison'], function(Player, EntityFactory,
         sendInventory: function(type, inventoryNumber, count) {
             this.sendMessage([Types.Messages.INVENTORY, type, inventoryNumber, count]);
         },
+        sendWallet: function(type, amount) {
+            this.sendMessage([Types.Messages.WALLET, type, amount]);
+        },
+        sendShop: function(itemType, tokenType, price) {
+            this.sendMessage([Types.Messages.SHOP, itemType, tokenType, price]);
+        },
         sendAchievement: function(id, type) {
             this.sendMessage([Types.Messages.ACHIEVEMENT, id, type]);
         },
@@ -758,10 +801,6 @@ define(['player', 'entityfactory', 'lib/bison'], function(Player, EntityFactory,
                             command,
                             title,
                             content]);
-        },
-        sendKung: function(word) {
-            this.sendMessage([Types.Messages.KUNG,
-                              word]);
         },
         
         sendWho: function(ids) {

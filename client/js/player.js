@@ -9,7 +9,7 @@ define(['character', 'exceptions'], function(Character, Exceptions) {
 
             this.name = name;
             this.pw = pw;
-            
+
             if (typeof guild !== 'undefined') {
 				this.setGuild(guild);
 			}
@@ -25,6 +25,10 @@ define(['character', 'exceptions'], function(Character, Exceptions) {
             // Inventory
             this.inventory = [];
             this.inventoryCount = [];
+            this.wallet = {
+                [Types.Entities.TOKEN_A]: 0,
+                [Types.Entities.TOKEN_B]: 0,
+            };
             this.healingCoolTimeCallback = null;
 
             this.magicCoolTimeCallback = null;
@@ -44,31 +48,31 @@ define(['character', 'exceptions'], function(Character, Exceptions) {
         getGuild: function() {
 			return this.guild;
 		},
-		
+
 		setGuild: function(guild) {
 			this.guild = guild;
 			$('#guild-population').addClass("visible");
 			$('#guild-name').html(guild.name);
 		},
-		
+
 		unsetGuild: function(){
 			delete this.guild;
 			$('#guild-population').removeClass("visible");
 		},
-		
+
         hasGuild: function(){
 			return (typeof this.guild !== 'undefined');
 		},
-		
-			
+
+
 		addInvite: function(inviteGuildId){
 			this.invite = {time:new Date().valueOf(), guildId: inviteGuildId};
 		},
-		
+
 		deleteInvite: function(){
 			delete this.invite;
 		},
-		
+
 		checkInvite: function(){
 			if(this.invite && ( (new Date().valueOf() - this.invite.time) < 595000)){
 				return this.invite.guildId;
@@ -85,76 +89,79 @@ define(['character', 'exceptions'], function(Character, Exceptions) {
 		},
 
         loot: function(item) {
-            if(item) {
-                var rank, currentRank, msg;
+            if(!item) return;
+            var rank, currentRank, msg;
+            var self = this;
 
-                if(item.type === "armor") {
-                    // rank = Types.getArmorRank(item.kind);
-                    // currentRank = Types.getArmorRank(Types.getKindFromString(currentArmorName));
-                    // msg = "You are wearing a better armor";
-                    if(this.level >= 100){
-                        this.putInventory(item.kind, 1);
-                      } else{
-                        rank = Types.getArmorRank(item.kind);
-                        currentRank = Types.getArmorRank(Types.getKindFromString(this.armorName));
-                        msg = "You are wielding a better armor";
-  
-                        if(rank && currentRank) {
-                          if(rank === currentRank) {
-                              throw new Exceptions.LootException("You already have this "+item.type);
-                          } else if(rank <= currentRank) {
-                              throw new Exceptions.LootException(msg);
-                          }
-                        }
-                      }
-                } else if(item.type === "weapon") {
-                    rank = Types.getWeaponRank(item.kind);
-                    currentRank = Types.getWeaponRank(Types.getKindFromString(this.weaponName));
-                    msg = "You are wielding a better weapon";
+            if(item.type === "armor") {
+                // rank = Types.getArmorRank(item.kind);
+                // currentRank = Types.getArmorRank(Types.getKindFromString(currentArmorName));
+                // msg = "You are wearing a better armor";
+                // if(this.level >= 100){
+                //     this.putInventory(item.kind, 1);
+                //   } else{
+                //     rank = Types.getArmorRank(item.kind);
+                //     currentRank = Types.getArmorRank(Types.getKindFromString(this.armorName));
+                //     msg = "You are wielding a better armor";
 
-                    if(rank && currentRank) {
-                        if(rank === currentRank) {
-                            throw new Exceptions.LootException("You already have this "+item.type);
-                        } else if(rank <= currentRank) {
-                            throw new Exceptions.LootException(msg);
-                        }
-                    }
-                } else if(item.kind === Types.Entities.CAKE){
-                    this.putInventory(item.kind, 1);
-                } else if(Types.isHealingItem(item.kind)){
-                    this.putInventory(item.kind, item.count);
-                } else if(item.kind === Types.Entities.CD){
-                    this.putInventory(item.kind, 1);
-                }
+                //     if(rank && currentRank) {
+                //       if(rank === currentRank) {
+                //           throw new Exceptions.LootException("You already have this "+item.type);
+                //       } else if(rank <= currentRank) {
+                //           throw new Exceptions.LootException(msg);
+                //       }
+                //     }
+                //   }
+                this.putInventory(item.kind, 1);
+            } else if(item.type === "weapon") {
+                // rank = Types.getWeaponRank(item.kind);
+                // currentRank = Types.getWeaponRank(Types.getKindFromString(this.weaponName));
+                // msg = "You are wielding a better weapon";
 
-                log.info('Player '+this.id+' has looted '+item.id);
-                if(Types.isArmor(item.kind) && this.invincible) {
-                    this.stopInvincibility();
-                }
-                item.onLoot(this);
+                // if(rank && currentRank) {
+                //     if(rank === currentRank) {
+                //         throw new Exceptions.LootException("You already have this "+item.type);
+                //     } else if(rank <= currentRank) {
+                //         throw new Exceptions.LootException(msg);
+                //     }
+                // }
+                this.putInventory(item.kind, 1);
+            } else if(item.kind === Types.Entities.CAKE
+                || item.kind === Types.Entities.CD){
+                this.putInventory(item.kind, 1);
+            } else if(Types.isHealingItem(item.kind)){
+                this.putInventory(item.kind, item.count);
+            } else if(Types.isToken(item.kind)) {
+                this.incWallet(item.kind, 1);
             }
+
+            log.info('Player '+this.id+' has looted '+item.id);
+            if(Types.isArmor(item.kind) && this.invincible) {
+                this.stopInvincibility();
+            }
+            // item.onLoot(this);
         },
         putInventory: function(itemKind, count){
-            if(Types.isHealingItem(itemKind)){
-                if(this.inventory[0] === itemKind){
-                    this.inventoryCount[0] += count;
-                } else if(this.inventory[1] === itemKind){
-                    this.inventoryCount[1] += count;
-                } else{
-                    this._putInventory(itemKind, count);
+            const inventoryIndex = this.inventory.indexOf(itemKind);
+            if(Types.isHealingItem(itemKind) || Types.isToken(itemKind)){
+                if(this.inventory.indexOf(itemKind) !== -1) {
+                    this.inventoryCount[inventoryIndex] += count;
+                    return ;
                 }
-            } else{
-                this._putInventory(itemKind, count);
             }
+            this._putInventory(itemKind, count);
         },
         _putInventory: function(itemKind, count){
-            if(!this.inventory[0]){
-                this.inventory[0] = itemKind;
-                this.inventoryCount[0] = count;
-            } else if(!this.inventory[1]){
-                this.inventory[1] = itemKind;
-                this.inventoryCount[1] = count;
-            } else{
+            var isFull = true;
+            for(var i = 0; i < this.inventory.length; i++) {
+                if(!this.inventory[i]) {
+                    this.inventory[i] = itemKind;
+                    this.inventoryCount[i] = count;
+                    isFull = false;
+                    break;
+                }
+            }
+            if(isFull) {
                 throw new Exceptions.LootException("Inventory is full");
             }
         },
@@ -163,10 +170,26 @@ define(['character', 'exceptions'], function(Character, Exceptions) {
             this.inventory[inventoryNumber] = itemKind;
             this.inventoryCount[inventoryNumber] = number;
         },
-        makeEmptyInventory: function(inventoryNumber){
-            if(inventoryNumber === 0 || inventoryNumber === 1){
-                this.inventory[inventoryNumber] = null;
+        setWallet: function(tokenKind, amount) {
+            this.wallet[tokenKind] = amount;
+        },
+        decWallet: function(tokenKind, amount) {
+            var tokenAmount = this.wallet[tokenKind] || 0;
+            if (tokenAmount > amount) {
+                this.wallet[tokenKind] = tokenAmount - amount;
             }
+        },
+        buyItem: function(itemKind, tokenKind, price) {
+            var count = 1;
+            this.decWallet(tokenKind, price);
+            this.putInventory(itemKind, count);
+        },
+        incWallet: function(tokenKind, amount) {
+            var tokenAmount = this.wallet[tokenKind] || 0;
+            this.wallet[tokenKind] = tokenAmount + amount;
+        },
+        makeEmptyInventory: function(inventoryNumber){
+            this.inventory[inventoryNumber] = null;
         },
         decInventory: function(inventoryNumber){
             var self = this;
@@ -227,7 +250,7 @@ define(['character', 'exceptions'], function(Character, Exceptions) {
         getWeaponName: function() {
             return this.weaponName;
         },
-        
+
         setWeaponName: function(name) {
             if(name) {
                 this.weaponName = name;
@@ -255,6 +278,9 @@ define(['character', 'exceptions'], function(Character, Exceptions) {
                         this.setSpriteName(itemString);
                         this.setSprite(itemSprite);
                         this.setArmorName(itemString);
+                    } else if(type === "weapon"){
+                        this.inventory[inventoryNumber] = Types.getKindFromString(this.getWeaponName());
+                        this.setWeaponName(itemString);
                     } else if(type === "avatar"){
                         this.inventory[inventoryNumber] = null;
                         this.setSpriteName(itemString);
@@ -318,7 +344,7 @@ define(['character', 'exceptions'], function(Character, Exceptions) {
         onInvincible: function(callback) {
             this.invincible_callback = callback;
         },
-        
+
         startInvincibility: function() {
             var self = this;
 

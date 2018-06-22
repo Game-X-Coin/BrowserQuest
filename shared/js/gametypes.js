@@ -2,8 +2,6 @@
 Types = {
     Messages: {
         HELLO: 0,
-        CREATE: 0,
-        LOGIN: 0,
         WELCOME: 1,
         SPAWN: 2,
         DESPAWN: 3,
@@ -38,14 +36,23 @@ Types = {
         BOARD: 32,
         BOARDWRITE: 33,
         NOTIFY: 34,
-        KUNG: 35,
         CREATE: 36,
-        LOGIN: 37
+        LOGIN: 37,
+        WALLET: 38,
+        SHOP: 39,
+        SHOP_ERROR: 40,
+        SHOP_ERROR_TYPE: {
+            INVENTORY_IS_FULL: 1,
+            INSUFFICIENT: 2,
+            CHAIN: 3,
+            DONT_USE_TYPE: 4,
+            NOT_MATCH_PRICE: 5,
+        }
     },
-    
+
     Entities: {
         WARRIOR: 1,
-        
+
         // Mobs
         RAT: 2,
         SKELETON: 3,
@@ -92,16 +99,16 @@ Types = {
         PINKELF: 115,
         SKYELF: 117,
         REDELF: 119,
-        HERMITCRAB: 141, 
+        HERMITCRAB: 141,
         ZOMBIE: 121,
         PIRATECAPTAIN: 122,
         IRONOGRE: 123,
         OGRELORD: 124,
         ADHERER: 125,
         ICEGOLEM: 126,
-        DESERTSCOLPION: 142, 
+        DESERTSCOLPION: 142,
         DARKSCOLPION: 143,
-        VULTURE: 144, 
+        VULTURE: 144,
         FORESTDRAGON: 145,
         CRYSTALSCOLPION: 146,
         ELIMINATOR: 147,
@@ -125,7 +132,7 @@ Types = {
         FLAREDEATHKNIGHT: 183,
         SNOWLADY: 185,
         SEADRAGON: 189,
-        
+
         // Armors
         CLOTHARMOR: 21,
         LEATHERARMOR: 22,
@@ -166,7 +173,7 @@ Types = {
         PORTALARMOR: 179,
         PIRATEKING: 187,
         SEADRAGONARMOR: 190,
-        
+
         // Objects
         FLASK: 35,
         BURGER: 36,
@@ -175,7 +182,9 @@ Types = {
         CAKE: 39,
         BOOK: 172,
         CD: 173,
-        
+        TOKEN_A: 192,
+        TOKEN_B: 193,
+
         // NPCs
         GUARD: 40,
         KING: 41,
@@ -193,7 +202,7 @@ Types = {
         DESERTNPC: 53,
         LAVANPC: 54,
         CODER: 55,
-        
+
         // Weapons
         SWORD1: 60,
         SWORD2: 61,
@@ -261,7 +270,7 @@ Types = {
 
 var kinds = {
     warrior: [Types.Entities.WARRIOR, "player", 0],
-    
+
     wizard:             [Types.Entities.WIZARD,              "mob", 7, 1],
     crab:               [Types.Entities.CRAB,                "mob", 1, 1],
     rat:                [Types.Entities.RAT,                 "mob", 5, 2],
@@ -342,20 +351,20 @@ var kinds = {
 
     goldgolem: [Types.Entities.GOLDGOLEM, "mob", 1, 1],
 
-    sword1: [Types.Entities.SWORD1, "weapon", 0],
-    sword2: [Types.Entities.SWORD2, "weapon", 0],
-    axe: [Types.Entities.AXE, "weapon", 0],
-    redsword: [Types.Entities.REDSWORD, "weapon", 0],
-    bluesword: [Types.Entities.BLUESWORD, "weapon", 0],
-    goldensword: [Types.Entities.GOLDENSWORD, "weapon", 0],
-    morningstar: [Types.Entities.MORNINGSTAR, "weapon", 0],
-    sidesword: [Types.Entities.SIDESWORD, "weapon", 0],
-    spear: [Types.Entities.SPEAR, "weapon", 0],
-    scimitar: [Types.Entities.SCIMITAR, "weapon", 0],
-    trident: [Types.Entities.TRIDENT, "weapon", 0],
+    sword1: [Types.Entities.SWORD1, "weapon", 0, 0],
+    sword2: [Types.Entities.SWORD2, "weapon", 0, 10],
+    axe: [Types.Entities.AXE, "weapon", 0, 30],
+    morningstar: [Types.Entities.MORNINGSTAR, "weapon", 0, 50],    
+    bluesword: [Types.Entities.BLUESWORD, "weapon", 0, 100],
+    redsword: [Types.Entities.REDSWORD, "weapon", 0, 150],
+    goldensword: [Types.Entities.GOLDENSWORD, "weapon", 0, 200],
+    sidesword: [Types.Entities.SIDESWORD, "weapon", 0, 250],
+    spear: [Types.Entities.SPEAR, "weapon", 0, 300],
+    scimitar: [Types.Entities.SCIMITAR, "weapon", 0, 350],
+    trident: [Types.Entities.TRIDENT, "weapon", 0, 400],
     bluescimitar: [Types.Entities.BLUESCIMITAR, "weapon", 0],
     hammer: [Types.Entities.HAMMER, "weapon", 0],
-    greenlightsaber: [Types.Entities.GREENLIGHTSABER, "weapon", 0],
+    greenlightsaber: [Types.Entities.GREENLIGHTSABER, "weapon", 0, 700],
     skylightsaber: [Types.Entities.SKYLIGHTSABER, "weapon", 0],
     redlightsaber: [Types.Entities.REDLIGHTSABER, "weapon", 0],
     redmetalsword: [Types.Entities.REDMETALSWORD, "weapon", 0],
@@ -364,16 +373,16 @@ var kinds = {
     rose: [Types.Entities.ROSE, "weapon", 0],
     icerose: [Types.Entities.ICEROSE, "weapon", 0],
     justicehammer: [Types.Entities.JUSTICEHAMMER, "weapon", 0],
-    firesword: [Types.Entities.FIRESWORD, "weapon", 0],
     whip: [Types.Entities.WHIP, "weapon", 0],
     forestguardiansword: [Types.Entities.FORESTGUARDIANSWORD, "weapon", 0],
     sickle: [Types.Entities.SICKLE, "weapon", 0],
     plunger: [Types.Entities.PLUNGER, "weapon", 0],
     redsickle: [Types.Entities.REDSICKLE, "weapon", 0],
     daywalker: [Types.Entities.DAYWALKER, "weapon", 0],
-    purplecloudkallege: [Types.Entities.PURPLECLOUDKALLEGE, "weapon", 0],
     searage: [Types.Entities.SEARAGE, "weapon", 0],
-    
+    purplecloudkallege: [Types.Entities.PURPLECLOUDKALLEGE, "weapon", 0, 1300],
+    firesword: [Types.Entities.FIRESWORD, "weapon", 0, 1500],
+
     clotharmor: [Types.Entities.CLOTHARMOR, "armor", 0],
     leatherarmor: [Types.Entities.LEATHERARMOR, "armor", 0],
     mailarmor: [Types.Entities.MAILARMOR, "armor", 0],
@@ -384,7 +393,7 @@ var kinds = {
     greenwingarmor: [Types.Entities.GREENWINGARMOR, "armor", 0],
     guardarmor: [Types.Entities.GUARDARMOR, "armor", 0],
     redguardarmor: [Types.Entities.REDGUARDARMOR, "armor", 0],
-    whitearmor: [Types.Entities.WHITEARMOR, "armor", 0],
+    whitearmor: [Types.Entities.WHITEARMOR, "armor", 0, 1200],
     ratarmor: [Types.Entities.RATARMOR, "armor", 0],
     bluepiratearmor: [Types.Entities.BLUEPIRATEARMOR, "armor", 0],
     cheoliarmor: [Types.Entities.CHEOLIARMOR, "armor", 0],
@@ -396,7 +405,7 @@ var kinds = {
     bluewingarmor: [Types.Entities.BLUEWINGARMOR, "armor", 0],
     thiefarmor: [Types.Entities.THIEFARMOR, "armor", 0],
     ninjaarmor: [Types.Entities.NINJAARMOR, "armor", 0],
-    dragonarmor: [Types.Entities.DRAGONARMOR, "armor", 0],
+    dragonarmor: [Types.Entities.DRAGONARMOR, "armor", 0, 2000],
     fallenarmor: [Types.Entities.FALLENARMOR, "armor", 0],
     paladinarmor: [Types.Entities.PALADINARMOR, "armor", 0],
     crystalarmor: [Types.Entities.CRYSTALARMOR, "armor", 0],
@@ -421,6 +430,8 @@ var kinds = {
     firepotion: [Types.Entities.FIREPOTION, "object", 0],
     book: [Types.Entities.BOOK, "object", 0],
     cd: [Types.Entities.CD, "object", 0],
+    tokena: [Types.Entities.TOKEN_A, "object", 0],
+    tokenb: [Types.Entities.TOKEN_B, "object", 0],
 
     guard: [Types.Entities.GUARD, "npc", 0, 0],
     villagegirl: [Types.Entities.VILLAGEGIRL, "npc", 0, 0],
@@ -441,7 +452,7 @@ var kinds = {
 
     debenef: [Types.Entities.DEBENEF, "benef", 0],
     firebenef: [Types.Entities.FIREBENEF, "benef", 0],
-    
+
     getType: function(kind) {
         return kinds[Types.getKindAsString(kind)][1];
     },
@@ -449,6 +460,9 @@ var kinds = {
         return kinds[Types.getKindAsString(kind)][2];
     },
     getMobLevel: function(kind){
+        return kinds[Types.getKindAsString(kind)][3];
+    },
+    getItemPrice: function(kind){
         return kinds[Types.getKindAsString(kind)][3];
     }
 };
@@ -620,6 +634,7 @@ Types.isBenef = function(kind) {
     return kinds.getType(kind) === "benef";
 };
 
+
 Types.isCharacter = function(kind) {
     return Types.isMob(kind) || Types.isNpc(kind) || Types.isPlayer(kind);
 };
@@ -641,21 +656,28 @@ Types.isChest = function(kind) {
 };
 
 Types.isItem = function(kind) {
-    return Types.isWeapon(kind) 
-        || Types.isArmor(kind) 
+    return Types.isWeapon(kind)
+        || Types.isArmor(kind)
         || (Types.isObject(kind) && !Types.isChest(kind));
 };
 
 Types.isHealingItem = function(kind) {
-    return kind === Types.Entities.FLASK 
+    return kind === Types.Entities.FLASK
         || kind === Types.Entities.BURGER;
 };
 
 Types.isExpendableItem = function(kind) {
     return Types.isHealingItem(kind)
         || kind === Types.Entities.FIREPOTION
-        || kind === Types.Entities.CAKE;
+        || kind === Types.Entities.CAKE
+        || kind === Types.Entities.TOKEN_A
+        || kind === Types.Entities.TOKEN_B;
 };
+
+Types.isToken = function(kind) {
+    return kind === Types.Entities.TOKEN_A
+        || kind === Types.Entities.TOKEN_B;
+}
 
 Types.getKindFromString = function(kind) {
     if(kind in kinds) {
@@ -723,7 +745,7 @@ Types.getRandomItemKind = function(item) {
         forbidden = [Types.Entities.SWORD1, Types.Entities.CLOTHARMOR],
         itemKinds = _.difference(all, forbidden),
         i = Math.floor(Math.random() * _.size(itemKinds));
-    
+
     return itemKinds[i];
 };
 
@@ -739,6 +761,10 @@ Types.getMessageTypeAsString = function(type) {
     }
     return typeName;
 };
+
+Types.getItemPrice = function(kind) {
+    return kinds.getItemPrice(kind);
+}
 
 if(!(typeof exports === 'undefined')) {
     module.exports = Types;

@@ -10,7 +10,10 @@ var cls = require("./lib/class"),
     check = require("./format").check,
     Types = require("../../shared/js/gametypes"),
     Mob = require("./mob"),
-    bcrypt = require('bcrypt');
+    bcrypt = require('bcrypt'),
+    GXC = require('./gxc'),
+    axios = require('axios');
+
 
 module.exports = Player = Character.extend({
     init: function(connection, worldServer, databaseHandler) {
@@ -39,6 +42,10 @@ module.exports = Player = Character.extend({
         this.inventory = [];
         this.inventoryCount = [];
         this.achievement = [];
+        this.wallet = {
+            [Types.Entities.TOKEN_A]: 0,
+            [Types.Entities.TOKEN_B]: 0,
+        };
 
         this.chatBanEndTime = 0;
 
@@ -62,44 +69,61 @@ module.exports = Player = Character.extend({
 
             self.resetTimeout();
 
-            if(action === Types.Messages.CREATE || action === Types.Messages.LOGIN) {
-                var name = Utils.sanitize(message[1]);
-                var pw = Utils.sanitize(message[2]);
-                var email = Utils.sanitize(message[3]);
-
-                log.info("HELLO: " + name);
+            // if(action === Types.Messages.CREATE || action === Types.Messages.LOGIN) {
+            if(action === Types.Messages.LOGIN) {
+                // var name = Utils.sanitize(message[1]);
+                // var pw = Utils.sanitize(message[2]);
+                // var email = Utils.sanitize(message[3]);
+                var gxcId = Utils.sanitize(message[1]);
+                var tempKey = Utils.sanitize(message[2]);
+                console.log(message);
+                log.info("HELLO: " + gxcId);
                 // Always ensure that the name is not longer than a maximum length.
                 // (also enforced by the maxlength attribute of the name input element).
-                self.name = name.substr(0, 12).trim()
+                // self.name = name.substr(0, 12).trim()
+                //
+                // // Validate the username
+                // if(!self.checkName(self.name)){
+                //     self.connection.sendUTF8("invalidusername");
+                //     self.connection.close("Invalid name " + self.name);
+                //     return;
+                // }
+                // self.pw = pw.substr(0, 15);
+                // self.email = email;
 
-                // Validate the username
-                if(!self.checkName(self.name)){
-                    self.connection.sendUTF8("invalidusername");
-                    self.connection.close("Invalid name " + self.name);
+                // if(action === Types.Messages.CREATE) {
+                //     bcrypt.genSalt(10, function(err, salt) {
+                //         bcrypt.hash(self.pw, salt, function(err, hash) {
+                //             log.info("CREATE: " + self.name);
+                //             self.email = Utils.sanitize(message[3]);
+                //             self.pw = hash;
+                //             databaseHandler.createPlayer(self);
+                //         })
+                //     });
+                // } else {
+                log.info("LOGIN: " + gxcId);
+                self.gxcId = gxcId;
+                self.name = gxcId;
+                self.tempKey = tempKey;
+                if(self.server.loggedInPlayer(gxcId)) {
+                    self.connection.sendUTF8("loggedin");
+                    self.connection.close("Already logged in " + gxcId);
                     return;
                 }
-                self.pw = pw.substr(0, 15);
-                self.email = email;
-
-                if(action === Types.Messages.CREATE) {
-                    bcrypt.genSalt(10, function(err, salt) {
-                        bcrypt.hash(self.pw, salt, function(err, hash) {
-                            log.info("CREATE: " + self.name);
-                            self.email = Utils.sanitize(message[3]);
-                            self.pw = hash;
-                            databaseHandler.createPlayer(self);
-                        })
-                    });
-                } else {
-                    log.info("LOGIN: " + self.name);
-                    if(self.server.loggedInPlayer(self.name)) {
-                        self.connection.sendUTF8("loggedin");
-                        self.connection.close("Already logged in " + self.name);
-                        return;
+                databaseHandler.checkBan(self);
+                databaseHandler.loadPlayer(self);
+                axios.get('https://mewapi.gamexcoin.io/v1/eos/balance?accountName=' + self.name + '&symbol=GXQ')
+                .then(function(res) {
+                    if (res.data && res.data.success) {
+                        self.setWallet(Types.Entities.TOKEN_A, res.data.balance);
+                    } else {
+                        console.log(e);
+                        self.send([Types.Messages.SHOP_ERROR, Types.Messages.SHOP_ERROR_TYPE.CHAIN, kind]);
                     }
-                    databaseHandler.checkBan(self);
-                    databaseHandler.loadPlayer(self);
-                }
+                }).catch(function(e) {
+                    console.log(e);
+                    self.send([Types.Messages.SHOP_ERROR, Types.Messages.SHOP_ERROR_TYPE.CHAIN, kind]);
+                });
             }
             else if(action === Types.Messages.WHO) {
                 log.info("WHO: " + self.name);
@@ -200,18 +224,21 @@ module.exports = Player = Character.extend({
                         mob.receiveDamage(dmg, self.id);
                         if(mob.hitPoints <= 0) {
                             if(mob.kind === Types.Entities.RAT) {
-                                if(self.achievementFound[2].found && self.achievementProgress[2] !== 999){
-                                    if(isNaN(self.achievementProgress[2])) {
-                                        self.achievementProgress[2] = 0;
+                                const achievementId = 2;
+                                if(self.achievementFound[achievementId] && self.achievementProgress[achievementId] !== 999){
+                                    if(isNaN(self.achievementProgress[achievementId])) {
+                                        self.achievementProgress[achievementId] = 0;
                                     } else {
-                                        self.achievementProgress[2]++;
+                                        self.achievementProgress[achievementId]++;
                                     }
-                                    if(self.achievementProgress[2] >= 10){
-                                        self.send([Types.Messages.ACHIEVEMENT, 2, "complete"]);
-                                        self.achievementProgress[2] = 999;
+                                    if(self.achievementProgress[achievementId] >= 10){
+                                        self.send([Types.Messages.ACHIEVEMENT, achievementId, "complete"]);
+                                        self.achievementProgress[achievementId] = 999;
                                         self.incExp(50);
+                                        self.incWallet(Types.Entities.TOKEN_A, 30);
+                                        self.send([Types.Messages.WALLET, Types.Entities.TOKEN_A, self.wallet[Types.Entities.TOKEN_A]]);
                                     }
-                                    databaseHandler.progressAchievement(self.name, 2, self.achievementProgress[2]);
+                                    databaseHandler.progressAchievement(self.gxcId, achievementId, self.achievementProgress[achievementId]);
                                 }
                             } else if(mob.kind === Types.Entities.CRAB){
                                 const achievementId = 18;
@@ -225,24 +252,27 @@ module.exports = Player = Character.extend({
                                         self.send([Types.Messages.ACHIEVEMENT, achievementId, "complete"]);
                                         self.achievementProgress[achievementId] = 999;
                                         self.incExp(50);
+                                        self.incWallet(Types.Entities.TOKEN_A, 50);
+                                        self.send([Types.Messages.WALLET, Types.Entities.TOKEN_A, self.wallet[Types.Entities.TOKEN_A]]);
                                     }
-                                    databaseHandler.progressAchievement(self.name, achievementId, self.achievementProgress[achievementId]);
+                                    databaseHandler.progressAchievement(self.gxcId, achievementId, self.achievementProgress[achievementId]);
                                 }
                             } else if(mob.kind === Types.Entities.SKELETON){
                                 const achievementId = 21;
                                 if(self.achievementFound[achievementId] && self.achievementProgress[achievementId] !== 999){
-                                    
                                     if(isNaN(self.achievementProgress[achievementId])){
                                         self.achievementProgress[achievementId] = 0;
                                     } else{
                                         self.achievementProgress[achievementId]++;
                                     }
                                     if(self.achievementProgress[achievementId] >= 10){
-                                        self.send([Types.Messages.ACHIEVEMENT, 21, "complete"]);
+                                        self.send([Types.Messages.ACHIEVEMENT, achievementId, "complete"]);
                                         self.achievementProgress[achievementId] = 999;
                                         self.incExp(200);
+                                        self.incWallet(Types.Entities.TOKEN_A, 100);
+                                        self.send([Types.Messages.WALLET, Types.Entities.TOKEN_A, self.wallet[Types.Entities.TOKEN_A]]);
                                     }
-                                    databaseHandler.progressAchievement(self.name, achievementId, self.achievementProgress[achievementId]);
+                                    databaseHandler.progressAchievement(self.gxcId, achievementId, self.achievementProgress[achievementId]);
                                 }
                             }
                         }
@@ -264,7 +294,7 @@ module.exports = Player = Character.extend({
                 }
             }
             else if(action === Types.Messages.HURT) {
-                log.info("HURT: " + self.name + " " + message[1]);
+                log.info("HURT: " + self.gxcId + " " + message[1]);
                 var mob = self.server.getEntityById(message[1]);
                 if(mob &&
                     (mob.kind === Types.Entities.FORESTDRAGON
@@ -297,7 +327,7 @@ module.exports = Player = Character.extend({
                 }
             }
             else if(action === Types.Messages.LOOT) {
-                log.info("LOOT: " + self.name + " " + message[1]);
+                log.info("LOOT: " + self.gxcId + " " + message[1]);
                 var item = self.server.getEntityById(message[1]);
 
                 if(item) {
@@ -318,20 +348,21 @@ module.exports = Player = Character.extend({
                         } else if(Types.isHealingItem(kind)) {
                             self.putInventory(item);
                         } else if(Types.isWeapon(kind)) {
-                            self.equipItem(item.kind);
-                            self.broadcast(self.equip(kind));
-
-                            
-                            
-                        } else if(Types.isArmor(kind)) {
-                            if(self.level < 100){
-                                self.equipItem(item.kind);
-                                self.broadcast(self.equip(kind));
-                            } else {
-                                self.putInventory(item);
-                            }
-                        } else if(kind == Types.Entities.CAKE || kind === Types.Entities.CD){
+                            // self.equipItem(item.kind);
+                            // self.broadcast(self.equip(kind));
                             self.putInventory(item);
+                        } else if(Types.isArmor(kind)) {
+                            // if(self.level < 100){
+                                // self.equipItem(item.kind);
+                                // self.broadcast(self.equip(kind));
+                            // } else {
+                            self.putInventory(item);
+                            // }
+                        } else if(kind == Types.Entities.CAKE
+                            || kind === Types.Entities.CD){
+                            self.putInventory(item);
+                        } else if(Types.isToken(kind)) {
+                            self.incWallet(kind, 1);
                         }
                     }
                 }
@@ -367,12 +398,29 @@ module.exports = Player = Character.extend({
                     databaseHandler.setCheckpoint(self.name, self.x, self.y);
                 }
             }
+            else if(action === Types.Messages.WALLET) {
+                log.info("WALLET: " + self.name + " " + message[1] + " " + message[2]);
+                var type = message[1],
+                    amount = message[2];
+
+                databaseHandler.setWallet(self.name, type, amount);
+            }
+            else if(action === Types.Messages.SHOP) {
+                log.info("SHOP: " + self.name + " " + message[1] + " " + message[2] + " " + message[3]);
+                var itemType = message[1];
+                var tokenType = message[2];
+                var price = message[3];
+                var item = { kind: itemType, count: 1 };
+
+                self.buyItem(item, tokenType, price);
+            }
             else if(action === Types.Messages.INVENTORY){
                 log.info("INVENTORY: " + self.name + " " + message[1] + " " + message[2] + " " + message[3]);
                 var inventoryNumber = message[2],
                     count = message[3];
 
-                if(inventoryNumber !== 0 && inventoryNumber !== 1){
+                
+                if(self.inventory.indexOf[inventoryNumber] === -1) {
                     return;
                 }
 
@@ -389,10 +437,14 @@ module.exports = Player = Character.extend({
                             self.equipItem(itemKind, false);
                         }
                         self.broadcast(self.equip(itemKind));
+                    } else if(message[1] === "weapon") {
+                        self.inventory[inventoryNumber] = self.weapon;
+                        databaseHandler.setInventory(self.name, self.weapon, inventoryNumber, 1);
+                        self.equipItem(itemKind, false);
                     } else if(message[1] === "empty"){
                         //var item = self.server.addItem(self.server.createItem(itemKind, self.x, self.y));
                         var item = self.server.addItemFromChest(itemKind, self.x, self.y);
-                        if(Types.isHealingItem(item.kind)){
+                        if(Types.isHealingItem(item.kind) || Types.isToken(item.kind)){
                             if(count < 0)
                                 count = 0;
                             else if(count > self.inventoryCount[inventoryNumber])
@@ -403,7 +455,7 @@ module.exports = Player = Character.extend({
                         if(item.count > 0) {
                             self.server.handleItemDespawn(item);
 
-                            if(Types.isHealingItem(item.kind)) {
+                            if(Types.isHealingItem(item.kind) || Types.isToken(item.kind)) {
                                 if(item.count === self.inventoryCount[inventoryNumber]) {
                                     self.inventory[inventoryNumber] = null;
                                     databaseHandler.makeEmptyInventory(self.name, inventoryNumber);
@@ -444,56 +496,48 @@ module.exports = Player = Character.extend({
                 log.info("ACHIEVEMENT: " + self.name + " " + message[1] + " " + message[2]);
                 if(message[2] === "found") {
                     self.achievementFound[message[1]] = true;
-                    databaseHandler.foundAchievement(self.name, message[1]);
+                    databaseHandler.foundAchievement(self.gxcId, message[1]);
                 }
             } else if(action === Types.Messages.TALKTONPC){
                 log.info("TALKTONPC: " + self.name + " " + message[1]);
                 if(message[1] === Types.Entities.VILLAGER){
+                    const achievementId = 17;
                     if(self.armor === Types.Entities.LEATHERARMOR
-                    && self.achievementFound[17] === true
-                    && self.achievementProgress[17] !== 999){
+                    && self.achievementFound[achievementId] === true
+                    && self.achievementProgress[achievementId] !== 999){
                         self.equipItem(Types.Entities.CLOTHARMOR);
-                        self.send([Types.Messages.ACHIEVEMENT, 17, "complete"]);
-                        self.achievementProgress[17] = 999;
+                        self.send([Types.Messages.ACHIEVEMENT, achievementId, "complete"]);
+                        self.achievementProgress[achievementId] = 999;
                         self.incExp(50);
-                        databaseHandler.progressAchievement(self.name, 17, self.achievementProgress[17]);
+                        databaseHandler.progressAchievement(self.gxcId, achievementId, self.achievementProgress[achievementId]);
                     }
                 } else if(message[1] === Types.Entities.AGENT){
-                    if((self.inventory[0] === Types.Entities.CAKE
-                    || self.inventory[1] === Types.Entities.CAKE)
-                    && self.achievementFound[19] === true
-                    && self.achievementProgress[19] !== 999) {
-                        if(self.inventory[0] === Types.Entities.CAKE){
-                            self.inventory[0] = null;
-                            databaseHandler.makeEmptyInventory(self.name, 0);
-                        } else {
-                            self.inventory[1] = null;
-                            databaseHandler.makeEmptyInventory(self.name, 1);
-                        }
+                    const achievementId = 20;
+                    const inventoryIndex = self.inventory.indexOf(Types.Entities.CAKE);
+                    if(inventoryIndex !== -1
+                    && self.achievementFound[achievementId] === true
+                    && self.achievementProgress[achievementId] !== 999) {
+                        self.inventory.indexOf[inventoryIndex] = null;
+                        databaseHandler.makeEmptyInventory(self.name, inventoryIndex);
 
-                        self.send([Types.Messages.ACHIEVEMENT, 19, "complete"]);
-                        self.achievementProgress[19] = 999;
+                        self.send([Types.Messages.ACHIEVEMENT, achievementId, "complete"]);
+                        self.achievementProgress[achievementId] = 999;
                         self.incExp(50);
-                        databaseHandler.progressAchievement(self.name, 19, self.achievementProgress[19]);
+                        databaseHandler.progressAchievement(self.gxcId, achievementId, self.achievementProgress[achievementId]);
                     }
                 } else if(message[1] === Types.Entities.NYAN){
                     const achievementId = 20;
-                    if((self.inventory[0] === Types.Entities.CD
-                     || self.inventory[1] === Types.Entities.CD)
+                    const inventoryIndex = self.inventory.indexOf(Types.Entities.CD);
+                    if(inventoryIndex !== -1
                     && self.achievementFound[achievementId] === true
                     && self.achievementProgress[achievementId] !== 999){
-                        if(self.inventory[0] === Types.Entities.CD){
-                            self.inventory[0] = null;
-                            databaseHandler.makeEmptyInventory(self.name, 0);
-                        } else {
-                            self.inventory[1] = null;
-                            databaseHandler.makeEmptyInventory(self.name, 1);
-                        }
+                        self.inventory[inventoryIndex] = null;
+                        databaseHandler.makeEmptyInventory(self.name, inventoryIndex);
 
-                        self.send([Types.Messages.ACHIEVEMENT, 20, "complete"]);
+                        self.send([Types.Messages.ACHIEVEMENT, achievementId, "complete"]);
                         self.achievementProgress[achievementId] = 999;
                         self.incExp(100);
-                        databaseHandler.progressAchievement(self.name, 20, self.achievementProgress[achievementId]);
+                        databaseHandler.progressAchievement(self.gxcId, achievementId, self.achievementProgress[achievementId]);
                     }
                 } else if(message[1] === Types.Entities.DESERTNPC){
                     const achievementId = 22;
@@ -501,17 +545,17 @@ module.exports = Player = Character.extend({
                     && self.achievementFound[achievementId] === true
                     && self.achievementProgress[achievementId] !== 999){
                         self.equipItem(Types.Entities.SWORD2);
-                        self.send([Types.Messages.ACHIEVEMENT, 22, "complete"]);
+                        self.send([Types.Messages.ACHIEVEMENT, achievementId, "complete"]);
                         self.achievementProgress[achievementId] = 999;
                         self.incExp(200);
-                        databaseHandler.progressAchievement(self.name, 22, self.achievementProgress[achievementId]);
+                        databaseHandler.progressAchievement(self.gxcId, achievementId, self.achievementProgress[achievementId]);
                     }
                 }
             } else if(action === Types.Messages.MAGIC){
                 log.info("MAGIC: " + self.name + " " + message[1] + " " + message[2]);
                 var magicName = message[1];
                 var magicTargetName = message[2];
-  
+
                 if(magicName === "setheal"){
                   self.magicTarget = self.server.getPlayerByName(magicTargetName);
                   if(self.magicTarget === self){
@@ -545,10 +589,6 @@ module.exports = Player = Character.extend({
                     databaseHandler.writeReply(self, reply, number);
                   }
                 }
-            } else if(action === Types.Messages.KUNG){
-                log.info("KUNG: " + self.name + " " + message[1]);
-                var word = message[1];
-                databaseHandler.pushKungWord(self, word);
             } else if(action === Types.Messages.GUILD) {
                 if(message[1] === Types.Messages.GUILDACTION.CREATE) {
                     var guildname = Utils.sanitize(message[2]);
@@ -620,7 +660,7 @@ module.exports = Player = Character.extend({
 
     getState: function() {
         var basestate = this._getBaseState(),
-            state = [this.name, this.orientation, this.avatar, this.weapon, this.level];
+            state = [this.gxcId, this.orientation, this.avatar, this.weapon, this.level];
 
         if(this.target) {
             state.push(this.target);
@@ -729,30 +769,30 @@ module.exports = Player = Character.extend({
     equipItem: function(itemKind, isAvatar) {
         var self = this;
         if(itemKind) {
-            log.debug(this.name + " equips " + Types.getKindAsString(itemKind));
+            log.debug(this.gxcId + " equips " + Types.getKindAsString(itemKind));
 
             if(Types.isArmor(itemKind)) {
                 if(isAvatar) {
-                    this.databaseHandler.equipAvatar(this.name, Types.getKindAsString(itemKind));
+                    this.databaseHandler.equipAvatar(this.gxcId, Types.getKindAsString(itemKind));
                     this.equipAvatar(itemKind);
                 } else {
-                    this.databaseHandler.equipAvatar(this.name, Types.getKindAsString(itemKind));
+                    this.databaseHandler.equipAvatar(this.gxcId, Types.getKindAsString(itemKind));
                     this.equipAvatar(itemKind);
 
-                    this.databaseHandler.equipArmor(this.name, Types.getKindAsString(itemKind));
+                    this.databaseHandler.equipArmor(this.gxcId, Types.getKindAsString(itemKind));
                     this.equipArmor(itemKind);
                 }
                 this.updateHitPoints();
                 this.send(new Messages.HitPoints(this.maxHitPoints).serialize());
             } else if(Types.isWeapon(itemKind)) {
-                this.databaseHandler.equipWeapon(this.name, Types.getKindAsString(itemKind));
+                this.databaseHandler.equipWeapon(this.gxcId, Types.getKindAsString(itemKind));
                 this.equipWeapon(itemKind);
 
                 const achievementId = 1;
                 if(self.achievementProgress[achievementId] < 999) {
                     self.achievementProgress[achievementId] = 999;
                     self.send([Types.Messages.ACHIEVEMENT, achievementId, "complete"]);
-                    self.databaseHandler.progressAchievement(self.name, achievementId, self.achievementProgress[achievementId]);
+                    self.databaseHandler.progressAchievement(self.gxcId, achievementId, self.achievementProgress[achievementId]);
                 }
             }
         }
@@ -775,7 +815,7 @@ module.exports = Player = Character.extend({
 
     resetTimeout: function() {
         clearTimeout(this.disconnectTimeout);
-        this.disconnectTimeout = setTimeout(this.timeout.bind(this), 1000 * 60 * 15); // 15 min.
+        this.disconnectTimeout = setTimeout(this.timeout.bind(this), 1000 * 60 * 60); // 15 min.
     },
 
     timeout: function() {
@@ -785,7 +825,7 @@ module.exports = Player = Character.extend({
 
     incExp: function(gotexp){
         this.experience = parseInt(this.experience) + (parseInt(gotexp));
-        this.databaseHandler.setExp(this.name, this.experience);
+        this.databaseHandler.setExp(this.gxcId, this.experience);
         var origLevel = this.level;
         this.level = Types.getLevel(this.experience);
         if(origLevel !== this.level) {
@@ -847,6 +887,7 @@ module.exports = Player = Character.extend({
     sendWelcome: function(armor, weapon, avatar, weaponAvatar, exp, admin,
                           bannedTime, banUseTime,
                           inventory, inventoryNumber, achievementFound, achievementProgress,
+                          wallet,
                           x, y,
                           chatBanEndTime) {
         var self = this;
@@ -855,13 +896,14 @@ module.exports = Player = Character.extend({
         self.equipArmor(Types.getKindFromString(armor));
         self.equipAvatar(Types.getKindFromString(avatar));
         self.equipWeapon(Types.getKindFromString(weapon));
-        self.inventory[0] = Types.getKindFromString(inventory[0]);
-        self.inventory[1] = Types.getKindFromString(inventory[1]);
-        self.inventoryCount[0] = inventoryNumber[0];
-        self.inventoryCount[1] = inventoryNumber[1];
+        for(var i=0; i < inventory.length; i++) {
+            self.inventory[i] = Types.getKindFromString(inventory[i]);
+        }
+        self.inventoryCount = inventoryNumber;
         self.achievementFound = achievementFound;
         self.achievementProgress = achievementProgress;
-        
+        self.wallet = wallet;
+
         self.bannedTime = bannedTime;
         self.banUseTime = banUseTime;
         self.experience = exp;
@@ -877,13 +919,14 @@ module.exports = Player = Character.extend({
 
         self.server.addPlayer(self);
         self.server.enter_callback(self);
-        
+
         self.send([
             Types.Messages.WELCOME, self.id, self.name, self.x, self.y,
             self.hitPoints, armor, weapon, avatar, weaponAvatar,
             self.experience, self.admin,
-            inventory[0], inventoryNumber[0], inventory[1], inventoryNumber[1],
+            inventory, inventoryNumber,
             achievementFound, achievementProgress,
+            wallet
         ]);
 
         self.hasEnteredGame = true;
@@ -892,30 +935,105 @@ module.exports = Player = Character.extend({
         // self.server.addPlayer(self, aGuildId);
 
     },
-    putInventory: function(item){
-        if(Types.isHealingItem(item.kind)){
-            if(this.inventory[0] === item.kind){
-                this.inventoryCount[0] += item.count;
-                this.databaseHandler.setInventory(this.name, item.kind, 0, this.inventoryCount[0]);
-            } else if(this.inventory[1] === item.kind){
-                this.inventoryCount[1] += item.count;
-                this.databaseHandler.setInventory(this.name, item.kind, 1, this.inventoryCount[1]);
-            } else{
-                this._putInventory(item);
+    buyItem: function(item, tokenType, price) {
+        var self = this;
+        if((Types.isWeapon(item.kind) || Types.isArmor(item.kind)) && Types.getItemPrice(item.kind) === price) {
+            if(Types.isToken(tokenType)) {
+                if(this.wallet[tokenType] - price >= 0) {
+                    var callback = function() { 
+                        var result = self.putInventory(item);
+                        if(result != null) {
+                            self.send([Types.Messages.INVENTORY, item.kind, result.inventoryNumber, item.count]);
+                        } else {
+                            self.send([Types.Messages.SHOP_ERROR, Types.Messages.SHOP_ERROR_TYPE.INVENTORY_IS_FULL, item.kind]);
+                        }
+                    }
+                    this.decWallet(tokenType, price, callback);
+                } else {
+                    this.send([Types.Messages.SHOP_ERROR, Types.Messages.SHOP_ERROR_TYPE.INSUFFICIENT, this.wallet[tokenType]]);
+                }
+            } else {
+                this.send([Types.Messages.SHOP_ERROR, Types.Messages.SHOP_ERROR_TYPE.DONT_USE_TYPE, this.wallet[tokenType]]);
             }
-        } else{
-            this._putInventory(item);
+        } else {
+            this.send([Types.Messages.SHOP_ERROR, Types.Messages.SHOP_ERROR_TYPE.NOT_MATCH_PRICE, Types.getItemPrice(item.kind)]);
         }
     },
-    _putInventory: function(item){
-        if(!this.inventory[0]){
-            this.inventory[0] = item.kind;
-            this.inventoryCount[0] = item.count;
-            this.databaseHandler.setInventory(this.name, item.kind, 0, item.count);
-        } else if(!this.inventory[1]){
-            this.inventory[1] = item.kind;
-            this.inventoryCount[1] = item.count;
-            this.databaseHandler.setInventory(this.name, item.kind, 1, item.count);
+    setWallet: function(kind, amount) {
+        this.databaseHandler.setWallet(this.name, kind, amount);
+        this.send([Types.Messages.WALLET, kind, amount]);
+    },
+    incWallet: function(kind, amount) {
+        var tokenName = 'GXQ';
+        var self = this;
+        
+        axios.get('https://mewapi.gamexcoin.io/v1/eos/balance?accountName=' + self.name + '&symbol=GXQ')
+        .then(function(res) {
+            if (res.data && res.data.success) {
+                GXC.generateToken(self.name, tokenName, amount)
+                .then(function(data) {
+                    self.wallet[kind] = res.data.balance;
+                    self.wallet[kind] += amount;
+                    self.setWallet(kind, self.wallet[kind]);
+                })
+                .catch(function(e) {
+                    console.log(e);
+                    self.send([Types.Messages.SHOP_ERROR, Types.Messages.SHOP_ERROR_TYPE.CHAIN, kind]);
+                });
+            } else {
+                console.log(e);
+                self.send([Types.Messages.SHOP_ERROR, Types.Messages.SHOP_ERROR_TYPE.CHAIN, kind]);
+            }
+        }).catch(function(e) {
+            console.log(e);
+            self.send([Types.Messages.SHOP_ERROR, Types.Messages.SHOP_ERROR_TYPE.CHAIN, kind]);
+        });
+    },
+    decWallet: function(kind, amount, callback) {
+        var tokenName = 'GXQ';
+        var self = this;
+        axios.get('https://mewapi.gamexcoin.io/v1/eos/balance?accountName=' + self.name + '&symbol=GXQ')
+        .then(function(res) {
+            if (res.data && res.data.success) {
+                GXC.consumeToken(self.accessToken, tokenName, amount)
+                .then(function(data) {
+                    self.wallet[kind] = res.data.balance;
+                    self.wallet[kind] -= amount;
+                    self.setWallet(kind, self.wallet[kind]);
+                    if(callback) {
+                        callback();
+                    }
+                }).catch(function(e) {
+                    console.log(e);
+                    self.send([Types.Messages.SHOP_ERROR, Types.Messages.SHOP_ERROR_TYPE.CHAIN, kind]);
+                });
+            }
+        }).catch(function(e) {
+            console.log(e);
+            self.send([Types.Messages.SHOP_ERROR, Types.Messages.SHOP_ERROR_TYPE.CHAIN, kind]);
+        });
+    },
+    putInventory: function(item){
+        if(Types.isHealingItem(item.kind) || Types.isToken(item.kind)){
+            for(var i=0; i < this.inventory.length; i++) {
+                if(this.inventory[i] === item.kind){
+                    this.inventoryCount[i] += item.count;
+                    this.databaseHandler.setInventory(this.gxcId, item.kind, i, this.inventoryCount[i]);
+                    return { inventoryNumber: i };
+                }
+            }
         }
+        return this._putInventory(item);
+    },
+    _putInventory: function(item){
+        for(var i=0; i < this.inventory.length; i++) {
+            if(!this.inventory[i]) {
+                this.inventory[i] = item.kind;
+                this.inventoryCount[i] = item.count;
+                this.databaseHandler.setInventory(this.gxcId, item.kind, i, item.count);
+                return { inventoryNumber: i };
+            }
+        }
+        return null;
     },
 });

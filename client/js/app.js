@@ -8,12 +8,13 @@ define(['jquery'], function($) {
             this.isParchmentReady = true;
             this.ready = false;
             this.watchNameInputInterval = setInterval(this.toggleButton.bind(this), 100);
+            this.$play = $('.play');
             this.initFormFields(),
             this.$playDiv = $('.play span');
 
             this.inventoryNumber = 0,
             this.dropDialogPopuped = false;
-
+            this.loginPopupWindow = null;
             var self = this;
             $('#boardbutton').click(function(event){
                 if(self.game && self.ready){
@@ -27,6 +28,34 @@ define(['jquery'], function($) {
                     self.game.boardhandler.hide();
                 }
             });
+
+
+            $('#shop-modal .item-row button[name="buy-button"]').click(function(event) {
+                $div = $(this).parent().parent();
+                var itemType = $div.find('input[name="itemType"]').val();
+                var tokenType = $div.find('input[name="tokenType"]').val();
+                var price = $div.find('input[name="price"]').val();
+                itemType = parseInt(itemType);
+                tokenType = (tokenType === 'A') ? Types.Entities.TOKEN_A : Types.Entities.TOKEN_B;
+                price = parseInt(price);
+                self.game.client.sendShop(itemType, tokenType, price);
+                closeShopmodal();
+            });
+            $('#gxc-login-button').click(function(event){
+                const width = 400;
+                const height = 500;
+                const left = (screen.availWidth - width) / 2;
+                const top = (screen.availHeight - height) / 2;
+                // loginPopupWindow = window.open("https://mew.gamexcoin.io/authorize?response_type=code&client_id=5b064ed6e63f19908cd45dc0&redirect_uri=http%3A%2F%2Flocalhost%3A8000/oauth_callback", Math.random(), `width=${width}, height=${height}, left=${left}, top=${top}`);
+                loginPopupWindow = window.open("http://localhost:8080/authorize?response_type=code&client_id=5b064ed6e63f19908cd45dc0&redirect_uri=http%3A%2F%2Flocalhost%3A8000/oauth_callback", Math.random(), `width=${width}, height=${height}, left=${left}, top=${top}`);
+
+            });
+            window.gxcLoginHander = function (gxcId, tempKey) {
+                loginPopupWindow.close();
+                console.log(gxcId);
+                console.log(tempKey);
+                self.startGame(gxcId, tempKey);
+            }
         },
 
         setGame: function(game) {
@@ -42,7 +71,6 @@ define(['jquery'], function($) {
             var self = this;
 
             // Play button
-            this.$play = $('.play');
             this.getPlayButton = function() { return this.getActiveForm().find('.play span') };
             this.setPlayButtonState(true);
 
@@ -90,7 +118,7 @@ define(['jquery'], function($) {
             }
 
             if(!this.validateFormFields(username, userpw, userpw2, email)) return;
-            
+
             if(!this.ready || !this.canStartGame()) {
                 if(!this.isMobile) {
                     // on desktop and tablets, add a spinner to the play button
@@ -112,13 +140,14 @@ define(['jquery'], function($) {
             } else {
                 this.$playDiv.unbind('click');
                 this.startGame(action, username, userpw, email, starting_callback);
-            }      
+            }
         },
 
-        startGame: function(action, username, userpw, email, starting_callback) {
+        startGame: function(gxcId, tempKey, starting_callback) {
             var self = this;
-
-            if(username && !this.game.started) {
+            console.log('startGame!');
+            console.log(gxcId && tempKey && !this.game.started);
+            if(gxcId && tempKey && !this.game.started) {
                 var optionsSet = false,
                     config = this.config;
 
@@ -131,43 +160,43 @@ define(['jquery'], function($) {
                         // on the PLAY button instead of loading it in a web worker.
                         self.game.loadMap();
                     }
-                    self.start(action, username, userpw, email);
+                    self.start(gxcId, tempKey);
                 });
             }
         },
 
-        start: function(action, username, userpw, email) {
+        start: function(gxcId, tempKey) {
             var self = this;
-            
-            if(username && !this.game.started) {
+
+            if(tempKey && !this.game.started) {
                 var optionsSet = false,
                     config = this.config;
 
                 //>>includeStart("devHost", pragmas.devHost);
                 if(config.local) {
                     console.log("Starting game with local dev config.");
-                    this.game.setServerOptions(config.local.host, config.local.port, username, userpw, email);
+                    this.game.setServerOptions(config.local.host, config.local.port, gxcId, tempKey);
                 } else {
                     console.log("Starting game with default dev config.");
-                    this.game.setServerOptions(config.dev.host, config.dev.port, username, userpw, email);
+                    this.game.setServerOptions(config.dev.host, config.dev.port, gxcId, tempKey);
                 }
                 optionsSet = true;
                 //>>includeEnd("devHost");
-                
+
                 //>>includeStart("prodHost", pragmas.prodHost);
                 if(!optionsSet) {
                     console.log("Starting game with build config.");
-                    this.game.setServerOptions(config.build.host, config.build.port, username, userpw, email);
+                    this.game.setServerOptions(config.build.host, config.build.port, gxcId, tempKey);
                 }
                 //>>includeEnd("prodHost");
 
                 this.center();
-                this.game.run(action, function() {
+                this.game.run('login', function() {
                     $('body').addClass('started');
             	});
             }
         },
-        
+
         setPlayButtonState: function(enabled) {
             var self = this;
             var $playButton = this.getPlayButton();
@@ -189,7 +218,7 @@ define(['jquery'], function($) {
             }
         },
 
-        getActiveForm: function() { 
+        getActiveForm: function() {
             if(this.loginFormActive()) return $('#loadcharacter');
             else if(this.createNewCharacterFormActive()) return $('#createcharacter');
             else return null;
@@ -431,7 +460,7 @@ define(['jquery'], function($) {
                 $('#dropDialog').addClass('active');
                 $('#dropCount').focus();
                 $('#dropCount').select();
-                
+
                 this.inventoryNumber = inventoryNumber;
                 this.dropDialogPopuped = true;
             }

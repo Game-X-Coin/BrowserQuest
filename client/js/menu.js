@@ -3,18 +3,11 @@ define(['jquery'], function() {
      init: function(){
          this.inventoryOn = null;
      },
-     clickInventory0: function(){
-         if(this.inventoryOn === "inventory0"){
+     clickInventory: function(i){
+         if(this.inventoryOn === "inventory"+i){
              this.close();
          } else{
-             this.inventoryOn = "inventory0";
-         }
-     },
-     clickInventory1: function(){
-         if(this.inventoryOn === "inventory1"){
-             this.close();
-         } else{
-             this.inventoryOn = "inventory1";
+             this.inventoryOn = "inventory"+i;
          }
      },
      isClickedInventoryMenu: function(pos, camera){

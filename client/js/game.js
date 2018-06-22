@@ -2,11 +2,11 @@ define(['infomanager', 'bubble', 'renderer', 'map', 'animation', 'sprite',
         'tile', 'warrior', 'gameclient', 'audio', 'updater', 'transition',
         'pathfinder', 'item', 'mob', 'npc', 'player', 'character', 'chest',
         'mobs', 'exceptions', 'config', 'chathandler', 'textwindowhandler',
-        'menu', 'boardhandler', 'kkhandler', 'guild', '../../shared/js/gametypes'],
+        'menu', 'boardhandler', 'guild', '../../shared/js/gametypes'],
 function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedTile,
          Warrior, GameClient, AudioManager, Updater, Transition, Pathfinder,
          Item, Mob, Npc, Player, Character, Chest, Mobs, Exceptions, config,
-         ChatHandler, TextWindowHandler, Menu, BoardHandler, KkHandler, Guild) {
+         ChatHandler, TextWindowHandler, Menu, BoardHandler, Guild) {
     var Game = Class.extend({
         init: function(app) {
             this.app = app;
@@ -63,8 +63,7 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
             this.infoManager = new InfoManager(this);
 
             // Chat commands
-            this.kkhandler = new KkHandler();
-            this.chathandler = new ChatHandler(this, this.kkhandler);
+            this.chathandler = new ChatHandler(this);
             this.boardhandler = new BoardHandler(this);
 
             // TextWindow Handler
@@ -88,7 +87,7 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
 
             // debug
             this.debugPathing = false;
-            
+
             // pvp
             this.pvpFlag = false;
 
@@ -125,7 +124,7 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
                 "sword", "loot", "target", "talk", "sparks", "shadow16", "rat", "skeleton",
                 "skeleton2", "spectre", "skeletonking", "deathknight", "ogre", "crab",
                 "snake", "eye", "bat", "goblin", "wizard", "guard", "king", "villagegirl",
-                "villager", "coder", "agent", "rick", "scientist", "nyan", "priest", 
+                "villager", "coder", "agent", "rick", "scientist", "nyan", "priest",
                 "sorcerer", "octocat", "beachnpc", "forestnpc", "desertnpc", "lavanpc",
                 "clotharmor", "item-clotharmor", "leatherarmor", "mailarmor", "platearmor",
                 "redarmor", "goldenarmor", "firefox", "death", "sword1", "axe", "chest",
@@ -133,7 +132,7 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
                 "item-redsword", "item-bluesword", "item-goldensword", "item-leatherarmor",
                 "item-mailarmor", "item-platearmor", "item-redarmor", "item-goldenarmor",
                 "item-flask", "item-cake", "item-burger", "morningstar", "item-morningstar",
-                "item-firepotion", "orc", "oldogre", "golem", "mimic", "hobgoblin",
+                "item-firepotion", "item-tokena", "item-tokenb", "orc", "oldogre", "golem", "mimic", "hobgoblin",
                 "greenarmor", "greenwingarmor", "item-greenarmor", "item-greenwingarmor",
                 "redmouse", "redguard", "scimitar", "item-scimitar", "redguardarmor",
                 "item-redguardarmor", "whitearmor", "item-whitearmor", "infectedguard",
@@ -426,7 +425,7 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
                 FIND_CAKE: {
                     id: 19,
                     name: "Find Cake",
-                    desc: "Fine Cate",
+                    desc: "Fine CaKe",
                     hidden: !achievementFound[19],
                     completed: achievementProgress[19] === 999 ? true : false,
                     isCompleted: function() {
@@ -505,12 +504,15 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
             if(this.renderer.upscaledRendering) {
                 this.sprites = this.spritesets[0];
             } else {
-                this.sprites = this.spritesets[scale - 1];
+                if(this.spritesets && this.spritesets.length >= scale) {
+                    this.sprites = this.spritesets[scale - 1];
 
-                _.each(this.entities, function(entity) {
-                    entity.sprite = null;
-                    entity.setSprite(self.sprites[entity.getSpriteName()]);
-                });
+                    _.each(this.entities, function(entity) {
+                        entity.sprite = null;
+                        entity.setSprite(self.sprites[entity.getSpriteName()]);
+                    });
+                }
+                
                 this.initHurtSprites();
                 this.initShadows();
                 this.initCursors();
@@ -549,7 +551,7 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
             else {
                 this.targetColor = "rgba(255, 255, 255, 0.5)";
             }
-            
+
             if(this.hoveringPlayer && this.started) {
                 if(this.pvpFlag)
                     this.setCursor("sword");
@@ -789,14 +791,15 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
             }
         },
 
-        setServerOptions: function(host, port, username, userpw, email) {
+        setServerOptions: function(host, port, gxcId, tempKey) {
             this.host = host;
             this.port = port;
-            this.username = username;
-            this.userpw = userpw;
-            this.email = email;
+            this.gxcId = gxcId;
+            this.name = gxcId;
+            this.pw = tempKey;
+            this.tempKey = tempKey;
         },
- 
+
         loadAudio: function() {
             this.audioManager = new AudioManager(this);
         },
@@ -936,9 +939,11 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
             this.client.onConnected(function() {
                 log.info("Starting client/server handshake");
 
-                self.player.name = self.username;
-                self.player.pw = self.userpw;
-                self.player.email = self.email;
+                // self.player.name = self.username;
+                // self.player.pw = self.userpw;
+                // self.player.email = self.email;
+                self.player.tempKey = self.tempKey;
+                self.player.gxcId = self.gxcId;
                 self.started = true;
                 if(action === 'create') {
                     self.client.sendCreate(self.player);
@@ -968,8 +973,9 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
             this.client.onWelcome(function(id, name, x, y, hp, armor, weapon,
                     avatar, weaponAvatar, experience,
                     admin,
-                    inventory0, inventory0Number, inventory1, inventory1Number,
-                    achievementFound, achievementProgress) {
+                    inventory, inventoryNumber,
+                    achievementFound, achievementProgress,
+                    wallet) {
                 log.info("Received player ID from server : "+ id);
                 self.player.id = id;
                 self.playerId = id;
@@ -982,9 +988,13 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
                 self.player.setArmorName(armor);
                 self.player.setSpriteName(avatar);
                 self.player.setWeaponName(weapon);
-                self.player.setInventory(Types.getKindFromString(inventory0), 0, inventory0Number);
-                self.player.setInventory(Types.getKindFromString(inventory1), 1, inventory1Number);
+                for(var i = 0; i < inventory.length; i++) {
+                    self.player.setInventory(Types.getKindFromString(inventory[i]), i, inventoryNumber[i]);
+                }
                 self.initAchievements(achievementFound, achievementProgress);
+                Object.keys(wallet).map(function(key) {
+                    self.player.setWallet(key, wallet[key]);
+                });
                 self.initPlayer();
                 self.player.experience = experience;
                 self.player.level = Types.getLevel(experience);
@@ -1054,6 +1064,11 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
                 self.player.onStep(function() {
                     if(self.player.hasNextStep()) {
                         self.registerEntityDualPosition(self.player);
+                        const nextStep = self.player.path[self.player.step+1];
+                        var item = self.getItemAt(nextStep[0], nextStep[1]);
+                        if(item instanceof Item) {
+                            self.tryLootingItem(item);
+                        }
                     }
 
                     if(self.isZoningTile(self.player.gridX, self.player.gridY)) {
@@ -1061,11 +1076,6 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
                     }
 
                     self.player.forEachAttacker(self.makeAttackerFollow);
-
-                    var item = self.getItemAt(self.player.gridX, self.player.gridY);
-                    if(item instanceof Item) {
-                        self.tryLootingItem(item);
-                    }
 
                     self.updatePlayerCheckpoint();
 
@@ -1435,7 +1445,7 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
                         item.blink(150);
                     }
                 });
-                
+
                 self.client.onGuildError(function(errorType, info) {
 					if(errorType === Types.Messages.GUILDERRORTYPE.BADNAME){
 						self.showNotification(info + " seems to be an inappropriate guild name…");
@@ -1452,22 +1462,38 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
 					else if(errorType === Types.Messages.GUILDERRORTYPE.BADINVITE){
 						self.showNotification(info+" is ALREADY a member of “"+self.player.getGuild().name+"”");
 					}
-				});
-				
+                });
+                
+                self.client.onShopError(function(errorType, info) {
+                    if(errorType === Types.Messages.SHOP_ERROR_TYPE.INVENTORY_IS_FULL) {
+                        self.showNotification("Inventory is Full");
+                    } else if(errorType === Types.Messages.SHOP_ERROR_TYPE.INSUFFICIENT) {
+                        self.showNotification("Money is insufficient");
+                    } else if(errorType === Types.Messages.SHOP_ERROR_TYPE.CHAIN) {
+                        self.showNotification("Chain Error");
+                    } else if(errorType === Types.Messages.SHOP_ERROR_TYPE.DONT_USE_TYPE) {
+                        self.showNotification("Don't Use Item Type");
+                    } else if(errorType === Types.Messages.SHOP_ERROR_TYPE.NOT_MATCH_PRICE) {
+                        self.showNotification("Price Not Match : " + info);
+                    } else {
+                        self.showNotification("Server Error");
+                    }
+                });
+
 				self.client.onGuildCreate(function(guildId, guildName) {
 					self.player.setGuild(new Guild(guildId, guildName));
 					self.storage.setPlayerGuild(self.player.getGuild());
 					self.showNotification("You successfully created and joined…");
 					setTimeout(function(){self.showNotification("…" + self.player.getGuild().name)},2500);
 				});
-				
+
 				self.client.onGuildInvite(function(guildId, guildName, invitorName) {
 					self.showNotification(invitorName + " invited you to join “"+guildName+"”.");
 					self.player.addInvite(guildId);
 					setTimeout(function(){$("#chatinput").attr("placeholder", "Do you want to join "+guildName+" ? Type /guild accept yes or /guild accept no");
 					self.app.showChat();},2500);
 				});
-				
+
 				self.client.onGuildJoin(function(playerName, id, guildId, guildName) {
 					if(typeof id === "undefined"){
 						self.showNotification(playerName + " failed to answer to your invitation in time.");
@@ -1486,7 +1512,7 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
 						self.showNotification(playerName+" is now a jolly member of “"+guildName+"”.");//#updateguild
 					}
 				});
-				
+
 				self.client.onGuildLeave(function(name, playerId, guildName) {
 					if(self.player.id===playerId){
 						if(self.player.hasGuild()){
@@ -1502,7 +1528,7 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
 						self.showNotification(name + " has left “"+guildName+"”.");//#updateguild
 					}
 				});
-				
+
 				self.client.onGuildTalk(function(name, id, message) {
 					if(id===self.player.id){
 						self.showNotification("YOU: "+message);
@@ -1515,11 +1541,11 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
 				self.client.onMemberConnect(function(name) {
 					self.showNotification(name + " connected to your world.");//#updateguild
 				});
-				
+
 				self.client.onMemberDisconnect(function(name) {
 					self.showNotification(name + " lost connection with your world.");
 				});
-				
+
 				self.client.onReceiveGuildMembers(function(memberNames) {
 					self.showNotification(memberNames.join(", ") + ((memberNames.length===1) ? " is " : " are ") +"currently online.");//#updateguild
 				});
@@ -1595,7 +1621,7 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
                     self.player.level = level;
                     self.player.experience = exp;
                     self.updateExpBar();
-                    
+
                     self.infoManager.addDamageInfo("+"+mobExp+" exp", self.player.x, self.player.y - 15, "exp", 3000);
 
                     var expInThisLevel = self.player.experience - Types.expForLevel[self.player.level-1];
@@ -1684,8 +1710,8 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
                     }
                 });
 
-                self.client.onChatMessage(function(entityId, message) {
-                    if(!self.chathandler.processReceiveMessage(entityId, message)){
+                self.client.onChatMessage(function(entityId, sender, message) {
+                    if(!self.chathandler.processReceiveMessage(entityId, sender, message)){
                         var entity = self.getEntityById(entityId);
                         self.createBubble(entityId, message);
                         self.assignBubbleTo(entity);
@@ -1698,7 +1724,7 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
                         self.nbplayers_callback(worldPlayers, totalPlayers);
                     }
                 });
-                
+
                 self.client.onGuildPopulation(function(guildName, guildPopulation) {
 					if(self.nbguildplayers_callback) {
 						self.nbguildplayers_callback(guildName, guildPopulation);
@@ -1714,12 +1740,21 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
                     }
                 });
 
+                self.client.onWallet(function(type, amount) {
+                    self.player.setWallet(type, amount);
+                });
+
+                self.client.onShop(function(itemType, tokenType, price) {
+                    self.player.buyItem(itemType, tokenType, price);
+                });
+
+                self.client.onInventory(function(itemKind, inventoryNumber, number) {
+                    self.player.setInventory(itemKind, inventoryNumber, number);
+                });
+
                 self.client.onAchievement(function(id, type) {
-                    console.log('onAchievement!!')
-                    console.log(id === self.achievements['KILL_CRAB'])
-                    console.log(type)
                     var key = null;
-                    _.each(self.achievements, function(value, _key) { 
+                    _.each(self.achievements, function(value, _key) {
                         if(value.id === id) {
                             key = _key;
                             return -1;
@@ -1742,43 +1777,40 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
 
                     if(key === 'ANGRY_RATS'){
                         setTimeout(function() {
-                            self.infoManager.addDamageInfo("+50 exp", self.player.x, self.player.y - 15, "exp", 3000);
+                            self.infoManager.addDamageInfo("+50 exp, +30 Token", self.player.x, self.player.y - 15, "exp", 3000);
                         }, 1000);
                     } else if(key === 'BRING_LEATHERARMOR'){
                         self.player.switchArmor("clotharmor", self.sprites["clotharmor"]);
                         setTimeout(function() {
                             self.infoManager.addDamageInfo("+50 exp", self.player.x, self.player.y - 15, "exp", 3000);
                         }, 1000);
-                    } else if(key === 'KILL_CRAB'){
-                        if(self.player.inventory[0] === Types.Entities.CAKE){
-                            self.player.inventory[0] = null;
-                        } else if(self.player.inventory[1] === Types.Entities.CAKE){
-                            self.player.inventory[1] = null;
-                        }
+                    } else if(key === 'KILL_CRAeB'){
                         setTimeout(function() {
-                            self.infoManager.addDamageInfo("+50 exp", self.player.x, self.player.y - 15, "exp", 3000);
+                            self.infoManager.addDamageInfo("+50 exp, +50 Token", self.player.x, self.player.y - 15, "exp", 3000);
                         }, 1000);
                     } else if(key === 'FIND_CAKE'){
-                        if(self.player.inventory[0] === Types.Entities.CAKE){
-                            self.player.inventory[0] = null;
-                        } else if(self.player.inventory[1] === Types.Entities.CAKE){
-                            self.player.inventory[1] = null;
+                        for(var i = 0; i < self.player.inventory.length; i++) {
+                            if(self.player.inventory[i] === Types.Entities.CAKE){
+                                self.player.inventory[i] = null;
+                                break;
+                            }
                         }
                         setTimeout(function() {
                             self.infoManager.addDamageInfo("+100 exp", self.player.x, self.player.y - 15, "exp", 3000);
                         }, 1000);
                     } else if(key === 'FIND_CD'){
-                        if(self.player.inventory[0] === Types.Entities.CD){
-                            self.player.inventory[0] = null;
-                        } else if(self.player.inventory[1] === Types.Entities.CD){
-                            self.player.inventory[1] = null;
+                        for(var i = 0; i < self.player.inventory.length; i++) {
+                            if(self.player.inventory[i] === Types.Entities.CD){
+                                self.player.inventory[i] = null;
+                                break;
+                            }
                         }
                         setTimeout(function() {
                             self.infoManager.addDamageInfo("+100 exp", self.player.x, self.player.y - 15, "exp", 3000);
                         }, 1000);
                     } else if(key === 'KILL_SKELETON'){
                         setTimeout(function() {
-                            self.infoManager.addDamageInfo("+200 exp", self.player.x, self.player.y - 15, "exp", 3000);
+                            self.infoManager.addDamageInfo("+200 exp, +100 Token", self.player.x, self.player.y - 15, "exp", 3000);
                         }, 1000);
                     } else if(key === 'BRING_AXE'){
                         self.player.switchWeapon("sword2");
@@ -1793,9 +1825,6 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
                 });
                 self.client.onNotify(function(msg){
                     self.showNotification(msg);
-                });
-                self.client.onKung(function(msg){
-                    self.kkhandler.add(msg, self.player);
                 });
 
                 self.gamestart_callback();
@@ -1992,6 +2021,10 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
                     this.unhiddenAchievement(this.achievements['BRING_AXE']);
                 } else if(npc.kind === Types.Entities.DESERTNPC && !this.achievements['BRING_AXE'].hidden){
                     this.client.sendTalkToNPC(npc.kind);
+                } else if(npc.shop){
+                    $("#shop-modal").addClass("fade show");
+                    $("#shop-modal").css("display", "block");
+                    return ;
                 }
                 msg = npc.talk(this);
                 this.previousClickPosition = {};
@@ -2336,27 +2369,25 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
                 this.closeItemInfo();
             }
 
-            if(pos.x === this.camera.gridX+this.camera.gridW-2
-            && pos.y === this.camera.gridY+this.camera.gridH-1){
-                if(this.player.inventory[0]){
-                    this.menu.clickInventory0();
-                }
-                return;
-            } else if(pos.x === this.camera.gridX+this.camera.gridW-1
+            for(var i = 0; i < this.player.inventory.length; i++) {
+                if(pos.x === this.camera.gridX+this.camera.gridW-this.player.inventory.length+i
                     && pos.y === this.camera.gridY+this.camera.gridH-1){
-                if(this.player.inventory[1]){
-                    this.menu.clickInventory1();
+                    if(this.player.inventory[i]){
+                        this.menu.clickInventory(i);
+                    }
+                    return;
                 }
-                return;
-            } else if(this.menu.inventoryOn){
-                var inventoryNumber;
+            }
+            if(this.menu.inventoryOn){
+                var inventoryNumber = -1;
                 var clickedMenu;
-
-                if(this.menu.inventoryOn === "inventory0"){
-                    inventoryNumber = 0;
-                } else if(this.menu.inventoryOn === "inventory1"){
-                    inventoryNumber = 1;
-                } else{
+                for(var i = 0; i < this.player.inventory.length; i++) {
+                    if(this.menu.inventoryOn === "inventory"+i){
+                        inventoryNumber = i;
+                        break;
+                    }
+                }
+                if(inventoryNumber === -1) {
                     return;
                 }
                 clickedMenu = this.menu.isClickedInventoryMenu(pos, this.camera);
@@ -2379,11 +2410,11 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
                     } else if(Types.isHealingItem(this.player.inventory[inventoryNumber])) {
                         this.eat(inventoryNumber);
                         return;
+                    } else if(Types.isWeapon(this.player.inventory[inventoryNumber])){
+                        this.equip(inventoryNumber);
                     }
-                } else if(clickedMenu === 1
-                    && this.player.inventory[inventoryNumber] !== Types.Entities.CAKE
-                    && this.player.inventory[inventoryNumber] !== Types.Entities.CD) {
-                    if(Types.isHealingItem(this.player.inventory[inventoryNumber]) && (this.player.inventoryCount[inventoryNumber] > 1)) {
+                } else if(clickedMenu === 1) {
+                    if((Types.isHealingItem(this.player.inventory[inventoryNumber]) || Types.isToken(this.player.inventory[inventoryNumber])) && (this.player.inventoryCount[inventoryNumber] > 1)) {
                         $('#dropCount').val(this.player.inventoryCount[inventoryNumber]);
                         this.app.showDropDialog(inventoryNumber);
                     } else {
@@ -2398,7 +2429,7 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
             } else{
                 this.menu.close();
             }
-            
+
             if(pos.x === this.previousClickPosition.x
             && pos.y === this.previousClickPosition.y) {
                 return;
@@ -2423,8 +2454,9 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
             && !this.hoveringCollidingTile
             && !this.hoveringPlateauTile) {
                 entity = this.getEntityAt(pos.x, pos.y);
+                var isMove = (this.player.moveUp || this.player.moveDown || this.player.moveLeft || this.player.moveRight);
 
-        	    if(entity instanceof Mob || (entity instanceof Player && entity !== this.player && this.player.pvpFlag && this.pvpFlag)) {
+        	    if(!isMove && entity instanceof Mob || (entity instanceof Player && entity !== this.player && this.player.pvpFlag && this.pvpFlag)) {
                     this.makePlayerAttack(entity);
                 }
                 else if(entity instanceof Item) {
@@ -2437,7 +2469,7 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
                         if(!this.player.disableKeyboardNpcTalk) {
                             this.makeNpcTalk(entity);
 
-                            if(this.player.moveUp || this.player.moveDown || this.player.moveLeft || this.player.moveRight)
+                            if(isMove)
                                 this.player.disableKeyboardNpcTalk = true;
                         }
                     }
@@ -2446,7 +2478,19 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
                     this.makePlayerOpenChest(entity);
                 }
                 else {
-                    this.makePlayerGoTo(pos.x, pos.y);
+                    if(this.player.moveUp) {
+                        this.player.turnTo(Types.Orientations.UP);
+                    } else if(this.player.moveRight) {
+                        this.player.turnTo(Types.Orientations.RIGHT);
+                    } else if(this.player.moveLeft) {
+                        this.player.turnTo(Types.Orientations.LEFT);
+                    } else if(this.player.moveDown) {
+                        this.player.turnTo(Types.Orientations.DOWN);
+                    }
+
+                    if(!(entity instanceof Player && entity !== this.player)) {
+                        this.makePlayerGoTo(pos.x, pos.y);
+                    }
                 }
             }
         },
@@ -2454,24 +2498,19 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
         rightClick: function() {
             var pos = this.getMouseGridPosition();
 
-            if(pos.x === this.camera.gridX+this.camera.gridW-2
-            && pos.y === this.camera.gridY+this.camera.gridH-1){
-                if(this.player.inventory[0]){
-                    if(Types.isHealingItem(this.player.inventory[0]))
-                        this.eat(0);
+            for(var i = 0; i < this.player.inventory.length; i++) {
+                if(pos.x === this.camera.gridX+this.camera.gridW-this.player.inventory.length+i
+                    && pos.y === this.camera.gridY+this.camera.gridH-1){
+                    if(this.player.inventory[i]){
+                        if(Types.isHealingItem(this.player.inventory[i]))
+                            this.eat(i);
+                    }
+                    return;
                 }
-                return;
-            } else if(pos.x === this.camera.gridX+this.camera.gridW-1
-                   && pos.y === this.camera.gridY+this.camera.gridH-1){
-                if(this.player.inventory[1]){
-                    if(Types.isHealingItem(this.player.inventory[1]))
-                        this.eat(1);
-                }
-            } else {
-                if((this.healShortCut >= 0) && this.player.inventory[this.healShortCut]) {
-                    if(Types.isHealingItem(this.player.inventory[this.healShortCut]))
-                        this.eat(this.healShortCut);
-                }
+            }
+            if((this.healShortCut >= 0) && this.player.inventory[this.healShortCut]) {
+                if(Types.isHealingItem(this.player.inventory[this.healShortCut]))
+                    this.eat(this.healShortCut);
             }
         },
 
@@ -2572,7 +2611,7 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
         onCharacterUpdate: function(character) {
             var time = this.currentTime,
                 self = this;
-            
+
             // If mob has finished moving to a different tile in order to avoid stacking, attack again from the new position.
             if(character.previousTarget && !character.isMoving() && character instanceof Mob) {
                 var t = character.previousTarget;
@@ -2784,9 +2823,11 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
 							this.showNotification("“guild accept” is a YES or NO question!!");
 						}
 						break;
-				}	
+				}
             }
-            if(!this.chathandler.processSendMessage(message)){
+
+            console.log(this.player.name, message);
+            if(!this.chathandler.processSendMessage(this.player.name, message)){
                 this.client.sendChat(message);
             }
         },
@@ -2841,8 +2882,9 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
             this.initRenderingGrid();
 
             this.player = new Warrior("player", this.username);
-            this.player.pw = this.userpw;
-            this.player.email = this.email;
+            this.player.gxcId = this.gxcId;
+            this.player.tempKey = this.tempKey;
+
             this.initPlayer();
             this.app.initTargetHud();
 
@@ -2891,7 +2933,7 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
         onNbPlayersChange: function(callback) {
             this.nbplayers_callback = callback;
         },
-        
+
         onGuildPopulationChange: function(callback) {
 			this.nbguildplayers_callback = callback;
 		},
@@ -2939,7 +2981,7 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
                 this.updatetarget_callback(target);
             }
         },
-    
+
         getDeadMobPosition: function(mobId) {
             var position;
 
@@ -3138,6 +3180,13 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
                      this.equipment_callback();
                 }
                 this.menu.close();
+            } else if(Types.isWeapon(this.player.inventory[inventoryNumber])){
+                this.client.sendInventory("weapon", inventoryNumber, 1);
+                this.player.equipFromInventory("weapon", inventoryNumber, this.sprites);
+                if(this.equipment_callback) {
+                     this.equipment_callback();
+                }
+                this.menu.close();
             }
         },
         avatar: function(inventoryNumber){
@@ -3150,10 +3199,10 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
                 if(this.player.decInventory(inventoryNumber)){
                     this.client.sendInventory("eat", inventoryNumber, 1);
                 } else{
-                    this.showNotification("힐링 아이템 쿨타임이 안 끝났습니다.");
+                    this.showNotification("Healing Item Cool Time is not over");
                 }
             } else {
-                this.showNotification("최대 체력입니다.");
+                this.showNotification("Health is Full");
             }
             this.menu.close();
         }

@@ -182,6 +182,7 @@ define(['jquery', 'app', 'entrypoint'], function($, App, EntryPoint) {
                             game.player.inventory[app.inventoryNumber] = null;
                     }
                 } catch(e) {
+                    console.log(e);
                 }
 
                 setTimeout(function () {
@@ -433,6 +434,39 @@ define(['jquery', 'app', 'entrypoint'], function($, App, EntryPoint) {
                     game.pvpFlag = true;
                 else if(key === 27)
                     app.hideDropDialog();
+                if (game.started && !$('#chatbox').hasClass('active')) {
+                    pos = {
+                        x: game.player.gridX,
+                        y: game.player.gridY
+                    };
+                    switch(key) {
+                        case Types.Keys.LEFT:
+                        case Types.Keys.A:
+                        case Types.Keys.KEYPAD_4:
+                            game.player.moveLeft = true;
+                            break;
+                        case Types.Keys.RIGHT:
+                        case Types.Keys.D:
+                        case Types.Keys.KEYPAD_6:
+                            game.player.moveRight = true;
+                            break;
+                        case Types.Keys.UP:
+                        case Types.Keys.W:
+                        case Types.Keys.KEYPAD_8:
+                            game.player.moveUp = true;
+                            break;
+                        case Types.Keys.DOWN:
+                        case Types.Keys.S:
+                        case Types.Keys.KEYPAD_2:
+                            game.player.moveDown = true;
+                            break;
+                        case Types.Keys.SPACE:
+                            game.player.hit();
+                            game.makePlayerAttackNext();
+                        default:
+                            break;
+                    }
+                }
             });
 
              $(document).keyup(function(e) {
@@ -623,7 +657,7 @@ define(['jquery', 'app', 'entrypoint'], function($, App, EntryPoint) {
                         hpg.css('display', 'block');
 
                         setInterval(function () {
-                            if(((game.player.hitPoints / game.player.maxHitPoints) <= game.hpGuide) && 
+                            if(game.player && ((game.player.hitPoints / game.player.maxHitPoints) <= game.hpGuide) && 
                                (game.healShortCut >= 0) && 
                                Types.isHealingItem(game.player.inventory[game.healShortCut]) &&
                                (game.player.inventoryCount[game.healShortCut] > 0)

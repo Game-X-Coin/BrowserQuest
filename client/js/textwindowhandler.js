@@ -6,13 +6,14 @@ define(['jquery'], function() {
          this.textWindowOn = true;
          this.textWindow = $('#textWindow');
 
-         var text = '<p><h4>도움말</h4></p>'
-                     + '<p><h3>전체채팅: /1 할말</h3></p>'
-                     + '<p>쿵쿵따: /2 단어</p>'
-                     + '<p>힐링 아이템 단축키: 숫자키 1번 2번</p>'
-                     + '<p>밴: /i 닉네임 (경험치 10만 이상만 가능)</h3></p>'
-                     + '<p>아래 물음표 버튼을 누르면 장비 순서 및 도움말을 볼 수 있습니다.</p>'
-                     + '<footer>클릭하면 닫힙니다.</footer>';
+         var text = '<p><h4>GXC Quest</h4></p>'
+                     + '<p><h3>This demo game is operating on blockchain venture’s own GXC test blockchain -- which is a hardfork of EOS.</h3></p>'
+                     + '<p>Acquiring game token: Players can kill monsters to acquire yellow game tokens.</p>'
+                     + '<p>Using game token: You can purchase items by talking to the wizard located left to the village.</p>'
+                     + '<p>This game is developed to showcase different applications of GXC to game developers. We’ll continue to add new functionalities to this game.</p>'
+                     + '<p>https://mew.gamexcoin.io to check your balance!</h3></p>'
+
+                     + '<footer>Thank you. Enjoy the game!</footer>';
          $('#textWindow').html(text);
          $('#textWindow').fadeIn('fast');
      },

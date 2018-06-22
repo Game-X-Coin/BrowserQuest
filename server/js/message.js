@@ -32,6 +32,7 @@ Messages.Move = Message.extend({
         this.entity = entity;
     },
     serialize: function () {
+
         return [Types.Messages.MOVE,
                 this.entity.id,
                 this.entity.x,
@@ -120,11 +121,13 @@ Messages.Drop = Message.extend({
 Messages.Chat = Message.extend({
     init: function (player, message) {
         this.playerId = player.id;
+        this.playerName = player.name;
         this.message = message;
     },
     serialize: function () {
         return [Types.Messages.CHAT,
                 this.playerId,
+                this.playerName,
                 this.message];
     }
 });
@@ -242,15 +245,5 @@ Messages.PVP = Message.extend({
     serialize: function(){
         return [Types.Messages.PVP,
                 this.isPVP];
-    }
-});
-
-Messages.Kung = Message.extend({
-    init: function(message) {
-        this.message = message;
-    },
-    serialize: function() {
-        return [Types.Messages.KUNG,
-                this.message];
     }
 });

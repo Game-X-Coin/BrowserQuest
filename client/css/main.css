@@ -355,7 +355,7 @@ footer, header, hgroup, menu, nav, section {
     }
     #chatLog{
         position: absolute; 
-        width: 1170px;
+        width: 1470px;
         left: 50%;
         margin-left: -735px;
         top: 750px;
@@ -376,25 +376,9 @@ footer, header, hgroup, menu, nav, section {
       #chatLog p .name{
         font-weight: bold;
       }
-      #kungLog{
-        position: absolute; 
-        width: 280px;
-        left: 50%;
-        margin-left: 455px;
-        top: 750px;
-        bottom: 10px;
-        border: 1px solid #9C9898;
-        background: rgba(45, 45, 45, 1);
-        padding: 5px;
-        overflow-y: scroll;
-        overflow-x: hide;
-        display: none;
-      }
-      #kungLog p{
-        margin-bottom: 3px;
-        padding: 0;
-        line-height: 1;
-        color: rgba(255,255,255,1);
+      
+      #chatLog p.world {
+          color: yellow;
       }
   
       #board{
@@ -1010,7 +994,7 @@ footer, header, hgroup, menu, nav, section {
           }
       #chatLog{
         position: absolute; 
-        width: 660px;
+        width: 960px;
         left: 50%;
         margin-left: -480px;
         top: 500px;
@@ -1030,26 +1014,6 @@ footer, header, hgroup, menu, nav, section {
       }
       #chatLog p .name{
         font-weight: bold;
-      }
-      #kungLog{
-        position: absolute; 
-        width: 280px;
-        left: 50%;
-        margin-left: 200px;
-        top: 500px;
-        bottom: 10px;
-        border: 1px solid #9C9898;
-        background: rgba(45, 45, 45, 1);
-        padding: 5px;
-        overflow-y: scroll;
-        overflow-x: hide;
-        display: none;
-      }
-      #kungLog p{
-        margin-bottom: 3px;
-        padding: 0;
-        line-height: 1;
-        color: rgba(255,255,255,1);
       }
   
       #board{
@@ -1707,3 +1671,36 @@ footer, header, hgroup, menu, nav, section {
     .opera #achievements.active, .opera #instructions.active { z-index: 30000;}
     .opera #coinsparks {display:none;}
     .opera #death, .opera #about, .opera #credits, .opera #error, .opera #confirmation, .opera #loadcharacter, .opera #legal { z-index: -30000; }
+
+
+    #gxc-logo {
+        position: absolute;
+        left: 50%;
+        top: 10%;
+        width: auto;
+        max-height: 12vw;
+        transform: translateX(-50%);
+    }
+
+    #gxc-info {
+        margin: 30px;
+        text-align: center;
+        font-size: 16px;
+    }
+
+    #gxc-login-button {
+        
+    }
+
+    @media screen and (max-width: 1000px) and (min-width: 800px) {
+        #gxc-info {
+            margin: 10px 30px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        #gxc-login-button {
+            height: 60px;
+            width: auto;
+        }
+    }
